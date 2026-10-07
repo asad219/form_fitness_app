@@ -855,4 +855,159 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get orderNeedHelp => 'Need a hand? Contact the club';
+
+  @override
+  String get ordersTitle => 'My orders';
+
+  @override
+  String get ordersHeadline => 'YOUR ORDERS.';
+
+  @override
+  String get ordersEmptyTitle => 'No orders yet';
+
+  @override
+  String get ordersEmptyMessage =>
+      'Book a class or grab some gear to see your orders here.';
+
+  @override
+  String get ordersClassesLabel => 'classes';
+
+  @override
+  String get ordersProductsLabel => 'products';
+
+  @override
+  String get ordersViewAll => 'View my orders';
+
+  @override
+  String get orderDetailTitle => 'Order detail';
+
+  @override
+  String get orderClassesSection => 'CLASSES';
+
+  @override
+  String get orderProductsSection => 'PRODUCTS';
+
+  @override
+  String orderAttendees(int count) {
+    return '$count person(s)';
+  }
+
+  @override
+  String orderCancelledOn(String date) {
+    return 'Cancelled on $date';
+  }
+
+  @override
+  String get orderAttended => 'Attended';
+
+  @override
+  String get orderCancelBooking => 'Cancel booking';
+
+  @override
+  String get orderCancelConfirmTitle => 'Cancel this class?';
+
+  @override
+  String get orderCancelConfirmMessage =>
+      'Your spot will be released. No refund is issued.';
+
+  @override
+  String get orderViewEntryPassFull => 'Entry pass';
+
+  @override
+  String orderQtyTimes(int qty, String price) {
+    return '$qty × $price';
+  }
+
+  @override
+  String get orderShippingFee => 'Shipping fee';
+
+  @override
+  String get orderTotalPaidLabel => 'Total paid';
+
+  @override
+  String get membershipTitle => 'Membership';
+
+  @override
+  String get membershipHeadline => 'ONE CLUB.\nEVERY DAY.';
+
+  @override
+  String get membershipMonthly => 'Monthly';
+
+  @override
+  String get membershipYearly => 'Yearly';
+
+  @override
+  String membershipYearlySaving(String amount) {
+    return 'Save $amount a year';
+  }
+
+  @override
+  String membershipJoin(String plan) {
+    return 'Join $plan';
+  }
+
+  @override
+  String get membershipConfirmTitle => 'Confirm membership';
+
+  @override
+  String membershipRenewsOn(Object date) {
+    return 'Renews on $date';
+  }
+
+  @override
+  String membershipEndsOn(String date) {
+    return 'Ends on $date';
+  }
+
+  @override
+  String get membershipConfirmCta => 'Confirm & pay';
+
+  @override
+  String get membershipCurrentPlan => 'CURRENT PLAN';
+
+  @override
+  String membershipMemberSince(String date) {
+    return 'Member since $date';
+  }
+
+  @override
+  String membershipValidUntil(String date) {
+    return 'Valid until $date';
+  }
+
+  @override
+  String membershipDaysRemaining(int days) {
+    return '$days days remaining';
+  }
+
+  @override
+  String get membershipCancel => 'Cancel membership';
+
+  @override
+  String get membershipCancelConfirmTitle => 'Cancel membership?';
+
+  @override
+  String membershipCancelConfirmMessage(String date) {
+    return 'You\'ll keep access until $date.';
+  }
+
+  @override
+  String membershipCancelledBanner(String date) {
+    return 'Cancelled · access until $date';
+  }
+
+  @override
+  String get membershipHistoryTitle => 'HISTORY';
+
+  @override
+  String get membershipIncluded => 'Included in membership';
+
+  @override
+  String get membershipLoginRequired => 'Log in to manage your membership.';
+
+  @override
+  String get perMonth => '/ month';
+
+  @override
+  String get perYear => '/ year';
 }

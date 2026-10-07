@@ -354,5 +354,106 @@
   "orderPickupTitle": "قارورة FORM · استلام من النادي",
   "orderPickupMeta": "جاهزة الأربعاء 7 أكتوبر من 6:30 صباحاً\nFORM بروكلين · 68 شارع ويث\nأظهر رقم طلبك في الاستقبال.",
   "orderViewBookingCta": "عرض حجزي وطلبي",
-  "orderNeedHelp": "تحتاج مساعدة؟ تواصل مع النادي"
+  "orderNeedHelp": "تحتاج مساعدة؟ تواصل مع النادي",
+
+  "ordersTitle": "طلباتي",
+  "ordersHeadline": "طلباتك.",
+  "ordersEmptyTitle": "لا توجد طلبات بعد",
+  "ordersEmptyMessage": "احجز حصة أو تسوق بعض المعدات لترى طلباتك هنا.",
+  "ordersClassesLabel": "حصص",
+  "ordersProductsLabel": "منتجات",
+  "ordersViewAll": "عرض طلباتي",
+  "orderDetailTitle": "تفاصيل الطلب",
+  "orderClassesSection": "الحصص",
+  "orderProductsSection": "المنتجات",
+  "orderAttendees": "{count} شخص",
+  "@orderAttendees": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "orderCancelledOn": "أُلغي في {date}",
+  "@orderCancelledOn": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "orderAttended": "حضر",
+  "orderCancelBooking": "إلغاء الحجز",
+  "orderCancelConfirmTitle": "إلغاء هذه الحصة؟",
+  "orderCancelConfirmMessage": "سيتم تحرير مكانك. لا يتم إصدار استرداد.",
+  "orderViewEntryPassFull": "بطاقة الدخول",
+  "orderQtyTimes": "{qty} × {price}",
+  "@orderQtyTimes": {
+    "placeholders": {
+      "qty": { "type": "int" },
+      "price": { "type": "String" }
+    }
+  },
+  "orderShippingFee": "رسوم الشحن",
+  "orderTotalPaidLabel": "الإجمالي المدفوع",
+
+  "membershipTitle": "العضوية",
+  "membershipHeadline": "نادٍ واحد.\nكل يوم.",
+  "membershipMonthly": "شهري",
+  "membershipYearly": "سنوي",
+  "membershipYearlySaving": "وفّر {amount} سنوياً",
+  "@membershipYearlySaving": {
+    "placeholders": {
+      "amount": { "type": "String" }
+    }
+  },
+  "membershipJoin": "انضم إلى {plan}",
+  "@membershipJoin": {
+    "placeholders": {
+      "plan": { "type": "String" }
+    }
+  },
+  "membershipConfirmTitle": "تأكيد العضوية",
+  "membershipRenewsOn": "يتجدد في {date}",
+  "membershipEndsOn": "ينتهي في {date}",
+  "@membershipEndsOn": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "membershipConfirmCta": "تأكيد ودفع",
+  "membershipCurrentPlan": "الخطة الحالية",
+  "membershipMemberSince": "عضو منذ {date}",
+  "@membershipMemberSince": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "membershipValidUntil": "صالح حتى {date}",
+  "@membershipValidUntil": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "membershipDaysRemaining": "متبقي {days} يوم",
+  "@membershipDaysRemaining": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "membershipCancel": "إلغاء العضوية",
+  "membershipCancelConfirmTitle": "إلغاء العضوية؟",
+  "membershipCancelConfirmMessage": "ستحتفظ بالوصول حتى {date}.",
+  "@membershipCancelConfirmMessage": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "membershipCancelledBanner": "ملغاة · وصول حتى {date}",
+  "@membershipCancelledBanner": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "membershipHistoryTitle": "السجل",
+  "membershipIncluded": "مشمول في العضوية",
+  "membershipLoginRequired": "سجل الدخول لإدارة عضويتك.",
+  "perMonth": "/ شهر",
+  "perYear": "/ سنة"
 }

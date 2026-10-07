@@ -9,6 +9,9 @@ import 'package:app_boilerplate/features/auth/presentation/pages/splash_page.dar
 import 'package:app_boilerplate/features/auth/presentation/pages/verify_email_page.dart';
 import 'package:app_boilerplate/features/cart/presentation/pages/cart_page.dart';
 import 'package:app_boilerplate/features/cart/presentation/pages/order_complete_page.dart';
+import 'package:app_boilerplate/features/cart/presentation/pages/order_detail_page.dart';
+import 'package:app_boilerplate/features/cart/presentation/pages/orders_page.dart';
+import 'package:app_boilerplate/features/membership/presentation/pages/membership_page.dart';
 import 'package:app_boilerplate/features/shop/presentation/pages/product_details_page.dart';
 import 'package:app_boilerplate/features/train/presentation/pages/class_details_page.dart';
 import 'package:app_boilerplate/features/train/presentation/pages/reservation_page.dart';
@@ -70,6 +73,18 @@ class AppRouter {
         (
           _,
         ) => const OrderCompletePage(),
+    RoutesName.orders:
+        (
+          _,
+        ) => const OrdersPage(),
+    RoutesName.orderDetail:
+        (
+          _,
+        ) => const OrderDetailPage(),
+    RoutesName.membership:
+        (
+          _,
+        ) => const MembershipPage(),
   };
 
   static bool

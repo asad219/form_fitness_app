@@ -1,3 +1,4 @@
+import 'package:app_boilerplate/app/routes/routes_name.dart';
 import 'package:app_boilerplate/core/constants/app_colors.dart';
 import 'package:app_boilerplate/core/constants/app_dimens.dart';
 import 'package:app_boilerplate/core/extensions/context_extensions.dart';
@@ -90,8 +91,38 @@ class YouPage
                 color: AppColors.grey,
               ),
             ),
+            if (user !=
+                    null &&
+                user.membershipStatus !=
+                    'NONE') ...[
+              const SizedBox(
+                height: AppSpacing.sm,
+              ),
+              _MembershipBadge(
+                status: user.membershipStatus,
+              ),
+            ],
             const SizedBox(
               height: AppSpacing.xxl,
+            ),
+            _MenuTile(
+              icon: Icons.receipt_long_outlined,
+              label: l10n.ordersTitle,
+              onTap: () => Navigator.pushNamed(
+                context,
+                RoutesName.orders,
+              ),
+            ),
+            _MenuTile(
+              icon: Icons.card_membership_outlined,
+              label: l10n.membershipTitle,
+              onTap: () => Navigator.pushNamed(
+                context,
+                RoutesName.membership,
+              ),
+            ),
+            const SizedBox(
+              height: AppSpacing.lg,
             ),
             AppCard(
               child: Column(
@@ -131,6 +162,116 @@ class YouPage
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Small badge showing the live membership plan (ACTIVE / VIP).
+class _MembershipBadge
+    extends
+        StatelessWidget {
+  const _MembershipBadge({
+    required this.status,
+  });
+
+  final String status;
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    final isVip =
+        status ==
+        'VIP';
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+        vertical: AppSpacing.xs,
+      ),
+      decoration: BoxDecoration(
+        color: isVip
+            ? AppColors.charcoal
+            : AppColors.lime,
+        borderRadius: BorderRadius.circular(
+          AppRadius.pill,
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            isVip
+                ? Icons.star
+                : Icons.check_circle,
+            size: 14,
+            color: isVip
+                ? AppColors.lime
+                : AppColors.charcoal,
+          ),
+          const SizedBox(
+            width: AppSpacing.xs,
+          ),
+          Text(
+            status,
+            style: context.textTheme.labelLarge?.copyWith(
+              fontSize: 11,
+              letterSpacing: 1,
+              color: isVip
+                  ? AppColors.lime
+                  : AppColors.charcoal,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// A tappable settings/menu row.
+class _MenuTile
+    extends
+        StatelessWidget {
+  const _MenuTile({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    return Container(
+      margin: const EdgeInsets.only(
+        bottom: AppSpacing.sm,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(
+          AppRadius.md,
+        ),
+      ),
+      child: ListTile(
+        leading: Icon(
+          icon,
+          color: AppColors.charcoal,
+        ),
+        title: Text(
+          label,
+          style: context.textTheme.bodyLarge?.copyWith(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        trailing: const Icon(
+          Icons.chevron_right,
+          color: AppColors.grey,
+        ),
+        onTap: onTap,
       ),
     );
   }

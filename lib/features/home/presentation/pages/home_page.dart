@@ -1,4 +1,3 @@
-import 'package:app_boilerplate/app/routes/routes_name.dart';
 import 'package:app_boilerplate/core/constants/app_assets.dart';
 import 'package:app_boilerplate/core/constants/app_colors.dart';
 import 'package:app_boilerplate/core/constants/app_dimens.dart';
@@ -6,11 +5,13 @@ import 'package:app_boilerplate/core/extensions/context_extensions.dart';
 import 'package:app_boilerplate/core/widgets/form_ui.dart';
 import 'package:app_boilerplate/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:app_boilerplate/features/auth/presentation/widgets/form_brand.dart';
+import 'package:app_boilerplate/features/cms/data/models/app_config_model.dart';
+import 'package:app_boilerplate/features/cms/presentation/bloc/cms_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-/// Home tab: greeting, hero card, category shortcuts and "your next move".
+/// Home tab: CMS hero banners, announcements, category shortcuts, next move.
 class HomePage
     extends
         StatelessWidget {
@@ -37,98 +38,199 @@ class HomePage
     return Scaffold(
       backgroundColor: AppColors.cream,
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(
-            AppSpacing.xl,
-          ),
-          children: [
-            // Header: logo + club + bell.
-            Row(
-              children: [
-                const FormLogo(),
-                const SizedBox(
-                  width: AppSpacing.md,
-                ),
-                Expanded(
-                  child: Text(
-                    l10n.onboardingClubTag,
-                    style: context.textTheme.labelLarge?.copyWith(
-                      fontSize: 10,
-                      letterSpacing: 1.2,
-                      color: AppColors.grey,
-                    ),
-                  ),
-                ),
-                CircleIconButton(
-                  asset: AppAssets.iconBell,
-                  onPressed: () {},
-                ),
-              ],
+        child:
+            BlocBuilder<
+              CmsBloc,
+              CmsState
+            >(
+              builder:
+                  (
+                    context,
+                    cmsState,
+                  ) {
+                    return RefreshIndicator(
+                      onRefresh: () async => context
+                          .read<
+                            CmsBloc
+                          >()
+                          .add(
+                            const CmsLoadRequested(),
+                          ),
+                      child: ListView(
+                        padding: const EdgeInsets.all(
+                          AppSpacing.xl,
+                        ),
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        children: [
+                          Row(
+                            children: [
+                              const FormLogo(),
+                              const SizedBox(
+                                width: AppSpacing.md,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  l10n.onboardingClubTag,
+                                  style: context.textTheme.labelLarge?.copyWith(
+                                    fontSize: 10,
+                                    letterSpacing: 1.2,
+                                    color: AppColors.grey,
+                                  ),
+                                ),
+                              ),
+                              CircleIconButton(
+                                asset: AppAssets.iconBell,
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: AppSpacing.xxl,
+                          ),
+                          FormTagline(
+                            l10n.homeGreetingMorning(
+                              firstName,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: AppSpacing.xs,
+                          ),
+                          FormHeadline(
+                            l10n.homeHeadline,
+                            fontSize: 34,
+                          ),
+                          const SizedBox(
+                            height: AppSpacing.xl,
+                          ),
+                          _AnnouncementBars(
+                            announcements: cmsState.announcements,
+                          ),
+                          _HeroCarousel(
+                            banners: cmsState.heroBanners,
+                          ),
+                          const SizedBox(
+                            height: AppSpacing.lg,
+                          ),
+                          _CategoryRow(),
+                          const SizedBox(
+                            height: AppSpacing.xxl,
+                          ),
+                          SectionTitleRow(
+                            title: l10n.homeNextMove,
+                            actionLabel: l10n.homeExploreAll,
+                            onAction: () {},
+                          ),
+                          const SizedBox(
+                            height: AppSpacing.lg,
+                          ),
+                          const _NextMoveRow(),
+                          const SizedBox(
+                            height: AppSpacing.xl,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
             ),
-            const SizedBox(
-              height: AppSpacing.xxl,
+      ),
+    );
+  }
+}
+
+class _AnnouncementBars
+    extends
+        StatelessWidget {
+  const _AnnouncementBars({
+    required this.announcements,
+  });
+
+  final List<
+    AnnouncementModel
+  >
+  announcements;
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    if (announcements.isEmpty) return const SizedBox.shrink();
+    return Column(
+      children: [
+        for (final a in announcements)
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(
+              bottom: AppSpacing.sm,
             ),
-            FormTagline(
-              l10n.homeGreetingMorning(
-                firstName,
+            padding: const EdgeInsets.all(
+              AppSpacing.md,
+            ),
+            decoration: BoxDecoration(
+              color: AppColors.lime.withValues(
+                alpha: 0.25,
+              ),
+              borderRadius: BorderRadius.circular(
+                AppRadius.md,
               ),
             ),
-            const SizedBox(
-              height: AppSpacing.xs,
+            child: Text(
+              a.message,
+              style: context.textTheme.bodySmall?.copyWith(
+                color: AppColors.charcoal,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-            FormHeadline(
-              l10n.homeHeadline,
-              fontSize: 34,
-            ),
-            const SizedBox(
-              height: AppSpacing.xl,
-            ),
-            const _HeroCard(),
-            const SizedBox(
-              height: AppSpacing.lg,
-            ),
-            _CategoryRow(),
-            const SizedBox(
-              height: AppSpacing.xxl,
-            ),
-            SectionTitleRow(
-              title: l10n.homeNextMove,
-              actionLabel: l10n.homeExploreAll,
-              onAction: () {},
-            ),
-            const SizedBox(
-              height: AppSpacing.lg,
-            ),
-            const _NextMoveRow(),
-            const SizedBox(
-              height: AppSpacing.xl,
-            ),
-            Row(
-              children: [
-                SvgPicture.asset(
-                  AppAssets.iconMapPin,
-                  width: 16,
-                  height: 16,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.grey,
-                    BlendMode.srcIn,
-                  ),
+          ),
+      ],
+    );
+  }
+}
+
+class _HeroCarousel
+    extends
+        StatelessWidget {
+  const _HeroCarousel({
+    required this.banners,
+  });
+
+  final List<
+    BannerModel
+  >
+  banners;
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    if (banners.isEmpty) {
+      // Fallback hero when the CMS has no hero banners.
+      return const _HeroCard(
+        title: null,
+        subtitle: null,
+        imageUrl: null,
+      );
+    }
+    return SizedBox(
+      height: 280,
+      child: PageView.builder(
+        itemCount: banners.length,
+        itemBuilder:
+            (
+              context,
+              index,
+            ) {
+              final banner = banners[index];
+              return Padding(
+                padding: const EdgeInsetsDirectional.only(
+                  end: AppSpacing.md,
                 ),
-                const SizedBox(
-                  width: AppSpacing.sm,
+                child: _HeroCard(
+                  title: banner.title,
+                  subtitle: banner.subtitle,
+                  imageUrl: banner.imageUrl,
                 ),
-                Expanded(
-                  child: Text(
-                    l10n.homeClubNote,
-                    style: context.textTheme.bodySmall?.copyWith(
-                      color: AppColors.grey,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+              );
+            },
       ),
     );
   }
@@ -137,7 +239,15 @@ class HomePage
 class _HeroCard
     extends
         StatelessWidget {
-  const _HeroCard();
+  const _HeroCard({
+    this.title,
+    this.subtitle,
+    this.imageUrl,
+  });
+
+  final String? title;
+  final String? subtitle;
+  final String? imageUrl;
 
   @override
   Widget build(
@@ -151,6 +261,20 @@ class _HeroCard
         borderRadius: BorderRadius.circular(
           AppRadius.lg,
         ),
+        image:
+            imageUrl ==
+                null
+            ? null
+            : DecorationImage(
+                image: NetworkImage(
+                  imageUrl!,
+                ),
+                fit: BoxFit.cover,
+                colorFilter: const ColorFilter.mode(
+                  Colors.black45,
+                  BlendMode.darken,
+                ),
+              ),
       ),
       padding: const EdgeInsets.all(
         AppSpacing.lg,
@@ -168,7 +292,8 @@ class _HeroCard
           ),
           const Spacer(),
           Text(
-            l10n.homeHeroTitle,
+            title ??
+                l10n.homeHeroTitle,
             style: context.textTheme.displaySmall?.copyWith(
               fontSize: 30,
               height: 1.05,
@@ -176,30 +301,18 @@ class _HeroCard
               color: Colors.white,
             ),
           ),
-          const SizedBox(
-            height: AppSpacing.md,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  l10n.homeHeroCta,
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: Colors.white70,
-                  ),
-                ),
+          if (subtitle !=
+              null) ...[
+            const SizedBox(
+              height: AppSpacing.sm,
+            ),
+            Text(
+              subtitle!,
+              style: context.textTheme.bodyMedium?.copyWith(
+                color: Colors.white70,
               ),
-              SvgPicture.asset(
-                AppAssets.iconArrowUpRight,
-                width: 18,
-                height: 18,
-                colorFilter: const ColorFilter.mode(
-                  AppColors.lime,
-                  BlendMode.srcIn,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ],
       ),
     );
@@ -296,22 +409,8 @@ class _NextMoveRow
           child: _NextMoveCard(
             tag: l10n.trainFilterClasses.toUpperCase(),
             title: l10n.trainClassName,
-            meta: l10n.trainClassNext
-                .split(
-                  '·',
-                )
-                .first
-                .trim(),
-            price: l10n.trainClassPrice
-                .split(
-                  '/',
-                )
-                .first
-                .trim(),
-            onTap: () => Navigator.pushNamed(
-              context,
-              RoutesName.classDetails,
-            ),
+            meta: l10n.trainClassNext,
+            price: l10n.trainClassPrice,
           ),
         ),
         const SizedBox(
@@ -323,10 +422,6 @@ class _NextMoveRow
             title: l10n.onboardingProductBottle,
             meta: '750 ml · In stock',
             price: r'$32',
-            onTap: () => Navigator.pushNamed(
-              context,
-              RoutesName.productDetails,
-            ),
           ),
         ),
       ],
@@ -342,62 +437,57 @@ class _NextMoveCard
     required this.title,
     required this.meta,
     required this.price,
-    required this.onTap,
   });
 
   final String tag;
   final String title;
   final String meta;
   final String price;
-  final VoidCallback onTap;
 
   @override
   Widget build(
     BuildContext context,
   ) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const FormImagePlaceholder(
-            height: 140,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const FormImagePlaceholder(
+          height: 140,
+        ),
+        const SizedBox(
+          height: AppSpacing.sm,
+        ),
+        FormTag(
+          tag,
+        ),
+        const SizedBox(
+          height: AppSpacing.xs,
+        ),
+        Text(
+          title,
+          style: context.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w800,
           ),
-          const SizedBox(
-            height: AppSpacing.sm,
+        ),
+        const SizedBox(
+          height: 2,
+        ),
+        Text(
+          meta,
+          style: context.textTheme.bodySmall?.copyWith(
+            color: AppColors.grey,
           ),
-          FormTag(
-            tag,
+        ),
+        const SizedBox(
+          height: 2,
+        ),
+        Text(
+          price,
+          style: context.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w800,
           ),
-          const SizedBox(
-            height: AppSpacing.xs,
-          ),
-          Text(
-            title,
-            style: context.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          const SizedBox(
-            height: 2,
-          ),
-          Text(
-            meta,
-            style: context.textTheme.bodySmall?.copyWith(
-              color: AppColors.grey,
-            ),
-          ),
-          const SizedBox(
-            height: 2,
-          ),
-          Text(
-            price,
-            style: context.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -5,10 +5,12 @@ import 'package:app_boilerplate/core/constants/app_dimens.dart';
 import 'package:app_boilerplate/core/extensions/context_extensions.dart';
 import 'package:app_boilerplate/core/utils/validators.dart';
 import 'package:app_boilerplate/core/widgets/widgets.dart';
+import 'package:app_boilerplate/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:app_boilerplate/features/auth/presentation/widgets/auth_widgets.dart';
 import 'package:app_boilerplate/features/auth/presentation/widgets/form_brand.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Step 1 of creating an account: name, email, password, terms.
 class RegisterPage
@@ -57,10 +59,36 @@ class _RegisterPageState
         false)) {
       return;
     }
-    Navigator.pushNamed(
-      context,
-      RoutesName.verifyEmail,
+    final fullName = _nameController.text.trim();
+    final parts = fullName.split(
+      RegExp(
+        r'\s+',
+      ),
     );
+    context
+        .read<
+          AuthBloc
+        >()
+        .add(
+          AuthRegisterSubmitted(
+            email: _emailController.text.trim(),
+            password: _passwordController.text,
+            firstName: parts.isEmpty
+                ? null
+                : parts.first,
+            lastName:
+                parts.length >
+                    1
+                ? parts
+                      .sublist(
+                        1,
+                      )
+                      .join(
+                        ' ',
+                      )
+                : null,
+          ),
+        );
   }
 
   @override
@@ -166,6 +194,13 @@ class _RegisterPageState
                       autofillHints: const [
                         AutofillHints.newPassword,
                       ],
+                      validator:
+                          (
+                            value,
+                          ) => Validators.strongPassword(
+                            value,
+                            l10n,
+                          ),
                     ),
                     const SizedBox(
                       height: AppSpacing.lg,

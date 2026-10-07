@@ -2,9 +2,12 @@ import 'package:app_boilerplate/app/routes/routes_name.dart';
 import 'package:app_boilerplate/core/constants/app_assets.dart';
 import 'package:app_boilerplate/core/constants/app_colors.dart';
 import 'package:app_boilerplate/core/constants/app_dimens.dart';
+import 'package:app_boilerplate/core/di/service_locator.dart';
 import 'package:app_boilerplate/core/extensions/context_extensions.dart';
 import 'package:app_boilerplate/core/utils/validators.dart';
 import 'package:app_boilerplate/core/widgets/widgets.dart';
+import 'package:app_boilerplate/features/auth/domain/repositories/auth_repository.dart';
+import 'package:app_boilerplate/features/auth/presentation/pages/verify_email_page.dart';
 import 'package:app_boilerplate/features/auth/presentation/widgets/auth_widgets.dart';
 import 'package:app_boilerplate/features/auth/presentation/widgets/form_brand.dart';
 import 'package:flutter/gestures.dart';
@@ -43,7 +46,12 @@ class _ForgotPasswordPageState
     super.dispose();
   }
 
-  void _submit() {
+  bool _isLoading = false;
+
+  Future<
+    void
+  >
+  _submit() async {
     FocusScope.of(
       context,
     ).unfocus();
@@ -51,10 +59,39 @@ class _ForgotPasswordPageState
         false)) {
       return;
     }
-    // TODO: call reset use case.
-    AppSnackBar.show(
-      context,
-      context.l10n.sendResetLink,
+    setState(
+      () => _isLoading = true,
+    );
+    final result =
+        await getIt<
+              AuthRepository
+            >()
+            .sendResetCode(
+              _emailController.text.trim(),
+            );
+    if (!mounted) return;
+    setState(
+      () => _isLoading = false,
+    );
+    result.fold(
+      (
+        failure,
+      ) => AppSnackBar.show(
+        context,
+        failure.message ??
+            context.l10n.errorUnknown,
+        type: AppSnackBarType.error,
+      ),
+      (
+        token,
+      ) => Navigator.pushNamed(
+        context,
+        RoutesName.verifyEmail,
+        arguments: ResetPasswordArgs(
+          email: _emailController.text.trim(),
+          resetToken: token,
+        ),
+      ),
     );
   }
 
@@ -135,6 +172,7 @@ class _ForgotPasswordPageState
             ),
             FormCtaButton(
               label: l10n.sendResetLink,
+              isLoading: _isLoading,
               onPressed: _submit,
             ),
             const SizedBox(

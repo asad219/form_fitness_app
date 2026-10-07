@@ -69,6 +69,7 @@ class LoginPage
             Align(
               alignment: AlignmentDirectional.centerEnd,
               child: AppButton.text(
+                foregroundColor: AppColors.darkSurface,
                 label: l10n.forgotPassword,
                 onPressed: () => Navigator.pushNamed(
                   context,
@@ -132,14 +133,19 @@ class LoginPage
               height: AppSpacing.lg,
             ),
             Center(
-              child: AppButton.text(
-                label: l10n.exploreAsGuest,
+              child: TextButton(
                 onPressed: () => Navigator.pushNamedAndRemoveUntil(
                   context,
                   RoutesName.home,
                   (
                     route,
                   ) => false,
+                ),
+                child: Text(
+                  l10n.exploreAsGuest,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: AppColors.darkSurface,
+                  ),
                 ),
               ),
             ),

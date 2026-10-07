@@ -1663,6 +1663,264 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Need a hand? Contact the club'**
   String get orderNeedHelp;
+
+  /// No description provided for @ordersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My orders'**
+  String get ordersTitle;
+
+  /// No description provided for @ordersHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'YOUR ORDERS.'**
+  String get ordersHeadline;
+
+  /// No description provided for @ordersEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No orders yet'**
+  String get ordersEmptyTitle;
+
+  /// No description provided for @ordersEmptyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Book a class or grab some gear to see your orders here.'**
+  String get ordersEmptyMessage;
+
+  /// No description provided for @ordersClassesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'classes'**
+  String get ordersClassesLabel;
+
+  /// No description provided for @ordersProductsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'products'**
+  String get ordersProductsLabel;
+
+  /// No description provided for @ordersViewAll.
+  ///
+  /// In en, this message translates to:
+  /// **'View my orders'**
+  String get ordersViewAll;
+
+  /// No description provided for @orderDetailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Order detail'**
+  String get orderDetailTitle;
+
+  /// No description provided for @orderClassesSection.
+  ///
+  /// In en, this message translates to:
+  /// **'CLASSES'**
+  String get orderClassesSection;
+
+  /// No description provided for @orderProductsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'PRODUCTS'**
+  String get orderProductsSection;
+
+  /// No description provided for @orderAttendees.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} person(s)'**
+  String orderAttendees(int count);
+
+  /// No description provided for @orderCancelledOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled on {date}'**
+  String orderCancelledOn(String date);
+
+  /// No description provided for @orderAttended.
+  ///
+  /// In en, this message translates to:
+  /// **'Attended'**
+  String get orderAttended;
+
+  /// No description provided for @orderCancelBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel booking'**
+  String get orderCancelBooking;
+
+  /// No description provided for @orderCancelConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel this class?'**
+  String get orderCancelConfirmTitle;
+
+  /// No description provided for @orderCancelConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your spot will be released. No refund is issued.'**
+  String get orderCancelConfirmMessage;
+
+  /// No description provided for @orderViewEntryPassFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry pass'**
+  String get orderViewEntryPassFull;
+
+  /// No description provided for @orderQtyTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'{qty} × {price}'**
+  String orderQtyTimes(int qty, String price);
+
+  /// No description provided for @orderShippingFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Shipping fee'**
+  String get orderShippingFee;
+
+  /// No description provided for @orderTotalPaidLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Total paid'**
+  String get orderTotalPaidLabel;
+
+  /// No description provided for @membershipTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership'**
+  String get membershipTitle;
+
+  /// No description provided for @membershipHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'ONE CLUB.\nEVERY DAY.'**
+  String get membershipHeadline;
+
+  /// No description provided for @membershipMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly'**
+  String get membershipMonthly;
+
+  /// No description provided for @membershipYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly'**
+  String get membershipYearly;
+
+  /// No description provided for @membershipYearlySaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Save {amount} a year'**
+  String membershipYearlySaving(String amount);
+
+  /// No description provided for @membershipJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'Join {plan}'**
+  String membershipJoin(String plan);
+
+  /// No description provided for @membershipConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm membership'**
+  String get membershipConfirmTitle;
+
+  /// No description provided for @membershipRenewsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Renews on {date}'**
+  String membershipRenewsOn(Object date);
+
+  /// No description provided for @membershipEndsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends on {date}'**
+  String membershipEndsOn(String date);
+
+  /// No description provided for @membershipConfirmCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm & pay'**
+  String get membershipConfirmCta;
+
+  /// No description provided for @membershipCurrentPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'CURRENT PLAN'**
+  String get membershipCurrentPlan;
+
+  /// No description provided for @membershipMemberSince.
+  ///
+  /// In en, this message translates to:
+  /// **'Member since {date}'**
+  String membershipMemberSince(String date);
+
+  /// No description provided for @membershipValidUntil.
+  ///
+  /// In en, this message translates to:
+  /// **'Valid until {date}'**
+  String membershipValidUntil(String date);
+
+  /// No description provided for @membershipDaysRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} days remaining'**
+  String membershipDaysRemaining(int days);
+
+  /// No description provided for @membershipCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel membership'**
+  String get membershipCancel;
+
+  /// No description provided for @membershipCancelConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel membership?'**
+  String get membershipCancelConfirmTitle;
+
+  /// No description provided for @membershipCancelConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll keep access until {date}.'**
+  String membershipCancelConfirmMessage(String date);
+
+  /// No description provided for @membershipCancelledBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled · access until {date}'**
+  String membershipCancelledBanner(String date);
+
+  /// No description provided for @membershipHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'HISTORY'**
+  String get membershipHistoryTitle;
+
+  /// No description provided for @membershipIncluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Included in membership'**
+  String get membershipIncluded;
+
+  /// No description provided for @membershipLoginRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to manage your membership.'**
+  String get membershipLoginRequired;
+
+  /// No description provided for @perMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'/ month'**
+  String get perMonth;
+
+  /// No description provided for @perYear.
+  ///
+  /// In en, this message translates to:
+  /// **'/ year'**
+  String get perYear;
 }
 
 class _AppLocalizationsDelegate

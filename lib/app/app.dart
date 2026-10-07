@@ -17,6 +17,8 @@ import 'package:app_boilerplate/core/theme/app_theme.dart';
 import 'package:app_boilerplate/core/theme/theme_cubit.dart';
 import 'package:app_boilerplate/core/widgets/widgets.dart';
 import 'package:app_boilerplate/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:app_boilerplate/features/cart/presentation/bloc/cart_bloc.dart';
+import 'package:app_boilerplate/features/cms/presentation/bloc/cms_bloc.dart';
 import 'package:app_boilerplate/l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,6 +72,29 @@ class App
                     ..add(
                       const AuthCheckRequested(),
                     ),
+        ),
+        BlocProvider<
+          CmsBloc
+        >(
+          lazy: false,
+          create:
+              (
+                _,
+              ) =>
+                  getIt<
+                      CmsBloc
+                    >()
+                    ..add(
+                      const CmsLoadRequested(),
+                    ),
+        ),
+        BlocProvider<
+          CartBloc
+        >.value(
+          value:
+              getIt<
+                CartBloc
+              >(),
         ),
       ],
       child: const _AppView(),

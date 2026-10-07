@@ -377,5 +377,106 @@
   "orderPickupTitle": "FORM Bottle · Club pickup",
   "orderPickupMeta": "Ready Wed, 7 Oct from 6:30 AM\nFORM Brooklyn · 68 Wythe Avenue\nShow your order number at the front desk.",
   "orderViewBookingCta": "View my booking & order",
-  "orderNeedHelp": "Need a hand? Contact the club"
+  "orderNeedHelp": "Need a hand? Contact the club",
+
+  "ordersTitle": "My orders",
+  "ordersHeadline": "YOUR ORDERS.",
+  "ordersEmptyTitle": "No orders yet",
+  "ordersEmptyMessage": "Book a class or grab some gear to see your orders here.",
+  "ordersClassesLabel": "classes",
+  "ordersProductsLabel": "products",
+  "ordersViewAll": "View my orders",
+  "orderDetailTitle": "Order detail",
+  "orderClassesSection": "CLASSES",
+  "orderProductsSection": "PRODUCTS",
+  "orderAttendees": "{count} person(s)",
+  "@orderAttendees": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "orderCancelledOn": "Cancelled on {date}",
+  "@orderCancelledOn": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "orderAttended": "Attended",
+  "orderCancelBooking": "Cancel booking",
+  "orderCancelConfirmTitle": "Cancel this class?",
+  "orderCancelConfirmMessage": "Your spot will be released. No refund is issued.",
+  "orderViewEntryPassFull": "Entry pass",
+  "orderQtyTimes": "{qty} × {price}",
+  "@orderQtyTimes": {
+    "placeholders": {
+      "qty": { "type": "int" },
+      "price": { "type": "String" }
+    }
+  },
+  "orderShippingFee": "Shipping fee",
+  "orderTotalPaidLabel": "Total paid",
+
+  "membershipTitle": "Membership",
+  "membershipHeadline": "ONE CLUB.\nEVERY DAY.",
+  "membershipMonthly": "Monthly",
+  "membershipYearly": "Yearly",
+  "membershipYearlySaving": "Save {amount} a year",
+  "@membershipYearlySaving": {
+    "placeholders": {
+      "amount": { "type": "String" }
+    }
+  },
+  "membershipJoin": "Join {plan}",
+  "@membershipJoin": {
+    "placeholders": {
+      "plan": { "type": "String" }
+    }
+  },
+  "membershipConfirmTitle": "Confirm membership",
+  "membershipRenewsOn": "Renews on {date}",
+  "membershipEndsOn": "Ends on {date}",
+  "@membershipEndsOn": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "membershipConfirmCta": "Confirm & pay",
+  "membershipCurrentPlan": "CURRENT PLAN",
+  "membershipMemberSince": "Member since {date}",
+  "@membershipMemberSince": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "membershipValidUntil": "Valid until {date}",
+  "@membershipValidUntil": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "membershipDaysRemaining": "{days} days remaining",
+  "@membershipDaysRemaining": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "membershipCancel": "Cancel membership",
+  "membershipCancelConfirmTitle": "Cancel membership?",
+  "membershipCancelConfirmMessage": "You'll keep access until {date}.",
+  "@membershipCancelConfirmMessage": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "membershipCancelledBanner": "Cancelled · access until {date}",
+  "@membershipCancelledBanner": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "membershipHistoryTitle": "HISTORY",
+  "membershipIncluded": "Included in membership",
+  "membershipLoginRequired": "Log in to manage your membership.",
+  "perMonth": "/ month",
+  "perYear": "/ year"
 }

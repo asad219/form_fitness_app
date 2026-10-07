@@ -6,27 +6,27 @@ notifications, crash reports and CI/CD are already set up.
 
 **Repository:** <https://github.com/asad219/flutter_boiler_plate>
 
-| | |
-|---|---|
-| Flutter / Dart | 3.44+ / `^3.12.2` |
-| Android | minSdk 24 |
-| iOS | 15.0+, Swift Package Manager (no CocoaPods) |
-| Languages | English and Arabic (right-to-left) |
-| Default ids | Android `com.starter.boilerplate.app_boilerplate`, iOS `com.starter.boilerplate.appBoilerplate` |
+|                |                                                                                                 |
+| -------------- | ----------------------------------------------------------------------------------------------- |
+| Flutter / Dart | 3.44+ / `^3.12.2`                                                                               |
+| Android        | minSdk 24                                                                                       |
+| iOS            | 15.0+, Swift Package Manager (no CocoaPods)                                                     |
+| Languages      | English and Arabic (right-to-left)                                                              |
+| Default ids    | Android `com.starter.boilerplate.app_boilerplate`, iOS `com.starter.boilerplate.appBoilerplate` |
 
 ## What's included
 
-| Area | What you get |
-|---|---|
-| Structure | Feature folders with data / domain / presentation layers, BLoC, `get_it` |
-| API | Dio client that adds the token, refreshes it on 401 and logs requests (passwords and tokens hidden) |
-| Errors | Clear error messages in the user's language. Messages from your server are shown as they are |
-| Login | Login, logout, remember the session, sign out when the session expires |
-| Widgets | Buttons, inputs, dropdowns, date picker, dialogs, snackbars, loaders, empty and error screens |
-| Theme | Light and dark mode, saved choice, `ThemeSwitcher` widget |
-| Languages | English and Arabic, saved choice, `LanguageSwitcher` widget, a different font per language |
-| Firebase (optional) | Push notifications, Analytics and Crashlytics. The app also runs without Firebase |
-| Tools | Rename script, app icon script, env files, Codemagic CI/CD |
+| Area                | What you get                                                                                        |
+| ------------------- | --------------------------------------------------------------------------------------------------- |
+| Structure           | Feature folders with data / domain / presentation layers, BLoC, `get_it`                            |
+| API                 | Dio client that adds the token, refreshes it on 401 and logs requests (passwords and tokens hidden) |
+| Errors              | Clear error messages in the user's language. Messages from your server are shown as they are        |
+| Login               | Login, logout, remember the session, sign out when the session expires                              |
+| Widgets             | Buttons, inputs, dropdowns, date picker, dialogs, snackbars, loaders, empty and error screens       |
+| Theme               | Light and dark mode, saved choice, `ThemeSwitcher` widget                                           |
+| Languages           | English and Arabic, saved choice, `LanguageSwitcher` widget, a different font per language          |
+| Firebase (optional) | Push notifications, Analytics and Crashlytics. The app also runs without Firebase                   |
+| Tools               | Rename script, app icon script, env files, Codemagic CI/CD                                          |
 
 ## Contents
 
@@ -178,12 +178,12 @@ Flutter creates the missing files again on the next `flutter pub get`.
 
 Pick your names first. You can't change the ids after the app is in the stores.
 
-| Name | Rules | Example |
-|---|---|---|
-| Dart package | lowercase letters, numbers and `_` | `my_app` |
+| Name                   | Rules                                                                            | Example          |
+| ---------------------- | -------------------------------------------------------------------------------- | ---------------- |
+| Dart package           | lowercase letters, numbers and `_`                                               | `my_app`         |
 | Android application id | like a reversed domain; each part starts with a letter; letters, numbers and `_` | `com.acme.myapp` |
-| iOS bundle id | like a reversed domain; letters, numbers, `-` and `.`; **no `_`** | `com.acme.myapp` |
-| Display name | any text, shown under the icon | `My App` |
+| iOS bundle id          | like a reversed domain; letters, numbers, `-` and `.`; **no `_`**                | `com.acme.myapp` |
+| Display name           | any text, shown under the icon                                                   | `My App`         |
 
 Using the same id for Android and iOS makes Firebase and store setup easier.
 
@@ -221,7 +221,7 @@ The script only works on the original names. To run it again, first undo with
 4. `android/app/src/main/AndroidManifest.xml`: change `android:label`.
 5. `ios/Runner.xcodeproj/project.pbxproj`: change every `PRODUCT_BUNDLE_IDENTIFIER`
    (Runner and `RunnerTests`). You can also do this in Xcode under
-   *Signing & Capabilities*.
+   _Signing & Capabilities_.
 6. `ios/Runner/Info.plist`: change `CFBundleDisplayName` and `CFBundleName`.
 7. `lib/core/constants/app_constants.dart`: change `appName`.
 8. `codemagic.yaml`: change `bundle_identifier` under `ios-release`.
@@ -239,10 +239,10 @@ The rename script doesn't change it. Without your own team, iOS builds for devic
 the App Store won't sign.
 
 - **In Xcode:** open `ios/Runner.xcworkspace`, select the **Runner** target, open
-  *Signing & Capabilities*, keep *Automatically manage signing* on and choose your
+  _Signing & Capabilities_, keep _Automatically manage signing_ on and choose your
   **Team**.
 - **Or from the terminal.** Find your Team ID at <https://developer.apple.com/account>
-  under *Membership details*:
+  under _Membership details_:
 
   ```bash
   perl -pi -e 's/E65WYSUT4Y/YOURTEAMID/g' ios/Runner.xcodeproj/project.pbxproj
@@ -271,22 +271,22 @@ Only the `.example` files are. Open each file and set your values:
 }
 ```
 
-| Key | Required | Notes |
-|---|---|---|
-| `ENV` | No (default `dev`) | `dev`, `staging` or `prod`. Read it with `EnvConfig.isDev` etc. |
-| `BASE_URL` | **Yes** | Full address with `http://` or `https://`. If it's missing or wrong, the app shows a *Configuration error* screen |
-| `API_VERSION` | No (default `v1`) | Added to the end of `BASE_URL`, e.g. `.../api/v1`. Use `""` for none |
-| `ENABLE_FIREBASE` | No (default `true`) | `false` turns off Firebase (push, analytics, crash reports) |
-| `FIREBASE_API_KEY_ANDROID` | Only if Firebase is on | Android *Web API key* from the Firebase console, *Project settings > General* |
-| `FIREBASE_API_KEY_IOS` | Only if Firebase is on | iOS *Web API key* from the Firebase console, *Project settings > General* |
+| Key                        | Required               | Notes                                                                                                             |
+| -------------------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `ENV`                      | No (default `dev`)     | `dev`, `staging` or `prod`. Read it with `EnvConfig.isDev` etc.                                                   |
+| `BASE_URL`                 | **Yes**                | Full address with `http://` or `https://`. If it's missing or wrong, the app shows a _Configuration error_ screen |
+| `API_VERSION`              | No (default `v1`)      | Added to the end of `BASE_URL`, e.g. `.../api/v1`. Use `""` for none                                              |
+| `ENABLE_FIREBASE`          | No (default `true`)    | `false` turns off Firebase (push, analytics, crash reports)                                                       |
+| `FIREBASE_API_KEY_ANDROID` | Only if Firebase is on | Android _Web API key_ from the Firebase console, _Project settings > General_                                     |
+| `FIREBASE_API_KEY_IOS`     | Only if Firebase is on | iOS _Web API key_ from the Firebase console, _Project settings > General_                                         |
 
 If your backend runs on your own computer, the address depends on where the app runs:
 
-| App runs on | `BASE_URL` |
-|---|---|
+| App runs on      | `BASE_URL`                                                                         |
+| ---------------- | ---------------------------------------------------------------------------------- |
 | Android emulator | `http://10.0.2.2:<port>/api/` (`10.0.2.2` means "my computer" inside the emulator) |
-| iOS simulator | `http://localhost:<port>/api/` |
-| Real phone | `http://<your-computer-IP>:<port>/api/` (same Wi-Fi) |
+| iOS simulator    | `http://localhost:<port>/api/`                                                     |
+| Real phone       | `http://<your-computer-IP>:<port>/api/` (same Wi-Fi)                               |
 
 Plain `http://` works on Android only in debug builds. Release builds and iOS expect
 `https://`. If iOS blocks `http://` calls to your computer's IP, use `https://` (for
@@ -307,14 +307,14 @@ flutter run --dart-define-from-file=env/dev.json
 ```
 
 In VS Code you can also choose **dev**, **staging** or **prod (release)** in the
-*Run and Debug* panel. In Android Studio, add `--dart-define-from-file=env/dev.json`
-to *Additional run args* in the run configuration.
+_Run and Debug_ panel. In Android Studio, add `--dart-define-from-file=env/dev.json`
+to _Additional run args_ in the run configuration.
 
 What you should see:
 
 - The splash screen, then the login screen.
-- If your backend isn't running yet, login shows an error like *"Please check your
-  internet connection…"*. That's expected.
+- If your backend isn't running yet, login shows an error like _"Please check your
+  internet connection…"_. That's expected.
 - If Firebase isn't set up, the app prints a warning and works normally.
 - If you see a **Configuration error** screen, the app was started without the env
   file, or `BASE_URL` is wrong.
@@ -341,18 +341,18 @@ What you should see:
 
 ## Step 8: Change the look
 
-| What | Where |
-|---|---|
-| App name in the app switcher and splash | `AppConstants.appName` in `lib/core/constants/app_constants.dart` |
-| Name under the icon | `android:label` in `AndroidManifest.xml`, `CFBundleDisplayName` in `Info.plist` (the rename script sets both) |
-| Colors | `lib/core/constants/app_colors.dart` (light and dark) |
-| Font | `AppTypography.fontFamily` (see [Fonts and images](#fonts-and-images)) |
-| Text sizes | `AppTypography.textTheme` |
-| Spacing and corner radius | `lib/core/constants/app_dimens.dart` |
-| Buttons, inputs, cards style | `lib/core/theme/app_theme.dart` |
-| App icon | `./tool/generate_app_icons.sh path/to/icon.png` (see [App icon](#app-icon)) |
-| Images | `assets/images/` and `AppAssets` (see [Images](#images)) |
-| Screen rotation | `AppConstants.orientations` (portrait by default) **and** `UISupportedInterfaceOrientations` in `ios/Runner/Info.plist` |
+| What                                    | Where                                                                                                                   |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| App name in the app switcher and splash | `AppConstants.appName` in `lib/core/constants/app_constants.dart`                                                       |
+| Name under the icon                     | `android:label` in `AndroidManifest.xml`, `CFBundleDisplayName` in `Info.plist` (the rename script sets both)           |
+| Colors                                  | `lib/core/constants/app_colors.dart` (light and dark)                                                                   |
+| Font                                    | `AppTypography.fontFamily` (see [Fonts and images](#fonts-and-images))                                                  |
+| Text sizes                              | `AppTypography.textTheme`                                                                                               |
+| Spacing and corner radius               | `lib/core/constants/app_dimens.dart`                                                                                    |
+| Buttons, inputs, cards style            | `lib/core/theme/app_theme.dart`                                                                                         |
+| App icon                                | `./tool/generate_app_icons.sh path/to/icon.png` (see [App icon](#app-icon))                                             |
+| Images                                  | `assets/images/` and `AppAssets` (see [Images](#images))                                                                |
+| Screen rotation                         | `AppConstants.orientations` (portrait by default) **and** `UISupportedInterfaceOrientations` in `ios/Runner/Info.plist` |
 
 All shared widgets read their style from the theme, so changing these files changes
 the whole app, in light and dark mode.
@@ -430,7 +430,7 @@ won't accept it.
    `Variant: release`.
 
 3. Add the release SHA-1 and SHA-256 to your Firebase Android app. If you use Play App
-   Signing, also add the fingerprints from Play Console (*Setup > App signing*).
+   Signing, also add the fingerprints from Play Console (_Setup > App signing_).
 
 **iOS.** With automatic signing and your team set ([step 4](#step-4-set-your-apple-team)),
 Xcode handles certificates for you. Before your first upload, create the app in
@@ -519,15 +519,15 @@ lib/
 
 Outside `lib/`:
 
-| Path | What's in it |
-|---|---|
-| `env/` | Env files (`.example` files are committed, real ones aren't) |
-| `fonts/` | Font files |
-| `assets/images/` | Images used in the app |
-| `assets/icon/` | App icon source image |
-| `tool/` | `rename_app.sh`, `generate_app_icons.sh`, CI scripts |
-| `l10n.yaml` | Translation settings |
-| `codemagic.yaml` | CI/CD setup |
+| Path             | What's in it                                                 |
+| ---------------- | ------------------------------------------------------------ |
+| `env/`           | Env files (`.example` files are committed, real ones aren't) |
+| `fonts/`         | Font files                                                   |
+| `assets/images/` | Images used in the app                                       |
+| `assets/icon/`   | App icon source image                                        |
+| `tool/`          | `rename_app.sh`, `generate_app_icons.sh`, CI scripts         |
+| `l10n.yaml`      | Translation settings                                         |
+| `codemagic.yaml` | CI/CD setup                                                  |
 
 There is no `test/` folder yet. Add one when you start writing tests.
 
@@ -560,7 +560,7 @@ Widget ──event──▶ Bloc ──▶ UseCase ──▶ Repository (interfa
 `lib/app/bootstrap.dart` runs these steps before the first screen:
 
 1. Set up error handlers, so errors are printed and sent to Crashlytics.
-2. Check the env values. If `BASE_URL` is wrong, show the *Configuration error*
+2. Check the env values. If `BASE_URL` is wrong, show the _Configuration error_
    screen and stop.
 3. Start Firebase (if it's on and set up), then Crashlytics and the background push
    handler.
@@ -591,11 +591,11 @@ final user = ApiResponseParser.parseObject(json, UserModel.fromJson);
 
 Interceptors in `core/network/api_interceptors.dart`:
 
-| Interceptor | What it does |
-|---|---|
-| `AuthInterceptor` | Adds `Authorization: Bearer <token>`. On a 401 it calls `POST /users/refresh-token` once and retries the request. If that's not possible, it clears the tokens and the user is signed out |
-| `ErrorInterceptor` | Turns every Dio error into an `ApiException` |
-| `LoggingInterceptor` | Debug builds only. Prints each request and response. Hides `Authorization`, cookies, `password`, `token`, `accessToken`, `refreshToken`, `otp` and `pin` (add more in `_sensitiveKeys`) |
+| Interceptor          | What it does                                                                                                                                                                              |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `AuthInterceptor`    | Adds `Authorization: Bearer <token>`. On a 401 it calls `POST /users/refresh-token` once and retries the request. If that's not possible, it clears the tokens and the user is signed out |
+| `ErrorInterceptor`   | Turns every Dio error into an `ApiException`                                                                                                                                              |
+| `LoggingInterceptor` | Debug builds only. Prints each request and response. Hides `Authorization`, cookies, `password`, `token`, `accessToken`, `refreshToken`, `otp` and `pin` (add more in `_sensitiveKeys`)   |
 
 Messages from your server are shown as they are. If you want them in the user's
 language, send the language to your API (for example in an `Accept-Language` header)
@@ -610,14 +610,14 @@ Dio error ──▶ ApiException ──▶ Failure ──▶ failure.localizedMe
 (data source)                  (repository)  (screen)
 ```
 
-| What happened | `Failure` | Text shown |
-|---|---|---|
-| Server error (4xx / 5xx) | `ServerFailure` | The server's message, or `errorServer` |
-| 401 (wrong login, expired session) | `UnauthorizedFailure` | The server's message, or `errorSessionExpired` |
-| No internet | `NetworkFailure` | `errorNoConnection` |
-| Timeout | `TimeoutFailure` | `errorTimeout` |
-| Bad response, cancelled, anything else | `UnknownFailure` | `errorUnknown` |
-| Local storage error | `CacheFailure` | `errorUnknown` |
+| What happened                          | `Failure`             | Text shown                                     |
+| -------------------------------------- | --------------------- | ---------------------------------------------- |
+| Server error (4xx / 5xx)               | `ServerFailure`       | The server's message, or `errorServer`         |
+| 401 (wrong login, expired session)     | `UnauthorizedFailure` | The server's message, or `errorSessionExpired` |
+| No internet                            | `NetworkFailure`      | `errorNoConnection`                            |
+| Timeout                                | `TimeoutFailure`      | `errorTimeout`                                 |
+| Bad response, cancelled, anything else | `UnknownFailure`      | `errorUnknown`                                 |
+| Local storage error                    | `CacheFailure`        | `errorUnknown`                                 |
 
 - `Failure.message` is only the server's message. Raw JSON, stack traces and other
   technical text are removed before it gets there.
@@ -649,13 +649,13 @@ once the user is logged in.
 
 The backend API used by the login feature (paths are in `api_endpoints.dart`):
 
-| Endpoint | Request | Response |
-|---|---|---|
-| `POST /users/login` | `{email, password}` | `{token, refreshToken?, user}` (can be inside `data`) |
-| `POST /users/logout` | nothing | anything (the app signs out even if this fails) |
-| `GET /users/me` | nothing | the user (directly, or inside `user` / `data`) |
-| `POST /users/refresh-token` | `{refreshToken}` | `{token, refreshToken?}` |
-| `POST /devices` | `{token, platform}` | anything (saves the push token) |
+| Endpoint                    | Request             | Response                                              |
+| --------------------------- | ------------------- | ----------------------------------------------------- |
+| `POST /users/login`         | `{email, password}` | `{token, refreshToken?, user}` (can be inside `data`) |
+| `POST /users/logout`        | nothing             | anything (the app signs out even if this fails)       |
+| `GET /users/me`             | nothing             | the user (directly, or inside `user` / `data`)        |
+| `POST /users/refresh-token` | `{refreshToken}`    | `{token, refreshToken?}`                              |
+| `POST /devices`             | `{token, platform}` | anything (saves the push token)                       |
 
 ## Screens and routes
 
@@ -683,11 +683,11 @@ If a route name doesn't exist (a typo, or an old notification link), the app sho
 
 Use `AppLogger` (`core/utils/app_logger.dart`). Don't use `print`.
 
-| Method | Use for | Debug build | Release build |
-|---|---|---|---|
-| `AppLogger.debug(msg)` | Details while developing | Printed | Nothing |
-| `AppLogger.warning(msg, error:, stackTrace:)` | Expected problems (offline, refresh failed) | Printed | Nothing |
-| `AppLogger.error(msg, error:, stackTrace:, fatal:)` | Real bugs | Printed | Printed and sent to Crashlytics |
+| Method                                              | Use for                                     | Debug build | Release build                   |
+| --------------------------------------------------- | ------------------------------------------- | ----------- | ------------------------------- |
+| `AppLogger.debug(msg)`                              | Details while developing                    | Printed     | Nothing                         |
+| `AppLogger.warning(msg, error:, stackTrace:)`       | Expected problems (offline, refresh failed) | Printed     | Nothing                         |
+| `AppLogger.error(msg, error:, stackTrace:, fatal:)` | Real bugs                                   | Printed     | Printed and sent to Crashlytics |
 
 ```dart
 try {
@@ -709,17 +709,17 @@ Crashlytics (`core/services/crash/crash_reporter.dart`):
 
 ## Push notifications
 
-| App state | Handled by |
-|---|---|
-| Open | `FirebaseMessaging.onMessage`. Android shows a local notification, iOS shows it by itself |
-| In background, user taps | `FirebaseMessaging.onMessageOpenedApp` |
-| Closed, user taps | `getInitialMessage()` (push) / `getNotificationAppLaunchDetails()` (local) |
+| App state                                | Handled by                                                                                                        |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Open                                     | `FirebaseMessaging.onMessage`. Android shows a local notification, iOS shows it by itself                         |
+| In background, user taps                 | `FirebaseMessaging.onMessageOpenedApp`                                                                            |
+| Closed, user taps                        | `getInitialMessage()` (push) / `getNotificationAppLaunchDetails()` (local)                                        |
 | In background or closed, message arrives | `firebaseMessagingBackgroundHandler`. Data-only messages with `title` and `body` are shown as local notifications |
 
 - **Open a screen from a notification:** send `data: {"route": "/home", ...}`. Other
   keys are passed to the screen. If the user isn't logged in yet, it waits until they
   are.
-- **Permission:** asked at startup, and again from the *Enable notifications* button
+- **Permission:** asked at startup, and again from the _Enable notifications_ button
   on the home screen.
 - **Token:** sent to the backend after login and when it changes. Deleted on logout.
 
@@ -933,29 +933,29 @@ every screen changes. Dark mode works without extra code.
 
 Click a name to see how to use it.
 
-| Widget | Group | Use it for |
-|---|---|---|
-| [`AppButton`](#appbutton) | Buttons | All buttons: main, secondary, text link, delete |
-| [`AppTextField`](#apptextfield) | Inputs | Text, email, number, phone and multi-line inputs (the "textbox") |
-| [`AppPasswordField`](#apppasswordfield) | Inputs | Passwords, with a show/hide button |
-| [`AppSearchField`](#appsearchfield) | Inputs | Search boxes on list screens |
-| [`AppDropdown`](#appdropdown) | Inputs | Short lists (up to about 10 items) |
-| [`AppSearchableDropdown`](#appsearchabledropdown) | Inputs | Long lists with a search box (countries, cities) |
-| [`AppDateField`](#appdatefield) | Inputs | Picking a date |
-| [`AppCheckboxField`](#appcheckboxfield) | Inputs | Checkboxes, like "I accept the terms" |
-| [`AppPickerField`](#apppickerfield) | Inputs | Building your own picker (time, file, color) |
-| [`AppFieldLabel`](#appfieldlabel) | Inputs | Field label with a red `*` (used inside the inputs) |
-| [`AppSnackBar`](#appsnackbar-toasts) | Messages | Toast messages: success, error, warning, info |
-| [`AppDialog`](#appdialog) | Messages | Yes/no questions and info popups |
-| [`AppLoader`](#apploader) | Loading | Spinner while a page loads |
-| [`AppLoadingOverlay`](#apploadingoverlay) | Loading | Blocking the screen while saving |
-| [`AppScaffold`](#appscaffold) | Layout | Base layout for every screen |
-| [`AppCard`](#appcard) | Layout | A box that groups content, can be tapped |
-| [`AppSectionHeader`](#appsectionheader) | Layout | Section title with an optional "View all" |
-| [`AppEmptyState`](#appemptystate) | States | "Nothing here yet" screens |
-| [`AppErrorState`](#apperrorstate) | States | Error screens with a retry button |
-| [`AppBadge`](#appbadge) | Display | Status labels like "Approved" or "Pending" |
-| [`AppInfoRow`](#appinforow) | Display | Label and value on detail screens |
+| Widget                                            | Group    | Use it for                                                       |
+| ------------------------------------------------- | -------- | ---------------------------------------------------------------- |
+| [`AppButton`](#appbutton)                         | Buttons  | All buttons: main, secondary, text link, delete                  |
+| [`AppTextField`](#apptextfield)                   | Inputs   | Text, email, number, phone and multi-line inputs (the "textbox") |
+| [`AppPasswordField`](#apppasswordfield)           | Inputs   | Passwords, with a show/hide button                               |
+| [`AppSearchField`](#appsearchfield)               | Inputs   | Search boxes on list screens                                     |
+| [`AppDropdown`](#appdropdown)                     | Inputs   | Short lists (up to about 10 items)                               |
+| [`AppSearchableDropdown`](#appsearchabledropdown) | Inputs   | Long lists with a search box (countries, cities)                 |
+| [`AppDateField`](#appdatefield)                   | Inputs   | Picking a date                                                   |
+| [`AppCheckboxField`](#appcheckboxfield)           | Inputs   | Checkboxes, like "I accept the terms"                            |
+| [`AppPickerField`](#apppickerfield)               | Inputs   | Building your own picker (time, file, color)                     |
+| [`AppFieldLabel`](#appfieldlabel)                 | Inputs   | Field label with a red `*` (used inside the inputs)              |
+| [`AppSnackBar`](#appsnackbar-toasts)              | Messages | Toast messages: success, error, warning, info                    |
+| [`AppDialog`](#appdialog)                         | Messages | Yes/no questions and info popups                                 |
+| [`AppLoader`](#apploader)                         | Loading  | Spinner while a page loads                                       |
+| [`AppLoadingOverlay`](#apploadingoverlay)         | Loading  | Blocking the screen while saving                                 |
+| [`AppScaffold`](#appscaffold)                     | Layout   | Base layout for every screen                                     |
+| [`AppCard`](#appcard)                             | Layout   | A box that groups content, can be tapped                         |
+| [`AppSectionHeader`](#appsectionheader)           | Layout   | Section title with an optional "View all"                        |
+| [`AppEmptyState`](#appemptystate)                 | States   | "Nothing here yet" screens                                       |
+| [`AppErrorState`](#apperrorstate)                 | States   | Error screens with a retry button                                |
+| [`AppBadge`](#appbadge)                           | Display  | Status labels like "Approved" or "Pending"                       |
+| [`AppInfoRow`](#appinforow)                       | Display  | Label and value on detail screens                                |
 
 Helpers used with the widgets: [`Validators`](#validators),
 [`AppSpacing` and `AppRadius`](#appspacing-and-appradius) and
@@ -968,14 +968,14 @@ required") are already translated. You can pass your own text if you want.
 
 1. **Use the shared widgets, not plain Material widgets.**
 
-   | Instead of | Use |
-   |---|---|
-   | `ElevatedButton`, `FilledButton`, `OutlinedButton`, `TextButton` | `AppButton` |
-   | `TextFormField` / `TextField` | `AppTextField`, `AppPasswordField`, `AppSearchField` |
-   | `DropdownButtonFormField` | `AppDropdown<T>` or `AppSearchableDropdown<T>` |
-   | `CircularProgressIndicator` | `AppLoader`, `AppLoadingOverlay`, or `AppButton(isLoading: true)` |
-   | `ScaffoldMessenger.of(context).showSnackBar` | `AppSnackBar.show` (or `NavigationService.showSnackBar` outside widgets) |
-   | `showDialog` + `AlertDialog` for yes/no | `AppDialog.confirm` |
+   | Instead of                                                       | Use                                                                      |
+   | ---------------------------------------------------------------- | ------------------------------------------------------------------------ |
+   | `ElevatedButton`, `FilledButton`, `OutlinedButton`, `TextButton` | `AppButton`                                                              |
+   | `TextFormField` / `TextField`                                    | `AppTextField`, `AppPasswordField`, `AppSearchField`                     |
+   | `DropdownButtonFormField`                                        | `AppDropdown<T>` or `AppSearchableDropdown<T>`                           |
+   | `CircularProgressIndicator`                                      | `AppLoader`, `AppLoadingOverlay`, or `AppButton(isLoading: true)`        |
+   | `ScaffoldMessenger.of(context).showSnackBar`                     | `AppSnackBar.show` (or `NavigationService.showSnackBar` outside widgets) |
+   | `showDialog` + `AlertDialog` for yes/no                          | `AppDialog.confirm`                                                      |
 
    If something is missing, add it to the shared widgets (see rule 9) instead of
    styling it in one screen.
@@ -1038,22 +1038,22 @@ spinner.
 **When to use:** for every button in the app. Pick the style with a named
 constructor:
 
-| Constructor | Looks like | Use for | Default size | Full width |
-|---|---|---|---|---|
-| `AppButton(...)` | Filled, brand color | The main action on a screen (one per screen) | large | yes |
-| `AppButton.secondary(...)` | Outlined | Other actions next to the main one ("Cancel", "Back") | large | yes |
-| `AppButton.text(...)` | Text only | Links like "Forgot password?" or "Skip" | medium | no |
-| `AppButton.danger(...)` | Filled, red | Actions that can't be undone ("Delete") | large | yes |
+| Constructor                | Looks like          | Use for                                               | Default size | Full width |
+| -------------------------- | ------------------- | ----------------------------------------------------- | ------------ | ---------- |
+| `AppButton(...)`           | Filled, brand color | The main action on a screen (one per screen)          | large        | yes        |
+| `AppButton.secondary(...)` | Outlined            | Other actions next to the main one ("Cancel", "Back") | large        | yes        |
+| `AppButton.text(...)`      | Text only           | Links like "Forgot password?" or "Skip"               | medium       | no         |
+| `AppButton.danger(...)`    | Filled, red         | Actions that can't be undone ("Delete")               | large        | yes        |
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `label` | `String` | **required** | Button text |
-| `onPressed` | `VoidCallback?` | **required** | Called on tap. Pass `null` to disable the button |
-| `size` | `AppButtonSize` | see table above | `small` (36 high), `medium` (44) or `large` (52) |
-| `icon` | `IconData?` | | Icon before the text |
-| `trailingIcon` | `IconData?` | | Icon after the text |
-| `isLoading` | `bool` | `false` | Shows a spinner and ignores taps |
-| `isExpanded` | `bool` | see table above | `true` fills the width, `false` fits the text |
+| Parameter      | Type            | Default         | What it does                                     |
+| -------------- | --------------- | --------------- | ------------------------------------------------ |
+| `label`        | `String`        | **required**    | Button text                                      |
+| `onPressed`    | `VoidCallback?` | **required**    | Called on tap. Pass `null` to disable the button |
+| `size`         | `AppButtonSize` | see table above | `small` (36 high), `medium` (44) or `large` (52) |
+| `icon`         | `IconData?`     |                 | Icon before the text                             |
+| `trailingIcon` | `IconData?`     |                 | Icon after the text                              |
+| `isLoading`    | `bool`          | `false`         | Shows a spinner and ignores taps                 |
+| `isExpanded`   | `bool`          | see table above | `true` fills the width, `false` fits the text    |
 
 ```dart
 // Main action with loading
@@ -1106,34 +1106,34 @@ Tips:
 **When to use:** any text input in a form: name, email, phone, amount, notes,
 address.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `controller` | `TextEditingController?` | | Reads and sets the text. Don't use together with `initialValue` |
-| `initialValue` | `String?` | | Starting text when you don't use a controller |
-| `label` | `String?` | | Label above the field |
-| `hint` | `String?` | | Grey text when the field is empty |
-| `helperText` | `String?` | | Small text under the field |
-| `isRequired` | `bool` | `false` | Adds a red `*`. If there's no `validator`, it also shows "{label} is required" when empty |
-| `validator` | `FormFieldValidator<String>?` | | Your own check. Return an error text, or `null` if OK |
-| `prefixIcon` | `IconData?` | | Icon at the start |
-| `suffix` | `Widget?` | | Widget at the end (e.g. an `IconButton`) |
-| `keyboardType` | `TextInputType?` | | Keyboard type: email, number, phone... |
-| `textInputAction` | `TextInputAction?` | | Keyboard button: `next`, `done`, `search`... |
-| `textCapitalization` | `TextCapitalization` | `none` | e.g. `words` for names |
-| `obscureText` | `bool` | `false` | Hides the text (use `AppPasswordField` for passwords) |
-| `enabled` | `bool` | `true` | `false` greys it out |
-| `readOnly` | `bool` | `false` | Shows the text but can't be edited |
-| `autofocus` | `bool` | `false` | Opens the keyboard when the screen opens |
-| `minLines` | `int?` | | Minimum height in lines |
-| `maxLines` | `int?` | `1` | More than 1 (or `null`) makes it multi-line |
-| `maxLength` | `int?` | | Max characters, shows a counter |
-| `inputFormatters` | `List<TextInputFormatter>?` | | Limit what can be typed (e.g. digits only) |
-| `autofillHints` | `Iterable<String>?` | | Lets the phone fill it (email, name, address...) |
-| `focusNode` | `FocusNode?` | | Control focus yourself |
-| `autovalidateMode` | `AutovalidateMode?` | | When to check: e.g. `onUserInteraction` checks while typing |
-| `onChanged` | `ValueChanged<String>?` | | Called on every change |
-| `onSubmitted` | `ValueChanged<String>?` | | Called when the keyboard button is pressed |
-| `onTap` | `VoidCallback?` | | Called when the field is tapped |
+| Parameter            | Type                          | Default | What it does                                                                              |
+| -------------------- | ----------------------------- | ------- | ----------------------------------------------------------------------------------------- |
+| `controller`         | `TextEditingController?`      |         | Reads and sets the text. Don't use together with `initialValue`                           |
+| `initialValue`       | `String?`                     |         | Starting text when you don't use a controller                                             |
+| `label`              | `String?`                     |         | Label above the field                                                                     |
+| `hint`               | `String?`                     |         | Grey text when the field is empty                                                         |
+| `helperText`         | `String?`                     |         | Small text under the field                                                                |
+| `isRequired`         | `bool`                        | `false` | Adds a red `*`. If there's no `validator`, it also shows "{label} is required" when empty |
+| `validator`          | `FormFieldValidator<String>?` |         | Your own check. Return an error text, or `null` if OK                                     |
+| `prefixIcon`         | `IconData?`                   |         | Icon at the start                                                                         |
+| `suffix`             | `Widget?`                     |         | Widget at the end (e.g. an `IconButton`)                                                  |
+| `keyboardType`       | `TextInputType?`              |         | Keyboard type: email, number, phone...                                                    |
+| `textInputAction`    | `TextInputAction?`            |         | Keyboard button: `next`, `done`, `search`...                                              |
+| `textCapitalization` | `TextCapitalization`          | `none`  | e.g. `words` for names                                                                    |
+| `obscureText`        | `bool`                        | `false` | Hides the text (use `AppPasswordField` for passwords)                                     |
+| `enabled`            | `bool`                        | `true`  | `false` greys it out                                                                      |
+| `readOnly`           | `bool`                        | `false` | Shows the text but can't be edited                                                        |
+| `autofocus`          | `bool`                        | `false` | Opens the keyboard when the screen opens                                                  |
+| `minLines`           | `int?`                        |         | Minimum height in lines                                                                   |
+| `maxLines`           | `int?`                        | `1`     | More than 1 (or `null`) makes it multi-line                                               |
+| `maxLength`          | `int?`                        |         | Max characters, shows a counter                                                           |
+| `inputFormatters`    | `List<TextInputFormatter>?`   |         | Limit what can be typed (e.g. digits only)                                                |
+| `autofillHints`      | `Iterable<String>?`           |         | Lets the phone fill it (email, name, address...)                                          |
+| `focusNode`          | `FocusNode?`                  |         | Control focus yourself                                                                    |
+| `autovalidateMode`   | `AutovalidateMode?`           |         | When to check: e.g. `onUserInteraction` checks while typing                               |
+| `onChanged`          | `ValueChanged<String>?`       |         | Called on every change                                                                    |
+| `onSubmitted`        | `ValueChanged<String>?`       |         | Called when the keyboard button is pressed                                                |
+| `onTap`              | `VoidCallback?`               |         | Called when the field is tapped                                                           |
 
 ```dart
 // Required name
@@ -1210,19 +1210,19 @@ Tips:
 
 **When to use:** login, sign up, change password.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `controller` | `TextEditingController?` | | Reads the password |
-| `label` | `String?` | translated "Password" | Label above the field |
-| `hint` | `String?` | | Grey text when empty |
-| `isRequired` | `bool` | `false` | Adds a red `*` |
-| `validator` | `FormFieldValidator<String>?` | `Validators.password` (min 6 characters) | Your own check |
-| `enabled` | `bool` | `true` | `false` greys it out |
-| `textInputAction` | `TextInputAction` | `done` | Keyboard button |
-| `autofillHints` | `Iterable<String>` | `[AutofillHints.password]` | Use `[AutofillHints.newPassword]` on sign-up forms |
-| `focusNode` | `FocusNode?` | | Control focus yourself |
-| `onChanged` | `ValueChanged<String>?` | | Called on every change |
-| `onSubmitted` | `ValueChanged<String>?` | | Called when the keyboard button is pressed (e.g. submit the form) |
+| Parameter         | Type                          | Default                                  | What it does                                                      |
+| ----------------- | ----------------------------- | ---------------------------------------- | ----------------------------------------------------------------- |
+| `controller`      | `TextEditingController?`      |                                          | Reads the password                                                |
+| `label`           | `String?`                     | translated "Password"                    | Label above the field                                             |
+| `hint`            | `String?`                     |                                          | Grey text when empty                                              |
+| `isRequired`      | `bool`                        | `false`                                  | Adds a red `*`                                                    |
+| `validator`       | `FormFieldValidator<String>?` | `Validators.password` (min 6 characters) | Your own check                                                    |
+| `enabled`         | `bool`                        | `true`                                   | `false` greys it out                                              |
+| `textInputAction` | `TextInputAction`             | `done`                                   | Keyboard button                                                   |
+| `autofillHints`   | `Iterable<String>`            | `[AutofillHints.password]`               | Use `[AutofillHints.newPassword]` on sign-up forms                |
+| `focusNode`       | `FocusNode?`                  |                                          | Control focus yourself                                            |
+| `onChanged`       | `ValueChanged<String>?`       |                                          | Called on every change                                            |
+| `onSubmitted`     | `ValueChanged<String>?`       |                                          | Called when the keyboard button is pressed (e.g. submit the form) |
 
 ```dart
 // Login
@@ -1262,16 +1262,16 @@ AppPasswordField(
 
 **When to use:** to filter a list, or to search through an API.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `controller` | `TextEditingController?` | | Optional. The widget makes its own if you don't pass one |
-| `hint` | `String?` | translated "Search" | Grey text when empty |
-| `onChanged` | `ValueChanged<String>?` | | Called when the text changes. Also called with `''` when the user taps clear |
-| `onSubmitted` | `ValueChanged<String>?` | | Called when the keyboard search button is pressed |
-| `debounce` | `Duration` | `Duration.zero` | Waits until the user stops typing before calling `onChanged` |
-| `autofocus` | `bool` | `false` | Opens the keyboard when the screen opens |
-| `enabled` | `bool` | `true` | `false` greys it out |
-| `focusNode` | `FocusNode?` | | Control focus yourself |
+| Parameter     | Type                     | Default             | What it does                                                                 |
+| ------------- | ------------------------ | ------------------- | ---------------------------------------------------------------------------- |
+| `controller`  | `TextEditingController?` |                     | Optional. The widget makes its own if you don't pass one                     |
+| `hint`        | `String?`                | translated "Search" | Grey text when empty                                                         |
+| `onChanged`   | `ValueChanged<String>?`  |                     | Called when the text changes. Also called with `''` when the user taps clear |
+| `onSubmitted` | `ValueChanged<String>?`  |                     | Called when the keyboard search button is pressed                            |
+| `debounce`    | `Duration`               | `Duration.zero`     | Waits until the user stops typing before calling `onChanged`                 |
+| `autofocus`   | `bool`                   | `false`             | Opens the keyboard when the screen opens                                     |
+| `enabled`     | `bool`                   | `true`              | `false` greys it out                                                         |
+| `focusNode`   | `FocusNode?`             |                     | Control focus yourself                                                       |
 
 ```dart
 // Filter a list that is already loaded
@@ -1300,19 +1300,19 @@ Generic: `AppDropdown<T>`, where `T` is the type of each option.
 **When to use:** short lists, up to about 10 options (gender, status, type). For
 longer lists use [`AppSearchableDropdown`](#appsearchabledropdown).
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `items` | `List<T>` | **required** | All options |
-| `itemLabel` | `String Function(T)` | **required** | Text shown for each option |
-| `onChanged` | `ValueChanged<T?>?` | **required** | Called with the picked option. `null` disables the dropdown |
-| `value` | `T?` | | The selected option (keep it in your state) |
-| `label` | `String?` | | Label above the field |
-| `hint` | `String?` | | Text when nothing is selected |
-| `isRequired` | `bool` | `false` | Adds a red `*` and an "is required" check |
-| `validator` | `FormFieldValidator<T>?` | | Your own check |
-| `prefixIcon` | `IconData?` | | Icon at the start |
-| `isLoading` | `bool` | `false` | Shows a spinner and "Loading…" while options load |
-| `enabled` | `bool` | `true` | `false` greys it out |
+| Parameter    | Type                     | Default      | What it does                                                |
+| ------------ | ------------------------ | ------------ | ----------------------------------------------------------- |
+| `items`      | `List<T>`                | **required** | All options                                                 |
+| `itemLabel`  | `String Function(T)`     | **required** | Text shown for each option                                  |
+| `onChanged`  | `ValueChanged<T?>?`      | **required** | Called with the picked option. `null` disables the dropdown |
+| `value`      | `T?`                     |              | The selected option (keep it in your state)                 |
+| `label`      | `String?`                |              | Label above the field                                       |
+| `hint`       | `String?`                |              | Text when nothing is selected                               |
+| `isRequired` | `bool`                   | `false`      | Adds a red `*` and an "is required" check                   |
+| `validator`  | `FormFieldValidator<T>?` |              | Your own check                                              |
+| `prefixIcon` | `IconData?`              |              | Icon at the start                                           |
+| `isLoading`  | `bool`                   | `false`      | Shows a spinner and "Loading…" while options load           |
+| `enabled`    | `bool`                   | `true`       | `false` greys it out                                        |
 
 ```dart
 // With an enum
@@ -1363,20 +1363,20 @@ option has a check mark.
 
 **When to use:** long lists: countries, cities, banks, products, employees.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `items` | `List<T>` | **required** | All options |
-| `itemLabel` | `String Function(T)` | **required** | Text shown for each option. Search also uses this text |
-| `onChanged` | `ValueChanged<T>?` | **required** | Called with the picked option. `null` disables it |
-| `value` | `T?` | | The selected option (keep it in your state) |
-| `label` | `String?` | | Label above the field. Also the title of the bottom sheet |
-| `hint` | `String?` | | Text when nothing is selected |
-| `searchHint` | `String?` | translated "Search" | Hint in the search box |
-| `isRequired` | `bool` | `false` | Adds a red `*` and an "is required" check |
-| `validator` | `FormFieldValidator<T>?` | | Your own check |
-| `prefixIcon` | `IconData?` | | Icon at the start |
-| `isLoading` | `bool` | `false` | Shows a spinner and blocks taps while options load |
-| `enabled` | `bool` | `true` | `false` greys it out |
+| Parameter    | Type                     | Default             | What it does                                              |
+| ------------ | ------------------------ | ------------------- | --------------------------------------------------------- |
+| `items`      | `List<T>`                | **required**        | All options                                               |
+| `itemLabel`  | `String Function(T)`     | **required**        | Text shown for each option. Search also uses this text    |
+| `onChanged`  | `ValueChanged<T>?`       | **required**        | Called with the picked option. `null` disables it         |
+| `value`      | `T?`                     |                     | The selected option (keep it in your state)               |
+| `label`      | `String?`                |                     | Label above the field. Also the title of the bottom sheet |
+| `hint`       | `String?`                |                     | Text when nothing is selected                             |
+| `searchHint` | `String?`                | translated "Search" | Hint in the search box                                    |
+| `isRequired` | `bool`                   | `false`             | Adds a red `*` and an "is required" check                 |
+| `validator`  | `FormFieldValidator<T>?` |                     | Your own check                                            |
+| `prefixIcon` | `IconData?`              |                     | Icon at the start                                         |
+| `isLoading`  | `bool`                   | `false`             | Shows a spinner and blocks taps while options load        |
+| `enabled`    | `bool`                   | `true`              | `false` greys it out                                      |
 
 ```dart
 AppSearchableDropdown<CountryEntity>(
@@ -1424,18 +1424,18 @@ date.
 
 **When to use:** date of birth, start date, due date.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `onChanged` | `ValueChanged<DateTime>?` | **required** | Called with the picked date. `null` disables it |
-| `firstDate` | `DateTime` | **required** | Earliest date that can be picked |
-| `lastDate` | `DateTime` | **required** | Latest date that can be picked |
-| `value` | `DateTime?` | | The selected date (keep it in your state) |
-| `label` | `String?` | | Label above the field |
-| `hint` | `String?` | | Text when no date is picked |
-| `isRequired` | `bool` | `false` | Adds a red `*` and an "is required" check |
-| `validator` | `FormFieldValidator<DateTime>?` | | Your own check |
-| `format` | `String Function(DateTime)` | `yyyy-MM-dd` | How the date is shown |
-| `enabled` | `bool` | `true` | `false` greys it out |
+| Parameter    | Type                            | Default      | What it does                                    |
+| ------------ | ------------------------------- | ------------ | ----------------------------------------------- |
+| `onChanged`  | `ValueChanged<DateTime>?`       | **required** | Called with the picked date. `null` disables it |
+| `firstDate`  | `DateTime`                      | **required** | Earliest date that can be picked                |
+| `lastDate`   | `DateTime`                      | **required** | Latest date that can be picked                  |
+| `value`      | `DateTime?`                     |              | The selected date (keep it in your state)       |
+| `label`      | `String?`                       |              | Label above the field                           |
+| `hint`       | `String?`                       |              | Text when no date is picked                     |
+| `isRequired` | `bool`                          | `false`      | Adds a red `*` and an "is required" check       |
+| `validator`  | `FormFieldValidator<DateTime>?` |              | Your own check                                  |
+| `format`     | `String Function(DateTime)`     | `yyyy-MM-dd` | How the date is shown                           |
+| `enabled`    | `bool`                          | `true`       | `false` greys it out                            |
 
 ```dart
 AppDateField(
@@ -1483,14 +1483,14 @@ AppDateField(
 
 **When to use:** "I accept the terms", "Remember me", "Send me emails".
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `label` | `String` | **required** | Text next to the checkbox |
-| `value` | `bool` | **required** | Checked or not (keep it in your state) |
-| `onChanged` | `ValueChanged<bool>?` | **required** | Called when tapped. `null` disables it |
-| `mustBeChecked` | `bool` | `false` | Shows an error on `validate()` if not checked |
-| `requiredMessage` | `String?` | translated "Please accept to continue" | Error text when `mustBeChecked` fails |
-| `enabled` | `bool` | `true` | `false` greys it out |
+| Parameter         | Type                  | Default                                | What it does                                  |
+| ----------------- | --------------------- | -------------------------------------- | --------------------------------------------- |
+| `label`           | `String`              | **required**                           | Text next to the checkbox                     |
+| `value`           | `bool`                | **required**                           | Checked or not (keep it in your state)        |
+| `onChanged`       | `ValueChanged<bool>?` | **required**                           | Called when tapped. `null` disables it        |
+| `mustBeChecked`   | `bool`                | `false`                                | Shows an error on `validate()` if not checked |
+| `requiredMessage` | `String?`             | translated "Please accept to continue" | Error text when `mustBeChecked` fails         |
+| `enabled`         | `bool`                | `true`                                 | `false` greys it out                          |
 
 ```dart
 AppCheckboxField(
@@ -1520,18 +1520,18 @@ a `FormField` (see the example).
 
 **When to use:** to build your own picker: time, file, color, location.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `onTap` | `VoidCallback` | **required** | Called when tapped. Open your picker here |
-| `valueText` | `String?` | | Text of the current value. Empty shows the `hint` |
-| `label` | `String?` | | Label above the field |
-| `hint` | `String?` | | Text when there's no value |
-| `isRequired` | `bool` | `false` | Adds a red `*` (only the look; add a validator yourself) |
-| `errorText` | `String?` | | Error text under the field |
-| `prefixIcon` | `IconData?` | | Icon at the start |
-| `suffixIcon` | `IconData` | `Icons.arrow_drop_down` | Icon at the end |
-| `isLoading` | `bool` | `false` | Shows a spinner and blocks taps |
-| `enabled` | `bool` | `true` | `false` greys it out and blocks taps |
+| Parameter    | Type           | Default                 | What it does                                             |
+| ------------ | -------------- | ----------------------- | -------------------------------------------------------- |
+| `onTap`      | `VoidCallback` | **required**            | Called when tapped. Open your picker here                |
+| `valueText`  | `String?`      |                         | Text of the current value. Empty shows the `hint`        |
+| `label`      | `String?`      |                         | Label above the field                                    |
+| `hint`       | `String?`      |                         | Text when there's no value                               |
+| `isRequired` | `bool`         | `false`                 | Adds a red `*` (only the look; add a validator yourself) |
+| `errorText`  | `String?`      |                         | Error text under the field                               |
+| `prefixIcon` | `IconData?`    |                         | Icon at the start                                        |
+| `suffixIcon` | `IconData`     | `Icons.arrow_drop_down` | Icon at the end                                          |
+| `isLoading`  | `bool`         | `false`                 | Shows a spinner and blocks taps                          |
+| `enabled`    | `bool`         | `true`                  | `false` greys it out and blocks taps                     |
 
 ```dart
 // Time picker with validation
@@ -1569,10 +1569,10 @@ required.
 **When to use:** you rarely need it directly. The inputs above use it. Use it if you
 build a new input and want the same label style.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `text` | `String` | **required** (first argument) | Label text |
-| `isRequired` | `bool` | `false` | Adds a red `*` |
+| Parameter    | Type     | Default                       | What it does   |
+| ------------ | -------- | ----------------------------- | -------------- |
+| `text`       | `String` | **required** (first argument) | Label text     |
+| `isRequired` | `bool`   | `false`                       | Adds a red `*` |
 
 ```dart
 InputDecoration(label: AppFieldLabel('Company', isRequired: true));
@@ -1589,22 +1589,22 @@ The same file has `requiredMessage(context, label)`, which returns the translate
 itself after a few seconds. This is the app's **toast**. It has a color and icon for
 each type:
 
-| Type | Color | Icon | Use for |
-|---|---|---|---|
-| `AppSnackBarType.success` | green | check | "Saved", "Request sent" |
-| `AppSnackBarType.error` | red | error | Something failed |
-| `AppSnackBarType.warning` | orange | warning | Something needs attention |
-| `AppSnackBarType.info` (default) | blue | info | General messages |
+| Type                             | Color  | Icon    | Use for                   |
+| -------------------------------- | ------ | ------- | ------------------------- |
+| `AppSnackBarType.success`        | green  | check   | "Saved", "Request sent"   |
+| `AppSnackBarType.error`          | red    | error   | Something failed          |
+| `AppSnackBarType.warning`        | orange | warning | Something needs attention |
+| `AppSnackBarType.info` (default) | blue   | info    | General messages          |
 
 **Type:** helper class with static methods (not a widget you put in `build`).
 
 **When to use:** to confirm an action or show an error without blocking the user.
 For questions that need an answer, use [`AppDialog`](#appdialog).
 
-| Method | What it does |
-|---|---|
-| `AppSnackBar.show(context, message, {type})` | Shows the message. Hides the current one first, so they don't pile up |
-| `AppSnackBar.build(message, {type})` | Returns the `SnackBar` widget, if you want to show it yourself |
+| Method                                                     | What it does                                                                        |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `AppSnackBar.show(context, message, {type})`               | Shows the message. Hides the current one first, so they don't pile up               |
+| `AppSnackBar.build(message, {type})`                       | Returns the `SnackBar` widget, if you want to show it yourself                      |
 | `getIt<NavigationService>().showSnackBar(message, {type})` | Same as `show`, but without a `BuildContext` (for services and app-level listeners) |
 
 ```dart
@@ -1666,23 +1666,23 @@ information the user must read.
 **`AppDialog.confirm`** returns `true` only if the user taps the confirm button.
 Tapping cancel or outside returns `false`.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `context` | `BuildContext` | **required** | |
-| `title` | `String` | **required** | Dialog title |
-| `message` | `String?` | | Text under the title |
-| `confirmLabel` | `String?` | translated "Confirm" | Confirm button text |
-| `cancelLabel` | `String?` | translated "Cancel" | Cancel button text |
-| `isDestructive` | `bool` | `false` | Makes the confirm button red |
+| Parameter       | Type           | Default              | What it does                 |
+| --------------- | -------------- | -------------------- | ---------------------------- |
+| `context`       | `BuildContext` | **required**         |                              |
+| `title`         | `String`       | **required**         | Dialog title                 |
+| `message`       | `String?`      |                      | Text under the title         |
+| `confirmLabel`  | `String?`      | translated "Confirm" | Confirm button text          |
+| `cancelLabel`   | `String?`      | translated "Cancel"  | Cancel button text           |
+| `isDestructive` | `bool`         | `false`              | Makes the confirm button red |
 
 **`AppDialog.alert`** shows a message with one button.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `context` | `BuildContext` | **required** | |
-| `title` | `String` | **required** | Dialog title |
-| `message` | `String?` | | Text under the title |
-| `buttonLabel` | `String?` | translated "OK" | Button text |
+| Parameter     | Type           | Default         | What it does         |
+| ------------- | -------------- | --------------- | -------------------- |
+| `context`     | `BuildContext` | **required**    |                      |
+| `title`       | `String`       | **required**    | Dialog title         |
+| `message`     | `String?`      |                 | Text under the title |
+| `buttonLabel` | `String?`      | translated "OK" | Button text          |
 
 ```dart
 // Ask before deleting
@@ -1714,10 +1714,10 @@ await AppDialog.alert(
 
 **When to use:** while a page or a section loads its data.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `message` | `String?` | | Text under the spinner |
-| `size` | `double` | `32` | Spinner size |
+| Parameter | Type      | Default | What it does           |
+| --------- | --------- | ------- | ---------------------- |
+| `message` | `String?` |         | Text under the spinner |
+| `size`    | `double`  | `32`    | Spinner size           |
 
 ```dart
 BlocBuilder<ProfileBloc, ProfileState>(
@@ -1741,11 +1741,11 @@ const AppLoader(message: 'Loading your requests…');
 **When to use:** while saving or uploading, so the user can't tap twice. On a full
 screen, use `AppScaffold(isLoading: ...)` instead. It uses this overlay inside.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `isLoading` | `bool` | **required** | Shows the overlay when `true` |
-| `child` | `Widget` | **required** | The content under the overlay |
-| `message` | `String?` | | Text under the spinner |
+| Parameter   | Type      | Default      | What it does                  |
+| ----------- | --------- | ------------ | ----------------------------- |
+| `isLoading` | `bool`    | **required** | Shows the overlay when `true` |
+| `child`     | `Widget`  | **required** | The content under the overlay |
+| `message`   | `String?` |              | Text under the spinner        |
 
 ```dart
 AppLoadingOverlay(
@@ -1767,20 +1767,20 @@ loading overlay.
 
 **When to use:** as the root widget of every screen, instead of `Scaffold`.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `body` | `Widget` | **required** | Screen content |
-| `title` | `String?` | | Creates a simple app bar with this title |
-| `appBar` | `PreferredSizeWidget?` | | Your own app bar (then `title` and `actions` are ignored) |
-| `actions` | `List<Widget>?` | | Buttons on the right of the app bar |
-| `padding` | `EdgeInsetsGeometry` | `EdgeInsets.all(16)` | Space around the body |
-| `scrollable` | `bool` | `false` | Makes the body scroll (use for forms) |
-| `maxContentWidth` | `double?` | | Max width of the content, useful on tablets |
-| `isLoading` | `bool` | `false` | Shows a loading overlay and blocks taps |
-| `loadingMessage` | `String?` | | Text in the loading overlay |
-| `floatingActionButton` | `Widget?` | | Round button at the bottom right |
-| `bottomNavigationBar` | `Widget?` | | Bottom bar |
-| `backgroundColor` | `Color?` | | Background color (normally from the theme) |
+| Parameter              | Type                   | Default              | What it does                                              |
+| ---------------------- | ---------------------- | -------------------- | --------------------------------------------------------- |
+| `body`                 | `Widget`               | **required**         | Screen content                                            |
+| `title`                | `String?`              |                      | Creates a simple app bar with this title                  |
+| `appBar`               | `PreferredSizeWidget?` |                      | Your own app bar (then `title` and `actions` are ignored) |
+| `actions`              | `List<Widget>?`        |                      | Buttons on the right of the app bar                       |
+| `padding`              | `EdgeInsetsGeometry`   | `EdgeInsets.all(16)` | Space around the body                                     |
+| `scrollable`           | `bool`                 | `false`              | Makes the body scroll (use for forms)                     |
+| `maxContentWidth`      | `double?`              |                      | Max width of the content, useful on tablets               |
+| `isLoading`            | `bool`                 | `false`              | Shows a loading overlay and blocks taps                   |
+| `loadingMessage`       | `String?`              |                      | Text in the loading overlay                               |
+| `floatingActionButton` | `Widget?`              |                      | Round button at the bottom right                          |
+| `bottomNavigationBar`  | `Widget?`              |                      | Bottom bar                                                |
+| `backgroundColor`      | `Color?`               |                      | Background color (normally from the theme)                |
 
 ```dart
 // Simple screen
@@ -1826,12 +1826,12 @@ Tips:
 
 **When to use:** list items, summary boxes, settings groups.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `child` | `Widget` | **required** | Card content |
-| `padding` | `EdgeInsetsGeometry` | `EdgeInsets.all(16)` | Space inside the card |
-| `onTap` | `VoidCallback?` | | Makes the whole card tappable (with a ripple) |
-| `color` | `Color?` | | Background color (normally from the theme) |
+| Parameter | Type                 | Default              | What it does                                  |
+| --------- | -------------------- | -------------------- | --------------------------------------------- |
+| `child`   | `Widget`             | **required**         | Card content                                  |
+| `padding` | `EdgeInsetsGeometry` | `EdgeInsets.all(16)` | Space inside the card                         |
+| `onTap`   | `VoidCallback?`      |                      | Makes the whole card tappable (with a ripple) |
+| `color`   | `Color?`             |                      | Background color (normally from the theme)    |
 
 ```dart
 AppCard(
@@ -1857,11 +1857,11 @@ AppCard(
 
 **When to use:** above a group of items ("Recent requests", "Personal details").
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `title` | `String` | **required** | Section title |
-| `actionLabel` | `String?` | | Text of the button on the right |
-| `onAction` | `VoidCallback?` | | Called when the button is tapped. The button only shows if both `actionLabel` and `onAction` are set |
+| Parameter     | Type            | Default      | What it does                                                                                         |
+| ------------- | --------------- | ------------ | ---------------------------------------------------------------------------------------------------- |
+| `title`       | `String`        | **required** | Section title                                                                                        |
+| `actionLabel` | `String?`       |              | Text of the button on the right                                                                      |
+| `onAction`    | `VoidCallback?` |              | Called when the button is tapped. The button only shows if both `actionLabel` and `onAction` are set |
 
 ```dart
 AppSectionHeader(
@@ -1884,13 +1884,13 @@ middle of the space.
 
 **When to use:** when a list is empty, or a screen has nothing to show yet.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `title` | `String` | **required** | Main text |
-| `message` | `String?` | | Smaller text under the title |
-| `icon` | `IconData` | `Icons.inbox_outlined` | Big icon on top |
-| `actionLabel` | `String?` | | Button text |
-| `onAction` | `VoidCallback?` | | Button action. The button only shows if both are set |
+| Parameter     | Type            | Default                | What it does                                         |
+| ------------- | --------------- | ---------------------- | ---------------------------------------------------- |
+| `title`       | `String`        | **required**           | Main text                                            |
+| `message`     | `String?`       |                        | Smaller text under the title                         |
+| `icon`        | `IconData`      | `Icons.inbox_outlined` | Big icon on top                                      |
+| `actionLabel` | `String?`       |                        | Button text                                          |
+| `onAction`    | `VoidCallback?` |                        | Button action. The button only shows if both are set |
 
 ```dart
 AppEmptyState(
@@ -1913,12 +1913,12 @@ button.
 
 **When to use:** when loading data failed and the user can try again.
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `message` | `String` | **required** | Error text. Use `failure.localizedMessage(context.l10n)` |
-| `title` | `String?` | translated "Something went wrong" | Main text |
-| `onRetry` | `VoidCallback?` | | Called when "Try again" is tapped. No button if `null` |
-| `retryLabel` | `String?` | translated "Try again" | Button text |
+| Parameter    | Type            | Default                           | What it does                                             |
+| ------------ | --------------- | --------------------------------- | -------------------------------------------------------- |
+| `message`    | `String`        | **required**                      | Error text. Use `failure.localizedMessage(context.l10n)` |
+| `title`      | `String?`       | translated "Something went wrong" | Main text                                                |
+| `onRetry`    | `VoidCallback?` |                                   | Called when "Try again" is tapped. No button if `null`   |
+| `retryLabel` | `String?`       | translated "Try again"            | Button text                                              |
 
 ```dart
 AppErrorState(
@@ -1938,11 +1938,11 @@ colors.
 
 **When to use:** to show a status: "Approved", "Pending", "Rejected", "New".
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `label` | `String` | **required** | Badge text |
-| `tone` | `AppBadgeTone` | `neutral` | Color: `neutral` (grey), `info` (blue), `success` (green), `warning` (orange), `error` (red) |
-| `icon` | `IconData?` | | Small icon before the text |
+| Parameter | Type           | Default      | What it does                                                                                 |
+| --------- | -------------- | ------------ | -------------------------------------------------------------------------------------------- |
+| `label`   | `String`       | **required** | Badge text                                                                                   |
+| `tone`    | `AppBadgeTone` | `neutral`    | Color: `neutral` (grey), `info` (blue), `success` (green), `warning` (orange), `error` (red) |
+| `icon`    | `IconData?`    |              | Small icon before the text                                                                   |
 
 ```dart
 const AppBadge(label: 'Approved', tone: AppBadgeTone.success, icon: Icons.check);
@@ -1971,11 +1971,11 @@ Empty values show `-`.
 
 **When to use:** detail and review screens ("Reference: REQ-001").
 
-| Parameter | Type | Default | What it does |
-|---|---|---|---|
-| `label` | `String` | **required** | Label text (grey) |
-| `value` | `String?` | **required** | Value text (bold). `null` or empty shows `-` |
-| `stacked` | `bool` | `false` | `true` puts the value under the label, for long values |
+| Parameter | Type      | Default      | What it does                                           |
+| --------- | --------- | ------------ | ------------------------------------------------------ |
+| `label`   | `String`  | **required** | Label text (grey)                                      |
+| `value`   | `String?` | **required** | Value text (bold). `null` or empty shows `-`           |
+| `stacked` | `bool`    | `false`      | `true` puts the value under the label, for long values |
 
 ```dart
 Column(
@@ -1998,11 +1998,11 @@ text, or `null` if the value is OK.
 
 **Type:** helper class with static methods (`core/utils/validators.dart`).
 
-| Method | Checks |
-|---|---|
-| `Validators.required(value, l10n, {fieldName})` | Not empty. Message: "{fieldName} is required" or "This field is required" |
-| `Validators.email(value, l10n)` | Not empty and a valid email |
-| `Validators.password(value, l10n, {minLength = 6})` | Not empty and at least `minLength` characters |
+| Method                                              | Checks                                                                    |
+| --------------------------------------------------- | ------------------------------------------------------------------------- |
+| `Validators.required(value, l10n, {fieldName})`     | Not empty. Message: "{fieldName} is required" or "This field is required" |
+| `Validators.email(value, l10n)`                     | Not empty and a valid email                                               |
+| `Validators.password(value, l10n, {minLength = 6})` | Not empty and at least `minLength` characters                             |
 
 ```dart
 AppTextField(
@@ -2027,16 +2027,16 @@ AppTextField(
 (`core/constants/app_dimens.dart`). Use them instead of typing numbers, so all
 screens look the same.
 
-| `AppSpacing` | Value | | `AppRadius` | Value |
-|---|---|---|---|---|
-| `xxs` | 2 | | `sm` | 8 |
-| `xs` | 4 | | `md` | 12 |
-| `sm` | 8 | | `lg` | 16 |
-| `md` | 12 | | `pill` | 999 (fully round) |
-| `lg` | 16 | | | |
-| `xl` | 24 | | | |
-| `xxl` | 32 | | | |
-| `xxxl` | 48 | | | |
+| `AppSpacing` | Value |     | `AppRadius` | Value             |
+| ------------ | ----- | --- | ----------- | ----------------- |
+| `xxs`        | 2     |     | `sm`        | 8                 |
+| `xs`         | 4     |     | `md`        | 12                |
+| `sm`         | 8     |     | `lg`        | 16                |
+| `md`         | 12    |     | `pill`      | 999 (fully round) |
+| `lg`         | 16    |     |             |                   |
+| `xl`         | 24    |     |             |                   |
+| `xxl`        | 32    |     |             |                   |
+| `xxxl`       | 48    |     |             |                   |
 
 ```dart
 const SizedBox(height: AppSpacing.md);                  // gap between fields
@@ -2050,12 +2050,12 @@ BorderRadius.circular(AppRadius.md);                     // rounded corners
 
 From `core/extensions/context_extensions.dart`:
 
-| Shortcut | Same as | Example |
-|---|---|---|
-| `context.colors` | `Theme.of(context).colorScheme` | `context.colors.primary` |
-| `context.textTheme` | `Theme.of(context).textTheme` | `context.textTheme.titleMedium` |
-| `context.theme` | `Theme.of(context)` | `context.theme.brightness` |
-| `context.l10n` | `AppLocalizations.of(context)` | `context.l10n.signIn` |
+| Shortcut            | Same as                         | Example                         |
+| ------------------- | ------------------------------- | ------------------------------- |
+| `context.colors`    | `Theme.of(context).colorScheme` | `context.colors.primary`        |
+| `context.textTheme` | `Theme.of(context).textTheme`   | `context.textTheme.titleMedium` |
+| `context.theme`     | `Theme.of(context)`             | `context.theme.brightness`      |
+| `context.l10n`      | `AppLocalizations.of(context)`  | `context.l10n.signIn`           |
 
 ---
 
@@ -2249,10 +2249,10 @@ Real examples in the app: `features/auth/presentation/widgets/login_form.dart`,
 Both are saved and come back when the app opens again. By default the app follows
 the phone (system theme, phone language, English if the language isn't supported).
 
-| Part | File | Saved as |
-|---|---|---|
-| `ThemeCubit` | `core/theme/theme_cubit.dart` | `system`, `light` or `dark` |
-| `LocaleCubit` (`null` = phone language) | `core/localization/locale_cubit.dart` | language code, e.g. `ar` |
+| Part                                    | File                                  | Saved as                    |
+| --------------------------------------- | ------------------------------------- | --------------------------- |
+| `ThemeCubit`                            | `core/theme/theme_cubit.dart`         | `system`, `light` or `dark` |
+| `LocaleCubit` (`null` = phone language) | `core/localization/locale_cubit.dart` | language code, e.g. `ar`    |
 
 Both are created in `app/app.dart`, above `MaterialApp`.
 
@@ -2321,10 +2321,10 @@ instead of `left` / `right`.
 
 Two fonts are included:
 
-| Family | Files | Weights | Used for |
-|---|---|---|---|
-| `ProximaNova` | `fonts/proximanova_*` | 400, 700 | The whole app |
-| `DubaiFont` | `fonts/Dubai-*.ttf` | 300, 400, 500, 700 | Arabic, and Arabic letters in English text |
+| Family        | Files                 | Weights            | Used for                                   |
+| ------------- | --------------------- | ------------------ | ------------------------------------------ |
+| `ProximaNova` | `fonts/proximanova_*` | 400, 700           | The whole app                              |
+| `DubaiFont`   | `fonts/Dubai-*.ttf`   | 300, 400, 500, 700 | Arabic, and Arabic letters in English text |
 
 All font settings are in `lib/core/constants/app_typography.dart`:
 
@@ -2351,11 +2351,11 @@ class AppTypography {
 When the user changes the language, the font changes right away on every screen,
 dialog and snackbar.
 
-| I want to... | Change |
-|---|---|
-| Use one font for all languages | `fontFamilyByLanguage = {}` |
-| Use Dubai for the whole app | `fontFamily = AppFonts.dubai` |
-| Use a font for a new language | Add e.g. `'fr': AppFonts.someFont` |
+| I want to...                   | Change                             |
+| ------------------------------ | ---------------------------------- |
+| Use one font for all languages | `fontFamilyByLanguage = {}`        |
+| Use Dubai for the whole app    | `fontFamily = AppFonts.dubai`      |
+| Use a font for a new language  | Add e.g. `'fr': AppFonts.someFont` |
 
 **Add a new font** (e.g. Cairo):
 
@@ -2418,11 +2418,11 @@ All app icons are made from one PNG with
 [`flutter_launcher_icons`](https://pub.dev/packages/flutter_launcher_icons). It's only a
 dev tool, so it doesn't make the app bigger.
 
-| File | What it is |
-|---|---|
-| `assets/icon/app_icon.png` | Your icon. Starts as the Flutter logo |
-| `flutter_launcher_icons:` in `pubspec.yaml` | Icon settings |
-| `tool/generate_app_icons.sh` | Checks the image and creates all icons |
+| File                                        | What it is                             |
+| ------------------------------------------- | -------------------------------------- |
+| `assets/icon/app_icon.png`                  | Your icon. Starts as the Flutter logo  |
+| `flutter_launcher_icons:` in `pubspec.yaml` | Icon settings                          |
+| `tool/generate_app_icons.sh`                | Checks the image and creates all icons |
 
 ### Change the app icon
 
@@ -2440,6 +2440,7 @@ dev tool, so it doesn't make the app bigger.
 
    This copies your file to `assets/icon/app_icon.png` and creates all sizes. If you
    already replaced `assets/icon/app_icon.png`, run the script without a file.
+
 3. **Check** with `git diff`. It changes:
    - Android: `android/app/src/main/res/mipmap-*/ic_launcher.png`
    - iOS: `ios/Runner/Assets.xcassets/AppIcon.appiconset/`
@@ -2461,7 +2462,7 @@ adaptive icon, your square icon is made smaller and put on a white shape. To fix
 2. In `flutter_launcher_icons:` in `pubspec.yaml`, remove the `#` from:
 
    ```yaml
-   adaptive_icon_background: "#FFFFFF"   # your brand color, or an image
+   adaptive_icon_background: "#FFFFFF" # your brand color, or an image
    adaptive_icon_foreground: "assets/icon/app_icon_foreground.png"
    ```
 
@@ -2512,18 +2513,18 @@ reports. On Android, the Firebase build plugins are only used when
      step copies it into the app if it exists. **Don't** drag it into Xcode. That adds
      it to the project, and builds then fail on every machine that doesn't have the
      file.
-   - In Xcode, Runner target, *Signing & Capabilities*:
+   - In Xcode, Runner target, _Signing & Capabilities_:
      - Add **Push Notifications**.
-     - Add **Background Modes** and tick *Remote notifications* and
-       *Background fetch*.
-   - In the Apple Developer portal, under *Keys*, create an **APNs key (.p8)**. Upload
-     it in Firebase Console under *Project settings > Cloud Messaging > Apple app
-     configuration*, with your Key ID and Team ID.
+     - Add **Background Modes** and tick _Remote notifications_ and
+       _Background fetch_.
+   - In the Apple Developer portal, under _Keys_, create an **APNs key (.p8)**. Upload
+     it in Firebase Console under _Project settings > Cloud Messaging > Apple app
+     configuration_, with your Key ID and Team ID.
    - Push only works on a **real iPhone** (or a simulator on an Apple silicon Mac with
      a recent Xcode).
 4. **Run** with `ENABLE_FIREBASE: true`. The push card on the home screen should say
-   *"Firebase is configured"*. Tap **Enable notifications**, copy the token, and send a
-   test message from *Firebase Console > Messaging*.
+   _"Firebase is configured"_. Tap **Enable notifications**, copy the token, and send a
+   test message from _Firebase Console > Messaging_.
 5. **Test Crashlytics** in a release build (it's off in debug): run
    `flutter run --release --dart-define-from-file=env/dev.json`, add a button that
    throws an error (e.g. `throw StateError('Crashlytics test')`), tap it, open the
@@ -2531,9 +2532,9 @@ reports. On Android, the Firebase build plugins are only used when
 
 **Better iOS crash details (optional).** Dart errors already show the Dart stack
 trace. For native iOS crashes, Crashlytics needs dSYM files. In Xcode, add a
-*Run Script* build phase to Runner (as the last phase) with
+_Run Script_ build phase to Runner (as the last phase) with
 `"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run"`,
-and set *Debug Information Format* to *DWARF with dSYM File* for Release. See the
+and set _Debug Information Format_ to _DWARF with dSYM File_ for Release. See the
 [Crashlytics docs](https://firebase.google.com/docs/crashlytics/get-started?platform=flutter).
 
 The Firebase files are ignored by git. Remove them from `.gitignore` if you want to
@@ -2553,11 +2554,11 @@ regenerating. `core/services/firebase/firebase_bootstrap.dart` then passes
 
 [Codemagic](https://codemagic.io) builds the app using `codemagic.yaml`:
 
-| Workflow | When | What it does |
-|---|---|---|
-| `ci` | Every push and pull request | Checks format, runs `flutter analyze` |
-| `android-release` | Tags starting with `v` | Signed `.aab` uploaded to Google Play (internal track, as draft) |
-| `ios-release` | Tags starting with `v` | Signed `.ipa` uploaded to TestFlight |
+| Workflow          | When                        | What it does                                                     |
+| ----------------- | --------------------------- | ---------------------------------------------------------------- |
+| `ci`              | Every push and pull request | Checks format, runs `flutter analyze`                            |
+| `android-release` | Tags starting with `v`      | Signed `.aab` uploaded to Google Play (internal track, as draft) |
+| `ios-release`     | Tags starting with `v`      | Signed `.ipa` uploaded to TestFlight                             |
 
 Release builds need files that are not in git. `tool/ci/write_config.sh prod` creates
 them from Codemagic environment variables: `env/prod.json`, the Firebase files and
@@ -2580,16 +2581,16 @@ in `codemagic.yaml`.
 In your app in Codemagic, open **Environment variables** and add these to the groups
 below. Mark everything as **Secret** except `API_VERSION` and `ENABLE_FIREBASE`.
 
-| Group | Variable | Value |
-|---|---|---|
-| `app_env` | `BASE_URL` | Your live API, e.g. `https://api.acme.com/api/` (**required**) |
-| `app_env` | `API_VERSION` | e.g. `v1` (optional) |
-| `app_env` | `ENABLE_FIREBASE` | `true` or `false` (optional) |
-| `firebase` | `GOOGLE_SERVICES_JSON` | `google-services.json` as base64 |
-| `firebase` | `GOOGLE_SERVICE_INFO_PLIST` | `GoogleService-Info.plist` as base64 |
-| `firebase` | `FIREBASE_API_KEY_ANDROID` | Android *Web API key* from the Firebase console |
-| `firebase` | `FIREBASE_API_KEY_IOS` | iOS *Web API key* from the Firebase console |
-| `google_play` | `GCLOUD_SERVICE_ACCOUNT_CREDENTIALS` | Google Play service account JSON (paste as is, not base64) |
+| Group         | Variable                             | Value                                                          |
+| ------------- | ------------------------------------ | -------------------------------------------------------------- |
+| `app_env`     | `BASE_URL`                           | Your live API, e.g. `https://api.acme.com/api/` (**required**) |
+| `app_env`     | `API_VERSION`                        | e.g. `v1` (optional)                                           |
+| `app_env`     | `ENABLE_FIREBASE`                    | `true` or `false` (optional)                                   |
+| `firebase`    | `GOOGLE_SERVICES_JSON`               | `google-services.json` as base64                               |
+| `firebase`    | `GOOGLE_SERVICE_INFO_PLIST`          | `GoogleService-Info.plist` as base64                           |
+| `firebase`    | `FIREBASE_API_KEY_ANDROID`           | Android _Web API key_ from the Firebase console                |
+| `firebase`    | `FIREBASE_API_KEY_IOS`               | iOS _Web API key_ from the Firebase console                    |
+| `google_play` | `GCLOUD_SERVICE_ACCOUNT_CREDENTIALS` | Google Play service account JSON (paste as is, not base64)     |
 
 Turn the Firebase files into base64 on one line:
 
@@ -2690,44 +2691,44 @@ created and `!` for each one it skipped.
 
 **Builds don't start**
 
-- *Nothing happens on push or tag:* check **Webhooks** in your Codemagic app. If
+- _Nothing happens on push or tag:_ check **Webhooks** in your Codemagic app. If
   there's no webhook, connect the repo again.
-- *Tag pushed but no release build:* `git push` doesn't push tags. Use
+- _Tag pushed but no release build:_ `git push` doesn't push tags. Use
   `git push origin v1.2.0`. The tag must start with `v`.
-- *"No workflows found" or YAML errors:* `codemagic.yaml` must be in the root of the
+- _"No workflows found" or YAML errors:_ `codemagic.yaml` must be in the root of the
   branch or tag you build.
 
 **`ci` build**
 
-- *Format check fails:* run `dart format lib` and commit.
-- *Works on my computer, fails on CI:* compare `flutter --version` with `flutter:` in
+- _Format check fails:_ run `dart format lib` and commit.
+- _Works on my computer, fails on CI:_ compare `flutter --version` with `flutter:` in
   `codemagic.yaml`. Update both when you upgrade Flutter.
 
 **Settings**
 
-- *Release app shows "Configuration error":* the `app_env` group is missing, has a
+- _Release app shows "Configuration error":_ the `app_env` group is missing, has a
   different name, or has no `BASE_URL`.
-- *`base64: invalid input`:* the value has line breaks. Encode it again with the
+- _`base64: invalid input`:_ the value has line breaks. Encode it again with the
   commands above and paste the whole value.
-- *Release app has no Firebase:* the log shows `! GOOGLE_SERVICES_JSON not set` or
+- _Release app has no Firebase:_ the log shows `! GOOGLE_SERVICES_JSON not set` or
   `! GOOGLE_SERVICE_INFO_PLIST not set`. Add them to the `firebase` group. The
   Firebase apps must use the same ids as the build.
 
 **Android**
 
-- *"No keystore with reference upload_keystore":* the keystore name in Codemagic
+- _"No keystore with reference upload_keystore":_ the keystore name in Codemagic
   doesn't match `codemagic.yaml`.
-- *Play says the bundle is debug-signed:* `key.properties` wasn't created (no
+- _Play says the bundle is debug-signed:_ `key.properties` wasn't created (no
   `✓ android/key.properties` in the log). Check the keystore setup.
-- *"Keystore was tampered with, or password was incorrect":* a password or the alias
+- _"Keystore was tampered with, or password was incorrect":_ a password or the alias
   in Codemagic is wrong.
-- *"Package not found: com.acme.myapp":* the app isn't in Play Console yet, or the
+- _"Package not found: com.acme.myapp":_ the app isn't in Play Console yet, or the
   first build wasn't uploaded by hand.
-- *"The caller does not have permission":* the service account wasn't invited in Play
+- _"The caller does not have permission":_ the service account wasn't invited in Play
   Console, or doesn't have release permission. New access can take some time.
-- *"Only releases with status draft may be created on draft app":* keep
+- _"Only releases with status draft may be created on draft app":_ keep
   `submit_as_draft: true` until the app is published once.
-- *"Version code N has already been used":* the build number is too low. Use the
+- _"Version code N has already been used":_ the build number is too low. Use the
   latest number from Play plus one:
 
   ```bash
@@ -2738,13 +2739,13 @@ created and `!` for each one it skipped.
 
 **iOS**
 
-- *"No matching profiles found for bundle identifier":* `bundle_identifier` in
+- _"No matching profiles found for bundle identifier":_ `bundle_identifier` in
   `codemagic.yaml` doesn't match, or no App Store profile was fetched.
-- *No valid signing certificate:* add an Apple Distribution certificate. Apple allows
+- _No valid signing certificate:_ add an Apple Distribution certificate. Apple allows
   only a few per team, so remove old ones if needed.
-- *"Provisioning profile doesn't include the aps-environment entitlement":* turn on
+- _"Provisioning profile doesn't include the aps-environment entitlement":_ turn on
   Push Notifications for the App ID, then fetch the profile again.
-- *"The bundle version must be higher than the previously uploaded version":* use the
+- _"The bundle version must be higher than the previously uploaded version":_ use the
   latest TestFlight number plus one:
 
   ```bash
@@ -2754,25 +2755,25 @@ created and `!` for each one it skipped.
     --dart-define-from-file=env/prod.json
   ```
 
-- *Build waits on "Missing Compliance":* if the app only uses normal HTTPS, add
+- _Build waits on "Missing Compliance":_ if the app only uses normal HTTPS, add
   `ITSAppUsesNonExemptEncryption` = `NO` to `ios/Runner/Info.plist`.
-- *Swift packages fail to download:* usually a network problem. Run the build again.
+- _Swift packages fail to download:_ usually a network problem. Run the build again.
   If it keeps failing, clear the cache (**Caching** in your Codemagic app).
-- *Push works on my phone but not in TestFlight:* upload the APNs key to Firebase and
+- _Push works on my phone but not in TestFlight:_ upload the APNs key to Firebase and
   turn on Push Notifications for the App ID.
-- *Build takes too long:* increase `max_build_duration` (in minutes). The first iOS
+- _Build takes too long:_ increase `max_build_duration` (in minutes). The first iOS
   build is slower because it downloads all Swift packages.
 
 ---
 
 ## Toolchain notes
 
-- **Xcode 27 + Flutter 3.44.5:** `flutter build ios --simulator` fails with *"Exited
-  with status code 255"* in the `lipo -verify_arch` step. This is a Flutter bug, not a
+- **Xcode 27 + Flutter 3.44.5:** `flutter build ios --simulator` fails with _"Exited
+  with status code 255"_ in the `lipo -verify_arch` step. This is a Flutter bug, not a
   project problem. `flutter run` and `flutter build ipa` work fine. To build for the
   simulator by hand:
   `xcodebuild -workspace ios/Runner.xcworkspace -scheme Runner -sdk iphonesimulator ARCHS=arm64 CODE_SIGNING_ALLOWED=NO build`.
-- Gradle shows a *Kotlin Gradle Plugin* warning for some Firebase plugins. It comes
+- Gradle shows a _Kotlin Gradle Plugin_ warning for some Firebase plugins. It comes
   from those plugins and is safe to ignore for now.
 - iOS uses **Swift Package Manager** only. If you add a plugin that only supports
   CocoaPods, Flutter creates a `Podfile`. Set `platform :ios, '15.0'` in it.

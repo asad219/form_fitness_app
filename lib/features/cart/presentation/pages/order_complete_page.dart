@@ -6,10 +6,12 @@ import 'package:app_boilerplate/core/extensions/context_extensions.dart';
 import 'package:app_boilerplate/core/widgets/form_ui.dart';
 import 'package:app_boilerplate/features/auth/presentation/widgets/auth_widgets.dart';
 import 'package:app_boilerplate/features/auth/presentation/widgets/form_brand.dart';
+import 'package:app_boilerplate/features/cart/data/models/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-/// Shown after payment: order summary with the booked class and pickup info.
+/// Shown after checkout: order summary with booked classes and pickup info.
+/// Receives the [OrderModel] via route arguments.
 class OrderCompletePage
     extends
         StatelessWidget {
@@ -22,241 +24,207 @@ class OrderCompletePage
     BuildContext context,
   ) {
     final l10n = context.l10n;
+    final order = ModalRoute.of(
+      context,
+    )?.settings.arguments;
 
     return Scaffold(
       backgroundColor: AppColors.cream,
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(
-            AppSpacing.xl,
-          ),
-          children: [
-            InsideAppBar(
-              title: l10n.orderCompleteTitle,
-            ),
-            const SizedBox(
-              height: AppSpacing.lg,
-            ),
-            // Stepper row.
-            Row(
-              children: [
-                _Step(
-                  label: l10n.orderStepCart,
-                ),
-                const Spacer(),
-                _Step(
-                  label: l10n.orderStepPayment,
-                ),
-                const Spacer(),
-                _Step(
-                  label: l10n.orderStepConfirmed,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: AppSpacing.xl,
-            ),
-            Container(
-              width: 88,
-              height: 88,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.lime,
-              ),
-              child: Center(
-                child: SvgPicture.asset(
-                  AppAssets.iconCheckGlyph,
-                  width: 36,
-                  height: 36,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.charcoal,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: AppSpacing.xl,
-            ),
-            FormHeadline(
-              l10n.orderHeadline(
-                'ALEX',
-              ),
-            ),
-            const SizedBox(
-              height: AppSpacing.md,
-            ),
-            Text(
-              l10n.orderBody,
-              style: context.textTheme.bodyLarge?.copyWith(
-                color: AppColors.grey,
-                height: 1.5,
-              ),
-            ),
-            const SizedBox(
-              height: AppSpacing.xl,
-            ),
-            // Dark order summary card.
-            Container(
-              padding: const EdgeInsets.all(
-                AppSpacing.lg,
-              ),
-              decoration: BoxDecoration(
-                color: AppColors.charcoal,
-                borderRadius: BorderRadius.circular(
-                  AppRadius.lg,
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        l10n.orderNumber,
-                        style: context.textTheme.labelLarge?.copyWith(
-                          fontSize: 11,
-                          letterSpacing: 1,
-                          color: Colors.white70,
-                        ),
-                      ),
-                      const Spacer(),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.sm,
-                          vertical: AppSpacing.xs,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(
-                            AppRadius.pill,
-                          ),
-                        ),
-                        child: Text(
-                          l10n.orderPaid,
-                          style: context.textTheme.labelLarge?.copyWith(
-                            fontSize: 10,
-                            color: AppColors.charcoal,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: AppSpacing.xl,
-                  ),
-                  Text(
-                    l10n.orderTotalPaid,
-                    style: context.textTheme.bodyMedium?.copyWith(
-                      color: Colors.white70,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: AppSpacing.xs,
-                  ),
-                  Text(
-                    r'$64.80',
-                    style: context.textTheme.displaySmall?.copyWith(
-                      fontSize: 40,
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.lime,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: AppSpacing.xl,
-                  ),
-                  Text(
-                    l10n.orderPaymentMeta,
-                    style: context.textTheme.bodySmall?.copyWith(
-                      color: Colors.white70,
-                      height: 1.5,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: AppSpacing.md,
-            ),
-            // Booked class card.
-            _OrderItemCard(
-              icon: Icons.calendar_today_outlined,
-              title: l10n.orderClassConfirmed,
-              meta: l10n.orderClassMeta,
-              action: l10n.orderViewEntryPass,
-            ),
-            const SizedBox(
-              height: AppSpacing.md,
-            ),
-            // Pickup card.
-            _OrderItemCard(
-              icon: Icons.inventory_2_outlined,
-              title: l10n.orderPickupTitle,
-              meta: l10n.orderPickupMeta,
-            ),
-            const SizedBox(
-              height: AppSpacing.xl,
-            ),
-            FormCtaButton(
-              label: l10n.orderViewBookingCta,
-              onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                context,
-                RoutesName.home,
-                (
-                  route,
-                ) => false,
-              ),
-            ),
-            const SizedBox(
-              height: AppSpacing.lg,
-            ),
-            Center(
-              child: GestureDetector(
-                onTap: () {},
+        child:
+            order
+                is! OrderModel
+            ? Center(
                 child: Text(
-                  l10n.orderNeedHelp,
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: AppColors.grey,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  l10n.errorUnknown,
                 ),
+              )
+            : _OrderCompleteBody(
+                order: order,
               ),
-            ),
-          ],
-        ),
       ),
     );
   }
 }
 
-class _Step
+class _OrderCompleteBody
     extends
         StatelessWidget {
-  const _Step({
-    required this.label,
+  const _OrderCompleteBody({
+    required this.order,
   });
 
-  final String label;
+  final OrderModel order;
 
   @override
   Widget build(
     BuildContext context,
   ) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
+    final l10n = context.l10n;
+
+    return ListView(
+      padding: const EdgeInsets.all(
+        AppSpacing.xl,
+      ),
       children: [
-        const Icon(
-          Icons.check,
-          size: 14,
-          color: AppColors.grey,
+        InsideAppBar(
+          title: l10n.orderCompleteTitle,
         ),
         const SizedBox(
-          width: AppSpacing.xs,
+          height: AppSpacing.xl,
+        ),
+        Container(
+          width: 88,
+          height: 88,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: AppColors.lime,
+          ),
+          child: Center(
+            child: SvgPicture.asset(
+              AppAssets.iconCheckGlyph,
+              width: 36,
+              height: 36,
+              colorFilter: const ColorFilter.mode(
+                AppColors.charcoal,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: AppSpacing.xl,
+        ),
+        FormHeadline(
+          l10n.orderHeadline(
+            '',
+          ),
+        ),
+        const SizedBox(
+          height: AppSpacing.md,
         ),
         Text(
-          label,
-          style: context.textTheme.bodySmall?.copyWith(
+          l10n.orderBody,
+          style: context.textTheme.bodyLarge?.copyWith(
             color: AppColors.grey,
+            height: 1.5,
+          ),
+        ),
+        const SizedBox(
+          height: AppSpacing.xl,
+        ),
+        // Dark order summary card.
+        Container(
+          padding: const EdgeInsets.all(
+            AppSpacing.lg,
+          ),
+          decoration: BoxDecoration(
+            color: AppColors.charcoal,
+            borderRadius: BorderRadius.circular(
+              AppRadius.lg,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'ORDER #${order.orderNumber}',
+                    style: context.textTheme.labelLarge?.copyWith(
+                      fontSize: 11,
+                      letterSpacing: 1,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  const Spacer(),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.sm,
+                      vertical: AppSpacing.xs,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(
+                        AppRadius.pill,
+                      ),
+                    ),
+                    child: Text(
+                      order.paymentStatus.toUpperCase(),
+                      style: context.textTheme.labelLarge?.copyWith(
+                        fontSize: 10,
+                        color: AppColors.charcoal,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: AppSpacing.xl,
+              ),
+              Text(
+                l10n.orderTotalPaid,
+                style: context.textTheme.bodyMedium?.copyWith(
+                  color: Colors.white70,
+                ),
+              ),
+              const SizedBox(
+                height: AppSpacing.xs,
+              ),
+              Text(
+                '\$${order.totalPaid.toStringAsFixed(2)}',
+                style: context.textTheme.displaySmall?.copyWith(
+                  fontSize: 40,
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.lime,
+                ),
+              ),
+              if (order.billingEmail !=
+                  null) ...[
+                const SizedBox(
+                  height: AppSpacing.xl,
+                ),
+                Text(
+                  order.billingEmail!,
+                  style: context.textTheme.bodySmall?.copyWith(
+                    color: Colors.white70,
+                    height: 1.5,
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: AppSpacing.md,
+        ),
+        for (final booked in order.bookedClasses)
+          _OrderItemCard(
+            icon: Icons.calendar_today_outlined,
+            title: '${booked.className} · ${booked.bookingStatus}',
+            meta:
+                '${booked.date} · ${booked.timeSlot}\n'
+                '${booked.coachName} · ${booked.location}',
+          ),
+        for (final product in order.purchasedProducts)
+          _OrderItemCard(
+            icon: Icons.inventory_2_outlined,
+            title: product.name,
+            meta:
+                '${product.fulfillmentMethod}'
+                '${product.pickupLocation != null ? ' · ${product.pickupLocation}' : ''}',
+          ),
+        const SizedBox(
+          height: AppSpacing.xl,
+        ),
+        FormCtaButton(
+          label: l10n.orderViewBookingCta,
+          onPressed: () => Navigator.pushNamedAndRemoveUntil(
+            context,
+            RoutesName.orders,
+            (
+              route,
+            ) => route.isFirst,
           ),
         ),
       ],
@@ -271,19 +239,20 @@ class _OrderItemCard
     required this.icon,
     required this.title,
     required this.meta,
-    this.action,
   });
 
   final IconData icon;
   final String title;
   final String meta;
-  final String? action;
 
   @override
   Widget build(
     BuildContext context,
   ) {
     return Container(
+      margin: const EdgeInsets.only(
+        bottom: AppSpacing.md,
+      ),
       padding: const EdgeInsets.all(
         AppSpacing.lg,
       ),
@@ -326,30 +295,6 @@ class _OrderItemCard
               height: 1.5,
             ),
           ),
-          if (action !=
-              null) ...[
-            const SizedBox(
-              height: AppSpacing.sm,
-            ),
-            Row(
-              children: [
-                Text(
-                  action!,
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                const SizedBox(
-                  width: AppSpacing.xs,
-                ),
-                SvgPicture.asset(
-                  AppAssets.iconArrowUpRight,
-                  width: 14,
-                  height: 14,
-                ),
-              ],
-            ),
-          ],
         ],
       ),
     );

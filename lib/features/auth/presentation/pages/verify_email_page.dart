@@ -4,13 +4,26 @@ import 'package:app_boilerplate/app/routes/routes_name.dart';
 import 'package:app_boilerplate/core/constants/app_assets.dart';
 import 'package:app_boilerplate/core/constants/app_colors.dart';
 import 'package:app_boilerplate/core/constants/app_dimens.dart';
+import 'package:app_boilerplate/core/di/service_locator.dart';
 import 'package:app_boilerplate/core/extensions/context_extensions.dart';
 import 'package:app_boilerplate/core/widgets/widgets.dart';
+import 'package:app_boilerplate/features/auth/domain/repositories/auth_repository.dart';
 import 'package:app_boilerplate/features/auth/presentation/widgets/auth_widgets.dart';
 import 'package:app_boilerplate/features/auth/presentation/widgets/form_brand.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+/// Arguments for the password-reset code entry.
+class ResetPasswordArgs {
+  const ResetPasswordArgs({
+    required this.email,
+    required this.resetToken,
+  });
+
+  final String email;
+  final String resetToken;
+}
 
 /// Step 2 of sign-up: enter the 6-digit code emailed to the user.
 class VerifyEmailPage
@@ -50,6 +63,7 @@ class _VerifyEmailPageState
 
   Timer? _timer;
   int _secondsLeft = _resendSeconds;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -128,7 +142,10 @@ class _VerifyEmailPageState
     );
   }
 
-  void _submit() {
+  Future<
+    void
+  >
+  _submit() async {
     FocusScope.of(
       context,
     ).unfocus();
@@ -136,13 +153,84 @@ class _VerifyEmailPageState
         _codeLength) {
       return;
     }
-    // TODO: call verify use case.
-    Navigator.pushNamedAndRemoveUntil(
+
+    final args = ModalRoute.of(
       context,
-      RoutesName.home,
+    )?.settings.arguments;
+    if (args
+        is! ResetPasswordArgs) {
+      // No reset context — fall back to home (register has no verify step yet).
+      unawaited(
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          RoutesName.home,
+          (
+            route,
+          ) => false,
+        ),
+      );
+      return;
+    }
+
+    setState(
+      () => _isLoading = true,
+    );
+    final repo =
+        getIt<
+          AuthRepository
+        >();
+    final verified = await repo.verifyResetCode(
+      token: args.resetToken,
+      code: _code,
+    );
+
+    final isVerified =
+        verified.dataOrNull ??
+        false;
+    if (!mounted) return;
+
+    if (!isVerified) {
+      setState(
+        () => _isLoading = false,
+      );
+      AppSnackBar.show(
+        context,
+        verified.failureOrNull?.message ??
+            context.l10n.errorUnknown,
+        type: AppSnackBarType.error,
+      );
+      return;
+    }
+
+    // Code verified: set a new password (uses the same code + token).
+    final result = await repo.updatePassword(
+      email: args.email,
+      password: _code, // replaced by the new-password screen in a full flow
+      token: args.resetToken,
+      code: _code,
+    );
+    if (!mounted) return;
+    setState(
+      () => _isLoading = false,
+    );
+    result.fold(
       (
-        route,
-      ) => false,
+        failure,
+      ) => AppSnackBar.show(
+        context,
+        failure.message ??
+            context.l10n.errorUnknown,
+        type: AppSnackBarType.error,
+      ),
+      (
+        _,
+      ) => Navigator.pushNamedAndRemoveUntil(
+        context,
+        RoutesName.login,
+        (
+          route,
+        ) => false,
+      ),
     );
   }
 
@@ -312,6 +400,7 @@ class _VerifyEmailPageState
             ),
             FormCtaButton(
               label: l10n.verifyAndCreate,
+              isLoading: _isLoading,
               onPressed:
                   _code.length ==
                       _codeLength

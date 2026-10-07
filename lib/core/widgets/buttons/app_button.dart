@@ -17,9 +17,21 @@ enum AppButtonVariant {
 }
 
 enum AppButtonSize {
-  small(height: 36, iconSize: 16, horizontalPadding: AppSpacing.md),
-  medium(height: 44, iconSize: 18, horizontalPadding: AppSpacing.lg),
-  large(height: 52, iconSize: 20, horizontalPadding: AppSpacing.xl);
+  small(
+    height: 36,
+    iconSize: 16,
+    horizontalPadding: AppSpacing.md,
+  ),
+  medium(
+    height: 44,
+    iconSize: 18,
+    horizontalPadding: AppSpacing.lg,
+  ),
+  large(
+    height: 52,
+    iconSize: 20,
+    horizontalPadding: AppSpacing.xl,
+  );
 
   const AppButtonSize({
     required this.height,
@@ -37,7 +49,9 @@ enum AppButtonSize {
 /// [isLoading] shows a spinner and ignores taps. `onPressed: null` disables it.
 /// It fills the width by default; set [isExpanded] to `false` inside a `Row`
 /// (or wrap it in `Expanded`).
-class AppButton extends StatelessWidget {
+class AppButton
+    extends
+        StatelessWidget {
   const AppButton({
     super.key,
     required this.label,
@@ -48,6 +62,7 @@ class AppButton extends StatelessWidget {
     this.trailingIcon,
     this.isLoading = false,
     this.isExpanded = true,
+    this.foregroundColor,
   });
 
   const AppButton.secondary({
@@ -59,6 +74,7 @@ class AppButton extends StatelessWidget {
     this.trailingIcon,
     this.isLoading = false,
     this.isExpanded = true,
+    this.foregroundColor,
   }) : variant = AppButtonVariant.secondary;
 
   const AppButton.text({
@@ -70,6 +86,7 @@ class AppButton extends StatelessWidget {
     this.trailingIcon,
     this.isLoading = false,
     this.isExpanded = false,
+    this.foregroundColor,
   }) : variant = AppButtonVariant.text;
 
   const AppButton.danger({
@@ -81,6 +98,7 @@ class AppButton extends StatelessWidget {
     this.trailingIcon,
     this.isLoading = false,
     this.isExpanded = true,
+    this.foregroundColor,
   }) : variant = AppButtonVariant.danger;
 
   final String label;
@@ -91,15 +109,25 @@ class AppButton extends StatelessWidget {
   final IconData? trailingIcon;
   final bool isLoading;
   final bool isExpanded;
+  final Color? foregroundColor; // <-- Add this field
 
   @override
-  Widget build(BuildContext context) {
-    final onTap = isLoading ? null : onPressed;
-    final style = _style(context.colors);
-    final child = isLoading ? _spinner() : _content();
+  Widget build(
+    BuildContext context,
+  ) {
+    final onTap = isLoading
+        ? null
+        : onPressed;
+    final style = _style(
+      context.colors,
+    );
+    final child = isLoading
+        ? _spinner()
+        : _content();
 
     return switch (variant) {
-      AppButtonVariant.primary || AppButtonVariant.danger => FilledButton(
+      AppButtonVariant.primary ||
+      AppButtonVariant.danger => FilledButton(
         onPressed: onTap,
         style: style,
         child: child,
@@ -117,9 +145,18 @@ class AppButton extends StatelessWidget {
     };
   }
 
-  ButtonStyle _style(ColorScheme colors) {
-    final minimumSize = Size(isExpanded ? double.infinity : 0, size.height);
-    final padding = EdgeInsets.symmetric(horizontal: size.horizontalPadding);
+  ButtonStyle _style(
+    ColorScheme colors,
+  ) {
+    final minimumSize = Size(
+      isExpanded
+          ? double.infinity
+          : 0,
+      size.height,
+    );
+    final padding = EdgeInsets.symmetric(
+      horizontal: size.horizontalPadding,
+    );
 
     return switch (variant) {
       AppButtonVariant.primary => FilledButton.styleFrom(
@@ -135,36 +172,65 @@ class AppButton extends StatelessWidget {
       AppButtonVariant.secondary => OutlinedButton.styleFrom(
         minimumSize: minimumSize,
         padding: padding,
+        foregroundColor: foregroundColor,
       ),
       AppButtonVariant.text => TextButton.styleFrom(
         minimumSize: minimumSize,
         padding: padding,
+        foregroundColor: foregroundColor,
       ),
     };
   }
 
   Widget _spinner() {
     return SizedBox.square(
-      dimension: size.iconSize + 2,
-      child: CircularProgressIndicator(strokeWidth: 2.5, semanticsLabel: label),
+      dimension:
+          size.iconSize +
+          2,
+      child: CircularProgressIndicator(
+        strokeWidth: 2.5,
+        semanticsLabel: label,
+      ),
     );
   }
 
   Widget _content() {
-    final text = Text(label, maxLines: 1, overflow: TextOverflow.ellipsis);
-    if (icon == null && trailingIcon == null) return text;
+    final text = Text(
+      label,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+    );
+    if (icon ==
+            null &&
+        trailingIcon ==
+            null)
+      return text;
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (icon != null) ...[
-          Icon(icon, size: size.iconSize),
-          const SizedBox(width: AppSpacing.sm),
+        if (icon !=
+            null) ...[
+          Icon(
+            icon,
+            size: size.iconSize,
+          ),
+          const SizedBox(
+            width: AppSpacing.sm,
+          ),
         ],
-        Flexible(child: text),
-        if (trailingIcon != null) ...[
-          const SizedBox(width: AppSpacing.sm),
-          Icon(trailingIcon, size: size.iconSize),
+        Flexible(
+          child: text,
+        ),
+        if (trailingIcon !=
+            null) ...[
+          const SizedBox(
+            width: AppSpacing.sm,
+          ),
+          Icon(
+            trailingIcon,
+            size: size.iconSize,
+          ),
         ],
       ],
     );

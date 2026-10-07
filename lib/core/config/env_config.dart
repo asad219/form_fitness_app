@@ -7,7 +7,9 @@ class EnvConfig {
     'ENV',
     defaultValue: 'dev',
   );
-  static const String baseUrl = String.fromEnvironment('BASE_URL');
+  static const String baseUrl = String.fromEnvironment(
+    'BASE_URL',
+  );
   static const String apiVersion = String.fromEnvironment(
     'API_VERSION',
     defaultValue: 'v1',
@@ -29,9 +31,15 @@ class EnvConfig {
     'FIREBASE_API_KEY_IOS',
   );
 
-  static bool get isDev => environment == 'dev';
-  static bool get isStaging => environment == 'staging';
-  static bool get isProd => environment == 'prod';
+  static bool get isDev =>
+      environment ==
+      'dev';
+  static bool get isStaging =>
+      environment ==
+      'staging';
+  static bool get isProd =>
+      environment ==
+      'prod';
 
   /// Error message if the config is wrong, or `null` if it's fine.
   /// The app shows it on a setup screen at startup.
@@ -41,13 +49,19 @@ class EnvConfig {
           'Copy env/dev.json.example to env/dev.json, set BASE_URL, then run:\n'
           'flutter run --dart-define-from-file=env/dev.json';
     }
-    final uri = Uri.tryParse(baseUrl);
-    if (uri == null || !uri.hasScheme || uri.host.isEmpty) {
+    final uri = Uri.tryParse(
+      baseUrl,
+    );
+    if (uri ==
+            null ||
+        !uri.hasScheme ||
+        uri.host.isEmpty) {
       return 'BASE_URL "$baseUrl" is not a valid URL.\n\n'
           'Use a full URL such as https://api.example.com';
     }
     if (enableFirebase &&
-        (firebaseApiKeyAndroid.isEmpty || firebaseApiKeyIos.isEmpty)) {
+        (firebaseApiKeyAndroid.isEmpty ||
+            firebaseApiKeyIos.isEmpty)) {
       return 'FIREBASE_API_KEY_ANDROID and FIREBASE_API_KEY_IOS are not set.\n\n'
           'Copy them from the Firebase console (Project settings > General) '
           'into your env file, or set "ENABLE_FIREBASE": false.';

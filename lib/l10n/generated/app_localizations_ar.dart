@@ -853,4 +853,159 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get orderNeedHelp => 'تحتاج مساعدة؟ تواصل مع النادي';
+
+  @override
+  String get ordersTitle => 'طلباتي';
+
+  @override
+  String get ordersHeadline => 'طلباتك.';
+
+  @override
+  String get ordersEmptyTitle => 'لا توجد طلبات بعد';
+
+  @override
+  String get ordersEmptyMessage =>
+      'احجز حصة أو تسوق بعض المعدات لترى طلباتك هنا.';
+
+  @override
+  String get ordersClassesLabel => 'حصص';
+
+  @override
+  String get ordersProductsLabel => 'منتجات';
+
+  @override
+  String get ordersViewAll => 'عرض طلباتي';
+
+  @override
+  String get orderDetailTitle => 'تفاصيل الطلب';
+
+  @override
+  String get orderClassesSection => 'الحصص';
+
+  @override
+  String get orderProductsSection => 'المنتجات';
+
+  @override
+  String orderAttendees(int count) {
+    return '$count شخص';
+  }
+
+  @override
+  String orderCancelledOn(String date) {
+    return 'أُلغي في $date';
+  }
+
+  @override
+  String get orderAttended => 'حضر';
+
+  @override
+  String get orderCancelBooking => 'إلغاء الحجز';
+
+  @override
+  String get orderCancelConfirmTitle => 'إلغاء هذه الحصة؟';
+
+  @override
+  String get orderCancelConfirmMessage =>
+      'سيتم تحرير مكانك. لا يتم إصدار استرداد.';
+
+  @override
+  String get orderViewEntryPassFull => 'بطاقة الدخول';
+
+  @override
+  String orderQtyTimes(int qty, String price) {
+    return '$qty × $price';
+  }
+
+  @override
+  String get orderShippingFee => 'رسوم الشحن';
+
+  @override
+  String get orderTotalPaidLabel => 'الإجمالي المدفوع';
+
+  @override
+  String get membershipTitle => 'العضوية';
+
+  @override
+  String get membershipHeadline => 'نادٍ واحد.\nكل يوم.';
+
+  @override
+  String get membershipMonthly => 'شهري';
+
+  @override
+  String get membershipYearly => 'سنوي';
+
+  @override
+  String membershipYearlySaving(String amount) {
+    return 'وفّر $amount سنوياً';
+  }
+
+  @override
+  String membershipJoin(String plan) {
+    return 'انضم إلى $plan';
+  }
+
+  @override
+  String get membershipConfirmTitle => 'تأكيد العضوية';
+
+  @override
+  String membershipRenewsOn(Object date) {
+    return 'يتجدد في $date';
+  }
+
+  @override
+  String membershipEndsOn(String date) {
+    return 'ينتهي في $date';
+  }
+
+  @override
+  String get membershipConfirmCta => 'تأكيد ودفع';
+
+  @override
+  String get membershipCurrentPlan => 'الخطة الحالية';
+
+  @override
+  String membershipMemberSince(String date) {
+    return 'عضو منذ $date';
+  }
+
+  @override
+  String membershipValidUntil(String date) {
+    return 'صالح حتى $date';
+  }
+
+  @override
+  String membershipDaysRemaining(int days) {
+    return 'متبقي $days يوم';
+  }
+
+  @override
+  String get membershipCancel => 'إلغاء العضوية';
+
+  @override
+  String get membershipCancelConfirmTitle => 'إلغاء العضوية؟';
+
+  @override
+  String membershipCancelConfirmMessage(String date) {
+    return 'ستحتفظ بالوصول حتى $date.';
+  }
+
+  @override
+  String membershipCancelledBanner(String date) {
+    return 'ملغاة · وصول حتى $date';
+  }
+
+  @override
+  String get membershipHistoryTitle => 'السجل';
+
+  @override
+  String get membershipIncluded => 'مشمول في العضوية';
+
+  @override
+  String get membershipLoginRequired => 'سجل الدخول لإدارة عضويتك.';
+
+  @override
+  String get perMonth => '/ شهر';
+
+  @override
+  String get perYear => '/ سنة';
 }

@@ -2,229 +2,304 @@ import 'package:app_boilerplate/app/routes/routes_name.dart';
 import 'package:app_boilerplate/core/constants/app_assets.dart';
 import 'package:app_boilerplate/core/constants/app_colors.dart';
 import 'package:app_boilerplate/core/constants/app_dimens.dart';
+import 'package:app_boilerplate/core/di/service_locator.dart';
 import 'package:app_boilerplate/core/extensions/context_extensions.dart';
 import 'package:app_boilerplate/core/widgets/form_ui.dart';
+import 'package:app_boilerplate/core/widgets/widgets.dart';
 import 'package:app_boilerplate/features/auth/presentation/widgets/form_brand.dart';
+import 'package:app_boilerplate/features/train/data/models/training_class_model.dart';
+import 'package:app_boilerplate/features/train/presentation/bloc/train_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-/// Train tab: list of ways to train (class, coaching, membership).
+/// Train tab: list of ways to train, loaded from the API.
 class TrainPage
     extends
-        StatefulWidget {
+        StatelessWidget {
   const TrainPage({
     super.key,
   });
 
+  static const _categories = [
+    (
+      label: 'All',
+      value: null,
+    ),
+    (
+      label: 'Classes',
+      value: 'GROUP_CLASS',
+    ),
+    (
+      label: 'Coaching',
+      value: 'PERSONAL_TRAINING',
+    ),
+    (
+      label: 'Memberships',
+      value: 'MEMBERSHIP',
+    ),
+  ];
+
   @override
-  State<
-    TrainPage
-  >
-  createState() => _TrainPageState();
+  Widget build(
+    BuildContext context,
+  ) {
+    return BlocProvider(
+      create:
+          (
+            _,
+          ) =>
+              getIt<
+                  TrainBloc
+                >()
+                ..add(
+                  const TrainLoadRequested(),
+                ),
+      child: const _TrainView(),
+    );
+  }
 }
 
-class _TrainPageState
+class _TrainView
+    extends
+        StatefulWidget {
+  const _TrainView();
+
+  @override
+  State<
+    _TrainView
+  >
+  createState() => _TrainViewState();
+}
+
+class _TrainViewState
     extends
         State<
-          TrainPage
+          _TrainView
         > {
   int _filter = 0;
+
+  String? get _category => TrainPage._categories[_filter].value;
+
+  void _selectFilter(
+    int index,
+  ) {
+    setState(
+      () => _filter = index,
+    );
+    context
+        .read<
+          TrainBloc
+        >()
+        .add(
+          TrainLoadRequested(
+            category: _category,
+          ),
+        );
+  }
 
   @override
   Widget build(
     BuildContext context,
   ) {
     final l10n = context.l10n;
-    final filters = [
-      l10n.trainFilterAll,
-      l10n.trainFilterClasses,
-      l10n.trainFilterCoaching,
-      l10n.trainFilterMemberships,
-    ];
-
-    final services = [
-      _ServiceData(
-        filterIndex: 1,
-        tag: l10n.trainTagGroupClass,
-        title: l10n.trainClassName,
-        meta1: l10n.trainClassMeta,
-        meta2: l10n.trainClassCoach,
-        price: l10n.trainClassPrice,
-        next: l10n.trainClassNext,
-        onTap: () => Navigator.pushNamed(
-          context,
-          RoutesName.classDetails,
-        ),
-      ),
-      _ServiceData(
-        filterIndex: 2,
-        tag: l10n.trainTagCoaching,
-        title: l10n.trainPtName,
-        meta1: l10n.trainPtMeta,
-        meta2: l10n.trainPtCoach,
-        price: l10n.trainPtPrice,
-        next: l10n.trainPtNext,
-      ),
-      _ServiceData(
-        filterIndex: 3,
-        tag: l10n.trainTagMembership,
-        title: l10n.trainMembershipName,
-        meta1: l10n.trainMembershipMeta,
-        meta2: l10n.trainMembershipPlan,
-        price: l10n.trainMembershipPrice,
-        next: l10n.trainMembershipNext,
-      ),
-    ];
-
-    final visible =
-        _filter ==
-            0
-        ? services
-        : services
-              .where(
-                (
-                  s,
-                ) =>
-                    s.filterIndex ==
-                    _filter,
-              )
-              .toList();
 
     return Scaffold(
       backgroundColor: AppColors.cream,
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(
-            AppSpacing.xl,
-          ),
-          children: [
-            InsideAppBar(
-              title: l10n.trainTitle,
-              onBack: () {},
-            ),
-            const SizedBox(
-              height: AppSpacing.xl,
-            ),
-            FormHeadline(
-              l10n.trainHeadline,
-              fontSize: 34,
-            ),
-            const SizedBox(
-              height: AppSpacing.sm,
-            ),
-            Text(
-              l10n.trainSubtitle,
-              style: context.textTheme.bodyLarge?.copyWith(
-                color: AppColors.grey,
-              ),
-            ),
-            const SizedBox(
-              height: AppSpacing.xl,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  for (
-                    var i = 0;
-                    i <
-                        filters.length;
-                    i++
-                  ) ...[
-                    FilterChipPill(
-                      label: filters[i],
-                      selected:
-                          _filter ==
-                          i,
-                      onTap: () => setState(
-                        () => _filter = i,
+        child:
+            BlocBuilder<
+              TrainBloc,
+              TrainState
+            >(
+              builder:
+                  (
+                    context,
+                    state,
+                  ) {
+                    return RefreshIndicator(
+                      onRefresh: () async => context
+                          .read<
+                            TrainBloc
+                          >()
+                          .add(
+                            TrainLoadRequested(
+                              category: _category,
+                            ),
+                          ),
+                      child: ListView(
+                        padding: const EdgeInsets.all(
+                          AppSpacing.xl,
+                        ),
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        children: [
+                          InsideAppBar(
+                            title: l10n.trainTitle,
+                            onBack: () {},
+                          ),
+                          const SizedBox(
+                            height: AppSpacing.xl,
+                          ),
+                          FormHeadline(
+                            l10n.trainHeadline,
+                            fontSize: 34,
+                          ),
+                          const SizedBox(
+                            height: AppSpacing.sm,
+                          ),
+                          Text(
+                            l10n.trainSubtitle,
+                            style: context.textTheme.bodyLarge?.copyWith(
+                              color: AppColors.grey,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: AppSpacing.xl,
+                          ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                for (
+                                  var i = 0;
+                                  i <
+                                      TrainPage._categories.length;
+                                  i++
+                                ) ...[
+                                  FilterChipPill(
+                                    label: TrainPage._categories[i].label,
+                                    selected:
+                                        _filter ==
+                                        i,
+                                    onTap: () => _selectFilter(
+                                      i,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: AppSpacing.sm,
+                                  ),
+                                ],
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: AppSpacing.lg,
+                          ),
+                          _buildBody(
+                            context,
+                            state,
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(
-                      width: AppSpacing.sm,
-                    ),
-                  ],
-                ],
-              ),
+                    );
+                  },
             ),
-            const SizedBox(
-              height: AppSpacing.lg,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    l10n.trainClubMeta(
-                      'Brooklyn',
-                      visible.length,
-                    ),
-                    style: context.textTheme.bodySmall?.copyWith(
-                      color: AppColors.grey,
-                    ),
-                  ),
-                ),
-                const Icon(
-                  Icons.tune,
-                  size: 20,
-                  color: AppColors.charcoal,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: AppSpacing.md,
-            ),
-            for (final service in visible) ...[
-              _ServiceCard(
-                data: service,
-              ),
-              const SizedBox(
-                height: AppSpacing.md,
-              ),
-            ],
-          ],
-        ),
       ),
     );
   }
-}
 
-class _ServiceData {
-  const _ServiceData({
-    required this.filterIndex,
-    required this.tag,
-    required this.title,
-    required this.meta1,
-    required this.meta2,
-    required this.price,
-    required this.next,
-    this.onTap,
-  });
+  Widget _buildBody(
+    BuildContext context,
+    TrainState state,
+  ) {
+    final l10n = context.l10n;
 
-  final int filterIndex;
-  final String tag;
-  final String title;
-  final String meta1;
-  final String meta2;
-  final String price;
-  final String next;
-  final VoidCallback? onTap;
+    if (state.isLoading) {
+      return const Padding(
+        padding: EdgeInsets.all(
+          AppSpacing.xxl,
+        ),
+        child: Center(
+          child: AppLoader(),
+        ),
+      );
+    }
+
+    if (state.status ==
+        TrainStatus.failure) {
+      return AppErrorState(
+        message:
+            state.errorMessage ??
+            l10n.errorUnknown,
+        onRetry: () => context
+            .read<
+              TrainBloc
+            >()
+            .add(
+              TrainLoadRequested(
+                category: _category,
+              ),
+            ),
+      );
+    }
+
+    if (state.classes.isEmpty) {
+      return AppEmptyState(
+        title: l10n.trainTitle,
+        message: l10n.noResultsFor(
+          _category ??
+              '',
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.trainClubMeta(
+            'Brooklyn',
+            state.classes.length,
+          ),
+          style: context.textTheme.bodySmall?.copyWith(
+            color: AppColors.grey,
+          ),
+        ),
+        const SizedBox(
+          height: AppSpacing.md,
+        ),
+        for (final item in state.classes) ...[
+          _ServiceCard(
+            trainingClass: item,
+          ),
+          const SizedBox(
+            height: AppSpacing.md,
+          ),
+        ],
+      ],
+    );
+  }
 }
 
 class _ServiceCard
     extends
         StatelessWidget {
   const _ServiceCard({
-    required this.data,
+    required this.trainingClass,
   });
 
-  final _ServiceData data;
+  final TrainingClassModel trainingClass;
+
+  String
+  _tagFor(
+    String category,
+  ) => switch (category) {
+    'GROUP_CLASS' => 'GROUP CLASS',
+    'PERSONAL_TRAINING' => '1:1 COACHING',
+    'MEMBERSHIP' => 'MEMBERSHIP',
+    _ => category,
+  };
 
   @override
   Widget build(
     BuildContext context,
   ) {
     return GestureDetector(
-      onTap: data.onTap,
+      onTap: () => Navigator.pushNamed(
+        context,
+        RoutesName.classDetails,
+        arguments: trainingClass.id,
+      ),
       child: Container(
         padding: const EdgeInsets.all(
           AppSpacing.md,
@@ -240,11 +315,10 @@ class _ServiceCard
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
+                SizedBox(
                   width: 96,
-                  child: FormImagePlaceholder(
-                    height: 96,
-                    borderRadius: AppRadius.md,
+                  child: _ClassThumbnail(
+                    imageUrl: trainingClass.imageUrl,
                   ),
                 ),
                 const SizedBox(
@@ -254,14 +328,26 @@ class _ServiceCard
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      FormTag(
-                        data.tag,
+                      Wrap(
+                        spacing: AppSpacing.xs,
+                        runSpacing: AppSpacing.xs,
+                        children: [
+                          FormTag(
+                            _tagFor(
+                              trainingClass.category,
+                            ),
+                          ),
+                          if (trainingClass.includedInMembership)
+                            FormTag(
+                              context.l10n.membershipIncluded,
+                            ),
+                        ],
                       ),
                       const SizedBox(
                         height: AppSpacing.xs,
                       ),
                       Text(
-                        data.title,
+                        trainingClass.title,
                         style: context.textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.w800,
                         ),
@@ -270,7 +356,8 @@ class _ServiceCard
                         height: 2,
                       ),
                       Text(
-                        '${data.meta1}\n${data.meta2}',
+                        '${trainingClass.durationMinutes} min · '
+                        '${trainingClass.level}\n${trainingClass.coachName}',
                         style: context.textTheme.bodySmall?.copyWith(
                           color: AppColors.grey,
                           height: 1.4,
@@ -280,7 +367,7 @@ class _ServiceCard
                         height: AppSpacing.xs,
                       ),
                       Text(
-                        data.price,
+                        '\$${trainingClass.price.toStringAsFixed(0)} / class',
                         style: context.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w800,
                         ),
@@ -301,14 +388,7 @@ class _ServiceCard
             ),
             Row(
               children: [
-                Expanded(
-                  child: Text(
-                    data.next,
-                    style: context.textTheme.bodySmall?.copyWith(
-                      color: AppColors.grey,
-                    ),
-                  ),
-                ),
+                const Spacer(),
                 SvgPicture.asset(
                   AppAssets.iconArrowUpRight,
                   width: 16,
@@ -322,6 +402,62 @@ class _ServiceCard
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _ClassThumbnail
+    extends
+        StatelessWidget {
+  const _ClassThumbnail({
+    this.imageUrl,
+  });
+
+  final String? imageUrl;
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    final url = imageUrl;
+    return Container(
+      width: 96,
+      height: 96,
+      decoration: BoxDecoration(
+        color: const Color(
+          0xFFE8E4DA,
+        ),
+        borderRadius: BorderRadius.circular(
+          AppRadius.md,
+        ),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(
+          AppRadius.md,
+        ),
+        child:
+            url ==
+                    null ||
+                url.isEmpty
+            ? const FormImagePlaceholder(
+                height: 96,
+              )
+            : Image.network(
+                url,
+                width: 96,
+                height: 96,
+                fit: BoxFit.cover,
+                alignment: Alignment.center,
+                errorBuilder:
+                    (
+                      _,
+                      _,
+                      _,
+                    ) => const FormImagePlaceholder(
+                      height: 96,
+                    ),
+              ),
       ),
     );
   }
