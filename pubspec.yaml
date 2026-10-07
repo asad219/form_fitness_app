@@ -56,9 +56,11 @@ flutter_launcher_icons:
   # Overwrites mipmap-*/ic_launcher.png (used by AndroidManifest.xml and local
   # notifications).
   android: true
+  image_path_android: "assets/icon/android-app-icon.png"
   min_sdk_android: 24
   # App Store rejects icons with transparency, so it is flattened onto a color.
   ios: true
+  image_path_ios: "assets/icon/iOS-app-icon.png"
   remove_alpha_ios: true
   background_color_ios: "#FFFFFF"
   # Android 8+ adaptive icon (recommended). Foreground: 1024×1024 transparent PNG
@@ -76,6 +78,7 @@ flutter:
   # assets/icon/ is only the launcher icon source and is not bundled.
   assets:
     - assets/images/
+    - assets/icon/
 
   # Family names must match AppFonts in app_typography.dart (see README).
   fonts:

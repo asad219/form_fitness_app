@@ -24,7 +24,7 @@ definitions:
     events:
       - tag
     tag_patterns:
-      - pattern: 'v*'
+      - pattern: "v*"
         include: true
 
 workflows:
@@ -39,7 +39,7 @@ workflows:
         - push
         - pull_request
       branch_patterns:
-        - pattern: '*'
+        - pattern: "*"
           include: true
           source: true
       cancel_previous_builds: true
@@ -99,7 +99,7 @@ workflows:
       xcode: latest
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.starter.boilerplate.appBoilerplate
+        bundle_identifier: com.formfitness.app
       groups:
         - app_env
         - firebase

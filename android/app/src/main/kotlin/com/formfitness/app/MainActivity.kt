@@ -1,4 +1,4 @@
-package com.starter.boilerplate.app_boilerplate
+package com.formfitness.app
 
 import io.flutter.embedding.android.FlutterActivity
 
