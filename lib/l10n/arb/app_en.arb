@@ -82,5 +82,300 @@
   "pushNotConfiguredMessage": "Firebase is not set up. See \"Firebase setup\" in the README.",
   "pushCopyToken": "Copy FCM token",
   "pushTokenCopied": "FCM token copied",
-  "pushEnable": "Enable notifications"
+  "pushEnable": "Enable notifications",
+
+  "skip": "Skip",
+  "next": "Next",
+  "continueLabel": "Continue",
+  "getStarted": "Get started",
+  "back": "Back",
+
+  "onboardingClubTag": "BROOKLYN TRAINING CLUB",
+  "onboardingCardTitle1": "YOUR GOALS. YOUR PACE.",
+  "onboardingChipMemberships": "Memberships",
+  "onboardingChipClasses": "Classes",
+  "onboardingChipPersonalTraining": "Personal training",
+  "onboardingLabel1": "FIND YOUR STRONG",
+  "onboardingTitle1": "YOUR NEXT LEVEL.\nSTARTS HERE.",
+  "onboardingSubtitle1": "Discover gym memberships, energising classes and personal training built around your goals.",
+  "onboardingLabel2": "GEAR FOR THE GRIND",
+  "onboardingTitle2": "GOOD SESSIONS.\nGREAT ESSENTIALS.",
+  "onboardingSubtitle2": "Shop apparel, equipment and recovery gear. Everything you need, with free club pickup.",
+  "onboardingEverydayLineup": "THE EVERYDAY LINEUP",
+  "onboardingProductBottle": "FORM Bottle",
+  "onboardingProductTee": "Training Tee",
+  "onboardingProductResistance": "Resistance Set",
+  "onboardingProductRoller": "Recovery Roller",
+  "onboardingLabel3": "ONE CLUB. ALL YOUR EVERYDAY.",
+  "onboardingTitle3": "BOOK. SHOP.\nSHOW UP.",
+  "onboardingSubtitle3": "Book your next session and buy your essentials in one place. Less admin. More time for you.",
+  "onboardingNextMove": "YOUR NEXT MOVE",
+  "onboardingBookAClass": "BOOK A CLASS",
+  "onboardingClassName": "Strength Circuit",
+  "onboardingClassMeta": "Tomorrow · 7:00 AM · 45 min",
+  "onboardingClassPrice": "\\$28 / class",
+  "onboardingPickupTag": "PICK UP AT THE CLUB",
+  "onboardingBottleMeta": "750 ml · Charcoal",
+  "onboardingBottlePrice": "\\$32",
+  "onboardingCartNote": "One cart. One easy checkout.",
+
+  "loginHeroTitle": "YOUR TRAINING. YOUR ESSENTIALS.",
+  "loginTagLine": "BACK TO YOUR EVERYDAY",
+  "loginHeadline": "WELCOME BACK.",
+  "loginBody": "Log in to book your next session, manage your membership and shop your essentials.",
+  "forgotPassword": "Forgot password?",
+  "newToForm": "New to FORM?",
+  "createAccount": "Create an account",
+  "orContinueWith": "OR CONTINUE WITH",
+  "exploreAsGuest": "Explore FORM as a guest",
+
+  "registerStepCreate": "Create account",
+  "registerStepVerify": "Verify email",
+  "registerTagLine": "ONE CLUB. ALL YOUR EVERYDAY.",
+  "registerHeadline": "YOUR NEXT LEVEL.\nSTARTS HERE.",
+  "registerBody": "Create your account for training, classes and essentials. All in one place.",
+  "fullNameLabel": "Full name",
+  "confirmPasswordLabel": "Confirm password",
+  "passwordHint": "Use at least 8 characters, including a number.",
+  "agreeToTerms": "I agree to FORM's Terms of Service and Privacy Policy.",
+  "registerNextNote": "Next, we'll email you a code to verify your account.",
+  "alreadyHaveAccount": "Already part of FORM?",
+  "logIn": "Log in",
+
+  "forgotPasswordHeroTitle": "A QUICK RESET.\nBACK TO YOUR ROUTINE.",
+  "forgotPasswordTagLine": "LET'S GET YOU BACK IN",
+  "forgotPasswordHeadline": "FORGOT YOUR\nPASSWORD?",
+  "forgotPasswordBody": "No sweat. Enter the email address linked to your FORM account and we'll send you a password reset link.",
+  "sendResetLink": "Send reset link",
+  "resetLinkNote": "If an account exists for this email, you'll receive a link. Check your inbox and spam folder. The link expires in 30 minutes.",
+  "rememberPassword": "Remember your password?",
+  "cantAccessEmail": "Can't access your email? Contact the club",
+  "trainHardLiveWell": "TRAIN HARD. LIVE WELL.",
+
+  "verifyTagLine": "ONE LAST REP, {name}",
+  "@verifyTagLine": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "verifyHeadline": "VERIFY YOUR\nACCOUNT.",
+  "verifyBody": "Enter the 6-digit code we emailed you to finish creating your FORM account.",
+  "verifyCodeSentTo": "Code sent to",
+  "changeEmail": "Change email",
+  "verificationCodeLabel": "Verification code",
+  "codeValidFor": "Your code is valid for 10 minutes.",
+  "verifyAndCreate": "Verify & create account",
+  "didntReceiveCode": "Didn't receive a code?",
+  "resendCodeIn": "Resend code in {seconds}",
+  "@resendCodeIn": {
+    "placeholders": {
+      "seconds": { "type": "String" }
+    }
+  },
+  "resendCode": "Resend code",
+  "checkSpamNote": "Check your spam folder, or change your email above if it isn't correct.",
+
+  "navHome": "Home",
+  "navTrain": "Train",
+  "navShop": "Shop",
+  "navCart": "Cart",
+  "navYou": "You",
+
+  "homeGreetingMorning": "GOOD MORNING, {name}",
+  "@homeGreetingMorning": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "homeHeadline": "BUILD YOUR EVERYDAY.",
+  "homeHeroTag": "TRAIN HARD. LIVE WELL.",
+  "homeHeroTitle": "MORE THAN A GYM.\nYOUR NEXT LEVEL.",
+  "homeHeroCta": "Find your training rhythm",
+  "homeCategoryMemberships": "Memberships",
+  "homeCategoryCoaching": "Coaching",
+  "homeCategoryGear": "Gear",
+  "homeNextMove": "YOUR NEXT MOVE",
+  "homeExploreAll": "Explore all",
+  "homeClubNote": "One club. Your training + your essentials.",
+
+  "trainTitle": "Train at FORM",
+  "trainHeadline": "FIND YOUR STRONG.",
+  "trainSubtitle": "Expert coaching. Better energy. A plan that fits you.",
+  "trainFilterAll": "All",
+  "trainFilterClasses": "Classes",
+  "trainFilterCoaching": "Coaching",
+  "trainFilterMemberships": "Memberships",
+  "trainClubMeta": "{club} club · {count} ways to train",
+  "@trainClubMeta": {
+    "placeholders": {
+      "club": { "type": "String" },
+      "count": { "type": "int" }
+    }
+  },
+  "trainTagGroupClass": "GROUP CLASS",
+  "trainTagCoaching": "1:1 COACHING",
+  "trainTagMembership": "MEMBERSHIP",
+  "trainClassName": "Strength Circuit",
+  "trainClassMeta": "45 min · Strength + conditioning",
+  "trainClassCoach": "All levels · Coach Maya",
+  "trainClassPrice": "\\$28 / class",
+  "trainClassNext": "Tomorrow, 7:00 AM · 6 spots left",
+  "trainPtName": "Personal Training",
+  "trainPtMeta": "60 min · Your goals, your plan",
+  "trainPtCoach": "With a certified FORM coach",
+  "trainPtPrice": "\\$85 / session",
+  "trainPtNext": "Next opening: Thu, 8 Oct · 10:00 AM",
+  "trainMembershipName": "Unlimited Access",
+  "trainMembershipMeta": "Open gym + unlimited classes",
+  "trainMembershipPlan": "Monthly · No annual commitment",
+  "trainMembershipPrice": "\\$149 / month",
+  "trainMembershipNext": "Start any day · Open 5 AM–11 PM",
+
+  "classDetailsTitle": "Class details",
+  "classRating": "4.9 (128)",
+  "classDescription": "Build strength with a full-body mix of weights and conditioning. Show up. We'll bring the energy.",
+  "classDuration": "45 minutes",
+  "classLevel": "All levels",
+  "classCoach": "Coach Maya",
+  "classPickSession": "PICK YOUR SESSION",
+  "classSpotsLeft": "{spots} spots left · {club} club, Studio 01",
+  "@classSpotsLeft": {
+    "placeholders": {
+      "spots": { "type": "int" },
+      "club": { "type": "String" }
+    }
+  },
+  "classTicketLabel": "Single class · 1 person",
+  "classTicketNote": "Unlimited members: included",
+  "classReserveCta": "Reserve & add to cart · {price}",
+  "@classReserveCta": {
+    "placeholders": {
+      "price": { "type": "String" }
+    }
+  },
+  "classCancelNote": "Pay at checkout. Cancel free up to 12 hours before class.",
+
+  "reservationTitle": "Reservation",
+  "reservationHeadline": "YOUR SPOT.\nHELD FOR YOU.",
+  "reservationBody": "{className} is in your cart. Complete checkout to confirm your booking.",
+  "@reservationBody": {
+    "placeholders": {
+      "className": { "type": "String" }
+    }
+  },
+  "reservationTagPending": "RESERVATION · PAYMENT PENDING",
+  "reservationWhen": "When",
+  "reservationWhere": "Where",
+  "reservationWith": "With",
+  "reservationSingleClass": "Single class",
+  "reservationNote": "Arrive 10 minutes early. Bring water and training shoes.\nYour entry pass appears after payment.",
+  "reservationUpsellTitle": "BRING YOUR A-GAME.",
+  "reservationUpsellMeta": "Cold water. Every rep. · \\$32",
+  "reservationUpsellCta": "Shop essentials",
+  "reservationGoToCart": "Go to cart · {count} item",
+  "@reservationGoToCart": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "reservationKeepExploring": "Keep exploring",
+
+  "shopTitle": "FORM essentials",
+  "shopHeadline": "GEAR FOR THE GRIND.",
+  "shopSubtitle": "Made for your session. And everything after.",
+  "shopSearchHint": "Search gear, apparel & recovery",
+  "shopFilterAll": "All gear",
+  "shopFilterApparel": "Apparel",
+  "shopFilterEquipment": "Equipment",
+  "shopFilterRecovery": "Recovery",
+  "shopMeta": "{count} essentials · In stock",
+  "@shopMeta": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "shopTagBestseller": "BESTSELLER",
+  "shopTagNew": "NEW",
+  "shopTagTraining": "TRAINING",
+  "shopTagRecovery": "RECOVERY",
+  "shopBottleMeta": "750 ml · Charcoal",
+  "shopTeeMeta": "Unisex · Sizes XS–XXL",
+  "shopResistanceMeta": "3 bands · Light to heavy",
+  "shopRollerMeta": "Firm support · 33 cm",
+  "shopPickupNote": "Free club pickup. Grab your gear before you train.",
+
+  "productDetailsTitle": "Product details",
+  "productTagEssentials": "FORM ESSENTIALS",
+  "productBottleName": "FORM BOTTLE",
+  "productBottleDescription": "Your daily hydration, upgraded. Double-wall steel keeps drinks cold for 24 hours. Built to go again.",
+  "productColorLabel": "Color: Charcoal · 750 ml",
+  "productInStock": "In stock · Ready for club pickup",
+  "productFulfillmentNote": "Pick up free at Brooklyn or ship for \\$5. Choose fulfillment in your cart.",
+  "productAddToCart": "Add to cart · {price}",
+  "@productAddToCart": {
+    "placeholders": {
+      "price": { "type": "String" }
+    }
+  },
+  "productFeatures": "Leakproof · BPA-free · Easy-grip finish · 30-day returns",
+
+  "cartTitle": "Your cart",
+  "cartHeadline": "ONE CART. ALL IN.",
+  "cartMeta": "{count} items · Your session + your essentials",
+  "@cartMeta": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "cartTagService": "SERVICE · 1 PERSON",
+  "cartTagProduct": "PHYSICAL PRODUCT",
+  "cartEntryPassNote": "Entry pass delivered in app after payment.",
+  "cartRemove": "Remove",
+  "cartClubPickup": "Club pickup · FREE",
+  "cartShipToMe": "Ship to me · \\$5",
+  "cartPickupNote": "Ready tomorrow at Brooklyn front desk.",
+  "cartPromoCode": "Have a promo code?",
+  "cartSubtotal": "Subtotal",
+  "cartPickupFree": "Club pickup",
+  "cartFree": "Free",
+  "cartEstimatedTax": "Estimated tax",
+  "cartTotal": "Total",
+  "cartPayWith": "Pay with Visa •••• 4242",
+  "cartBillingSaved": "{name} · Billing details saved",
+  "@cartBillingSaved": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "cartChange": "Change",
+  "cartPayCta": "Pay & confirm · {total}",
+  "@cartPayCta": {
+    "placeholders": {
+      "total": { "type": "String" }
+    }
+  },
+  "cartTerms": "Secure checkout. By placing your order, you agree to FORM's booking terms and 30-day product return policy.",
+
+  "orderCompleteTitle": "Checkout complete",
+  "orderStepCart": "Cart",
+  "orderStepPayment": "Payment",
+  "orderStepConfirmed": "Confirmed",
+  "orderHeadline": "YOU'RE ALL SET,\n{name}.",
+  "@orderHeadline": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "orderBody": "Your class is booked. Your gear is on its way to the club.\nLet's get to work.",
+  "orderNumber": "ORDER #FRM-10482",
+  "orderPaid": "PAID",
+  "orderTotalPaid": "Total paid",
+  "orderPaymentMeta": "Visa •••• 4242 · Includes \\$4.80 tax\nReceipt sent to alex.morgan@email.com",
+  "orderClassConfirmed": "Strength Circuit · Confirmed",
+  "orderClassMeta": "Wed, 7 Oct · 7:00–7:45 AM\nCoach Maya · Brooklyn, Studio 01",
+  "orderViewEntryPass": "View entry pass",
+  "orderPickupTitle": "FORM Bottle · Club pickup",
+  "orderPickupMeta": "Ready Wed, 7 Oct from 6:30 AM\nFORM Brooklyn · 68 Wythe Avenue\nShow your order number at the front desk.",
+  "orderViewBookingCta": "View my booking & order",
+  "orderNeedHelp": "Need a hand? Contact the club"
 }

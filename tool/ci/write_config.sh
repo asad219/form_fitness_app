@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Writes the git-ignored files a CI build needs, from environment variables.
 #
-#   env/<env>.json                       BASE_URL (required), API_VERSION, ENABLE_FIREBASE
+#   env/<env>.json                       BASE_URL (required), API_VERSION, ENABLE_FIREBASE,
+#                                        FIREBASE_API_KEY_ANDROID, FIREBASE_API_KEY_IOS
 #   android/app/google-services.json     GOOGLE_SERVICES_JSON (base64, optional)
 #   ios/Runner/GoogleService-Info.plist  GOOGLE_SERVICE_INFO_PLIST (base64, optional)
 #   android/key.properties               CM_KEYSTORE_PATH, CM_KEYSTORE_PASSWORD,
@@ -25,10 +26,16 @@ cat > "env/$ENV_NAME.json" <<EOF
   "ENV": "$ENV_NAME",
   "BASE_URL": "$BASE_URL",
   "API_VERSION": "${API_VERSION:-v1}",
-  "ENABLE_FIREBASE": $ENABLE_FIREBASE
+  "ENABLE_FIREBASE": $ENABLE_FIREBASE,
+  "FIREBASE_API_KEY_ANDROID": "${FIREBASE_API_KEY_ANDROID:-}",
+  "FIREBASE_API_KEY_IOS": "${FIREBASE_API_KEY_IOS:-}"
 }
 EOF
 echo "✓ env/$ENV_NAME.json (BASE_URL=$BASE_URL)"
+
+if [[ "$ENABLE_FIREBASE" == "true" && ( -z "${FIREBASE_API_KEY_ANDROID:-}" || -z "${FIREBASE_API_KEY_IOS:-}" ) ]]; then
+  echo "! FIREBASE_API_KEY_ANDROID / FIREBASE_API_KEY_IOS not set: Firebase init fails at runtime"
+fi
 
 if [[ -n "${GOOGLE_SERVICES_JSON:-}" ]]; then
   echo "$GOOGLE_SERVICES_JSON" | base64 --decode > android/app/google-services.json

@@ -265,7 +265,9 @@ Only the `.example` files are. Open each file and set your values:
   "ENV": "dev",
   "BASE_URL": "http://10.0.2.2:5005/api/",
   "API_VERSION": "v1",
-  "ENABLE_FIREBASE": true
+  "ENABLE_FIREBASE": true,
+  "FIREBASE_API_KEY_ANDROID": "",
+  "FIREBASE_API_KEY_IOS": ""
 }
 ```
 
@@ -275,6 +277,8 @@ Only the `.example` files are. Open each file and set your values:
 | `BASE_URL` | **Yes** | Full address with `http://` or `https://`. If it's missing or wrong, the app shows a *Configuration error* screen |
 | `API_VERSION` | No (default `v1`) | Added to the end of `BASE_URL`, e.g. `.../api/v1`. Use `""` for none |
 | `ENABLE_FIREBASE` | No (default `true`) | `false` turns off Firebase (push, analytics, crash reports) |
+| `FIREBASE_API_KEY_ANDROID` | Only if Firebase is on | Android *Web API key* from the Firebase console, *Project settings > General* |
+| `FIREBASE_API_KEY_IOS` | Only if Firebase is on | iOS *Web API key* from the Firebase console, *Project settings > General* |
 
 If your backend runs on your own computer, the address depends on where the app runs:
 
@@ -290,7 +294,10 @@ example with a tunnel like ngrok), or add `NSAllowsLocalNetworking` to `Info.pli
 for debug.
 
 > Don't put secrets in env files (passwords, private API keys). The values are built
-> into the app and can be read by anyone who has the app.
+> into the app and can be read by anyone who has the app. Firebase API keys are the
+> exception: they only identify the project to Google and are meant to ship inside
+> the app (real protection comes from Security Rules and App Check). They still stay
+> in the git-ignored env files so secret scanning doesn't flag the repo.
 
 ## Step 6: Run the app
 
@@ -2534,9 +2541,11 @@ commit them.
 
 **Using the FlutterFire CLI instead:** run
 `dart pub global activate flutterfire_cli && flutterfire configure`. It creates
-`lib/firebase_options.dart`. Then pass
-`options: DefaultFirebaseOptions.currentPlatform` to `Firebase.initializeApp` in
-`core/services/firebase/firebase_bootstrap.dart`.
+`lib/firebase_options.dart` with hardcoded API keys. **Don't commit those keys** —
+this repo's `lib/firebase_options.dart` reads them from `FIREBASE_API_KEY_ANDROID`
+and `FIREBASE_API_KEY_IOS` in the env files, so re-apply that change after
+regenerating. `core/services/firebase/firebase_bootstrap.dart` then passes
+`options: DefaultFirebaseOptions.currentPlatform` to `Firebase.initializeApp`.
 
 ---
 
@@ -2578,6 +2587,8 @@ below. Mark everything as **Secret** except `API_VERSION` and `ENABLE_FIREBASE`.
 | `app_env` | `ENABLE_FIREBASE` | `true` or `false` (optional) |
 | `firebase` | `GOOGLE_SERVICES_JSON` | `google-services.json` as base64 |
 | `firebase` | `GOOGLE_SERVICE_INFO_PLIST` | `GoogleService-Info.plist` as base64 |
+| `firebase` | `FIREBASE_API_KEY_ANDROID` | Android *Web API key* from the Firebase console |
+| `firebase` | `FIREBASE_API_KEY_IOS` | iOS *Web API key* from the Firebase console |
 | `google_play` | `GCLOUD_SERVICE_ACCOUNT_CREDENTIALS` | Google Play service account JSON (paste as is, not base64) |
 
 Turn the Firebase files into base64 on one line:

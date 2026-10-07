@@ -3,19 +3,60 @@ import 'package:app_boilerplate/core/constants/app_assets.dart';
 import 'package:app_boilerplate/core/constants/app_colors.dart';
 import 'package:app_boilerplate/core/constants/app_dimens.dart';
 import 'package:app_boilerplate/core/extensions/context_extensions.dart';
+import 'package:app_boilerplate/core/utils/validators.dart';
 import 'package:app_boilerplate/core/widgets/widgets.dart';
 import 'package:app_boilerplate/features/auth/presentation/widgets/auth_widgets.dart';
 import 'package:app_boilerplate/features/auth/presentation/widgets/form_brand.dart';
-import 'package:app_boilerplate/features/auth/presentation/widgets/login_form.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class LoginPage
+/// Password reset: enter email, get a reset link.
+class ForgotPasswordPage
     extends
-        StatelessWidget {
-  const LoginPage({
+        StatefulWidget {
+  const ForgotPasswordPage({
     super.key,
   });
+
+  @override
+  State<
+    ForgotPasswordPage
+  >
+  createState() => _ForgotPasswordPageState();
+}
+
+class _ForgotPasswordPageState
+    extends
+        State<
+          ForgotPasswordPage
+        > {
+  final _formKey =
+      GlobalKey<
+        FormState
+      >();
+  final _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  void _submit() {
+    FocusScope.of(
+      context,
+    ).unfocus();
+    if (!(_formKey.currentState?.validate() ??
+        false)) {
+      return;
+    }
+    // TODO: call reset use case.
+    AppSnackBar.show(
+      context,
+      context.l10n.sendResetLink,
+    );
+  }
 
   @override
   Widget build(
@@ -32,28 +73,32 @@ class LoginPage
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const AuthHeader(),
+            AuthHeader(
+              onBack: () => Navigator.pop(
+                context,
+              ),
+            ),
             const SizedBox(
               height: AppSpacing.lg,
             ),
-            _LoginHero(),
+            _ResetHero(),
             const SizedBox(
               height: AppSpacing.xxl,
             ),
             FormTagline(
-              l10n.loginTagLine,
+              l10n.forgotPasswordTagLine,
             ),
             const SizedBox(
               height: AppSpacing.sm,
             ),
             FormHeadline(
-              l10n.loginHeadline,
+              l10n.forgotPasswordHeadline,
             ),
             const SizedBox(
               height: AppSpacing.md,
             ),
             Text(
-              l10n.loginBody,
+              l10n.forgotPasswordBody,
               style: context.textTheme.bodyLarge?.copyWith(
                 color: AppColors.grey,
                 height: 1.5,
@@ -62,41 +107,67 @@ class LoginPage
             const SizedBox(
               height: AppSpacing.xxl,
             ),
-            const LoginForm(),
-            const SizedBox(
-              height: AppSpacing.lg,
-            ),
-            Align(
-              alignment: AlignmentDirectional.centerEnd,
-              child: AppButton.text(
-                label: l10n.forgotPassword,
-                onPressed: () => Navigator.pushNamed(
-                  context,
-                  RoutesName.forgotPassword,
-                ),
+            Form(
+              key: _formKey,
+              child: AppTextField(
+                controller: _emailController,
+                label: l10n.emailLabel,
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.done,
+                autofillHints: const [
+                  AutofillHints.email,
+                ],
+                validator:
+                    (
+                      value,
+                    ) => Validators.email(
+                      value,
+                      l10n,
+                    ),
+                onSubmitted:
+                    (
+                      _,
+                    ) => _submit(),
               ),
             ),
             const SizedBox(
-              height: AppSpacing.md,
+              height: AppSpacing.xl,
+            ),
+            FormCtaButton(
+              label: l10n.sendResetLink,
+              onPressed: _submit,
+            ),
+            const SizedBox(
+              height: AppSpacing.lg,
+            ),
+            Text(
+              l10n.resetLinkNote,
+              style: context.textTheme.bodySmall?.copyWith(
+                color: AppColors.grey,
+                height: 1.5,
+              ),
+            ),
+            const SizedBox(
+              height: AppSpacing.xxl,
             ),
             Center(
               child: Text.rich(
                 TextSpan(
-                  text: '${l10n.newToForm} ',
+                  text: '${l10n.rememberPassword} ',
                   style: context.textTheme.bodyMedium?.copyWith(
                     color: AppColors.grey,
                   ),
                   children: [
                     TextSpan(
-                      text: l10n.createAccount,
+                      text: l10n.logIn,
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         decoration: TextDecoration.underline,
                       ),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => Navigator.pushNamed(
+                        ..onTap = () => Navigator.pushReplacementNamed(
                           context,
-                          RoutesName.register,
+                          RoutesName.login,
                         ),
                     ),
                   ],
@@ -106,40 +177,22 @@ class LoginPage
             const SizedBox(
               height: AppSpacing.xxl,
             ),
-            OrDivider(
-              label: l10n.orContinueWith,
-            ),
-            const SizedBox(
-              height: AppSpacing.lg,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SocialButton(
-                  asset: AppAssets.iconGoogle,
-                  onPressed: () {},
-                ),
-                const SizedBox(
-                  width: AppSpacing.lg,
-                ),
-                SocialButton(
-                  asset: AppAssets.iconApple,
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: AppSpacing.lg,
-            ),
             Center(
               child: AppButton.text(
-                label: l10n.exploreAsGuest,
-                onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  RoutesName.home,
-                  (
-                    route,
-                  ) => false,
+                label: l10n.cantAccessEmail,
+                onPressed: () {},
+              ),
+            ),
+            const SizedBox(
+              height: AppSpacing.xxl,
+            ),
+            Center(
+              child: Text(
+                l10n.trainHardLiveWell,
+                style: context.textTheme.labelLarge?.copyWith(
+                  fontSize: 10,
+                  letterSpacing: 1.4,
+                  color: AppColors.grey,
                 ),
               ),
             ),
@@ -150,8 +203,7 @@ class LoginPage
   }
 }
 
-/// The dark hero image card behind the login form.
-class _LoginHero
+class _ResetHero
     extends
         StatelessWidget {
   @override
@@ -160,7 +212,7 @@ class _LoginHero
   ) {
     final l10n = context.l10n;
     return Container(
-      height: 200,
+      height: 170,
       decoration: BoxDecoration(
         color: AppColors.charcoal,
         borderRadius: BorderRadius.circular(
@@ -174,32 +226,29 @@ class _LoginHero
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.md,
-              vertical: AppSpacing.xs,
+            width: 40,
+            height: 40,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColors.lime,
             ),
-            decoration: BoxDecoration(
-              color: Colors.white.withValues(
-                alpha: 0.16,
-              ),
-              borderRadius: BorderRadius.circular(
-                AppRadius.pill,
-              ),
-            ),
-            child: Text(
-              l10n.onboardingClubTag,
-              style: context.textTheme.labelLarge?.copyWith(
-                fontSize: 10,
-                letterSpacing: 1.2,
-                color: AppColors.lime,
+            child: Center(
+              child: SvgPicture.asset(
+                AppAssets.iconKeyRound,
+                width: 18,
+                height: 18,
+                colorFilter: const ColorFilter.mode(
+                  AppColors.charcoal,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ),
           const Spacer(),
           Text(
-            l10n.loginHeroTitle,
+            l10n.forgotPasswordHeroTitle,
             style: context.textTheme.displaySmall?.copyWith(
-              fontSize: 28,
+              fontSize: 26,
               height: 1.05,
               fontWeight: FontWeight.w800,
               color: Colors.white,

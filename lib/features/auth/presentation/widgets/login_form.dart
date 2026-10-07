@@ -3,18 +3,33 @@ import 'package:app_boilerplate/core/extensions/context_extensions.dart';
 import 'package:app_boilerplate/core/utils/validators.dart';
 import 'package:app_boilerplate/core/widgets/widgets.dart';
 import 'package:app_boilerplate/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:app_boilerplate/features/auth/presentation/widgets/auth_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+class LoginForm
+    extends
+        StatefulWidget {
+  const LoginForm({
+    super.key,
+  });
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<
+    LoginForm
+  >
+  createState() => _LoginFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
-  final _formKey = GlobalKey<FormState>();
+class _LoginFormState
+    extends
+        State<
+          LoginForm
+        > {
+  final _formKey =
+      GlobalKey<
+        FormState
+      >();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -26,22 +41,41 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _submit() {
-    FocusScope.of(context).unfocus();
-    if (!(_formKey.currentState?.validate() ?? false)) return;
+    FocusScope.of(
+      context,
+    ).unfocus();
+    if (!(_formKey.currentState?.validate() ??
+        false)) {
+      return;
+    }
 
-    context.read<AuthBloc>().add(
-      AuthLoginSubmitted(
-        email: _emailController.text,
-        password: _passwordController.text,
-      ),
-    );
+    context
+        .read<
+          AuthBloc
+        >()
+        .add(
+          AuthLoginSubmitted(
+            email: _emailController.text,
+            password: _passwordController.text,
+          ),
+        );
   }
 
   @override
-  Widget build(BuildContext context) {
-    final isLoading = context.select<AuthBloc, bool>(
-      (bloc) => bloc.state.status == AuthStatus.loading,
-    );
+  Widget build(
+    BuildContext context,
+  ) {
+    final isLoading =
+        context.select<
+          AuthBloc,
+          bool
+        >(
+          (
+            bloc,
+          ) =>
+              bloc.state.status ==
+              AuthStatus.loading,
+        );
     final l10n = context.l10n;
 
     return Form(
@@ -57,18 +91,33 @@ class _LoginFormState extends State<LoginForm> {
               enabled: !isLoading,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
-              autofillHints: const [AutofillHints.email],
-              validator: (value) => Validators.email(value, l10n),
+              autofillHints: const [
+                AutofillHints.email,
+              ],
+              validator:
+                  (
+                    value,
+                  ) => Validators.email(
+                    value,
+                    l10n,
+                  ),
             ),
-            const SizedBox(height: AppSpacing.lg),
+            const SizedBox(
+              height: AppSpacing.lg,
+            ),
             AppPasswordField(
               controller: _passwordController,
               enabled: !isLoading,
-              onSubmitted: (_) => _submit(),
+              onSubmitted:
+                  (
+                    _,
+                  ) => _submit(),
             ),
-            const SizedBox(height: AppSpacing.xl),
-            AppButton(
-              label: l10n.signIn,
+            const SizedBox(
+              height: AppSpacing.xl,
+            ),
+            FormCtaButton(
+              label: l10n.logIn,
               isLoading: isLoading,
               onPressed: _submit,
             ),

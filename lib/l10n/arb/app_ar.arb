@@ -59,5 +59,300 @@
   "pushNotConfiguredMessage": "لم يتم إعداد Firebase. راجع قسم \"Firebase setup\" في ملف README.",
   "pushCopyToken": "نسخ رمز FCM",
   "pushTokenCopied": "تم نسخ رمز FCM",
-  "pushEnable": "تفعيل الإشعارات"
+  "pushEnable": "تفعيل الإشعارات",
+
+  "skip": "تخطي",
+  "next": "التالي",
+  "continueLabel": "متابعة",
+  "getStarted": "ابدأ الآن",
+  "back": "رجوع",
+
+  "onboardingClubTag": "نادي بروكلين للتدريب",
+  "onboardingCardTitle1": "أهدافك. بإيقاعك.",
+  "onboardingChipMemberships": "العضويات",
+  "onboardingChipClasses": "الحصص",
+  "onboardingChipPersonalTraining": "تدريب شخصي",
+  "onboardingLabel1": "اكتشف قوتك",
+  "onboardingTitle1": "مستواك التالي.\nيبدأ هنا.",
+  "onboardingSubtitle1": "اكتشف عضويات النادي والحصص والتدريب الشخصي المصمم حول أهدافك.",
+  "onboardingLabel2": "معدات للتمارين",
+  "onboardingTitle2": "جلسات رائعة.\nأساسيات مميزة.",
+  "onboardingSubtitle2": "تسوق الملابس والمعدات ومعدات الاستشفاء. كل ما تحتاجه مع استلام مجاني من النادي.",
+  "onboardingEverydayLineup": "تشكيلة اليوم",
+  "onboardingProductBottle": "قارورة FORM",
+  "onboardingProductTee": "تيشيرت التدريب",
+  "onboardingProductResistance": "طقم المقاومة",
+  "onboardingProductRoller": "أسطوانة الاستشفاء",
+  "onboardingLabel3": "نادٍ واحد. كل يومك.",
+  "onboardingTitle3": "احجز. تسوق.\nاحضر.",
+  "onboardingSubtitle3": "احجز جلستك القادمة واشترِ أساسياتك في مكان واحد.",
+  "onboardingNextMove": "خطوتك التالية",
+  "onboardingBookAClass": "احجز حصة",
+  "onboardingClassName": "حصة القوة",
+  "onboardingClassMeta": "غداً · 7:00 صباحاً · 45 دقيقة",
+  "onboardingClassPrice": "28 \\$ / حصة",
+  "onboardingPickupTag": "استلم من النادي",
+  "onboardingBottleMeta": "750 مل · فحمي",
+  "onboardingBottlePrice": "32 \\$",
+  "onboardingCartNote": "سلة واحدة. دفع سهل.",
+
+  "loginHeroTitle": "تدريبك. أساسياتك.",
+  "loginTagLine": "عودة إلى يومك",
+  "loginHeadline": "مرحباً بعودتك.",
+  "loginBody": "سجل الدخول لحجز جلستك القادمة وإدارة عضويتك وتسوق أساسياتك.",
+  "forgotPassword": "نسيت كلمة المرور؟",
+  "newToForm": "جديد في FORM؟",
+  "createAccount": "أنشئ حساباً",
+  "orContinueWith": "أو تابع مع",
+  "exploreAsGuest": "استكشف FORM كضيف",
+
+  "registerStepCreate": "إنشاء حساب",
+  "registerStepVerify": "تأكيد البريد",
+  "registerTagLine": "نادٍ واحد. كل يومك.",
+  "registerHeadline": "مستواك التالي.\nيبدأ هنا.",
+  "registerBody": "أنشئ حسابك للتدريب والحصص والأساسيات. كلها في مكان واحد.",
+  "fullNameLabel": "الاسم الكامل",
+  "confirmPasswordLabel": "تأكيد كلمة المرور",
+  "passwordHint": "استخدم 8 أحرف على الأقل، تتضمن رقماً.",
+  "agreeToTerms": "أوافق على شروط الخدمة وسياسة الخصوصية الخاصة بـ FORM.",
+  "registerNextNote": "بعد ذلك، سنرسل لك رمزاً للتحقق من حسابك.",
+  "alreadyHaveAccount": "لديك حساب بالفعل؟",
+  "logIn": "سجل الدخول",
+
+  "forgotPasswordHeroTitle": "إعادة سريعة.\nعد إلى روتينك.",
+  "forgotPasswordTagLine": "لنعد بك",
+  "forgotPasswordHeadline": "نسيت كلمة\nالمرور؟",
+  "forgotPasswordBody": "لا بأس. أدخل البريد المرتبط بحساب FORM وسنرسل لك رابط إعادة التعيين.",
+  "sendResetLink": "أرسل رابط الإعادة",
+  "resetLinkNote": "إذا كان الحساب موجوداً، ستتلقى رابطاً. تحقق من بريدك الوارد والرسائل غير المرغوب فيها. تنتهي صلاحية الرابط خلال 30 دقيقة.",
+  "rememberPassword": "تتذكر كلمة المرور؟",
+  "cantAccessEmail": "لا يمكنك الوصول لبريدك؟ تواصل مع النادي",
+  "trainHardLiveWell": "تدرب بجد. عش بصحة.",
+
+  "verifyTagLine": "محاولة أخيرة، {name}",
+  "@verifyTagLine": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "verifyHeadline": "تحقق من\nحسابك.",
+  "verifyBody": "أدخل الرمز المكون من 6 أرقام الذي أرسلناه لإتمام إنشاء حساب FORM الخاص بك.",
+  "verifyCodeSentTo": "تم إرسال الرمز إلى",
+  "changeEmail": "غيّر البريد",
+  "verificationCodeLabel": "رمز التحقق",
+  "codeValidFor": "رمزك صالح لمدة 10 دقائق.",
+  "verifyAndCreate": "تحقق وأنشئ الحساب",
+  "didntReceiveCode": "لم يصلك الرمز؟",
+  "resendCodeIn": "أعد الإرسال خلال {seconds}",
+  "@resendCodeIn": {
+    "placeholders": {
+      "seconds": { "type": "String" }
+    }
+  },
+  "resendCode": "أعد إرسال الرمز",
+  "checkSpamNote": "تحقق من مجلد الرسائل غير المرغوب فيها، أو غيّر بريدك أعلاه إذا لم يكن صحيحاً.",
+
+  "navHome": "الرئيسية",
+  "navTrain": "تدرب",
+  "navShop": "تسوق",
+  "navCart": "السلة",
+  "navYou": "حسابك",
+
+  "homeGreetingMorning": "صباح الخير، {name}",
+  "@homeGreetingMorning": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "homeHeadline": "ابنِ يومك المعتاد.",
+  "homeHeroTag": "تدرب بجد. عش بصحة.",
+  "homeHeroTitle": "أكثر من مجرد نادٍ.\nمستواك التالي.",
+  "homeHeroCta": "اعثر على إيقاع تدريبك",
+  "homeCategoryMemberships": "العضويات",
+  "homeCategoryCoaching": "التدريب",
+  "homeCategoryGear": "المعدات",
+  "homeNextMove": "خطوتك التالية",
+  "homeExploreAll": "استكشف الكل",
+  "homeClubNote": "نادٍ واحد. تدريبك + أساسياتك.",
+
+  "trainTitle": "تدرب في FORM",
+  "trainHeadline": "اكتشف قوتك.",
+  "trainSubtitle": "تدريب خبير. طاقة أفضل. خطة تناسبك.",
+  "trainFilterAll": "الكل",
+  "trainFilterClasses": "الحصص",
+  "trainFilterCoaching": "التدريب",
+  "trainFilterMemberships": "العضويات",
+  "trainClubMeta": "نادي {club} · {count} طرق للتدريب",
+  "@trainClubMeta": {
+    "placeholders": {
+      "club": { "type": "String" },
+      "count": { "type": "int" }
+    }
+  },
+  "trainTagGroupClass": "حصة جماعية",
+  "trainTagCoaching": "تدريب 1:1",
+  "trainTagMembership": "عضوية",
+  "trainClassName": "حصة القوة",
+  "trainClassMeta": "45 دقيقة · قوة ولياقة",
+  "trainClassCoach": "جميع المستويات · المدربة مايا",
+  "trainClassPrice": "28 \\$ / حصة",
+  "trainClassNext": "غداً، 7:00 صباحاً · 6 أماكن متبقية",
+  "trainPtName": "تدريب شخصي",
+  "trainPtMeta": "60 دقيقة · أهدافك، خطتك",
+  "trainPtCoach": "مع مدرب FORM معتمد",
+  "trainPtPrice": "85 \\$ / جلسة",
+  "trainPtNext": "الموعد التالي: الخميس 8 أكتوبر · 10:00 صباحاً",
+  "trainMembershipName": "وصول غير محدود",
+  "trainMembershipMeta": "نادٍ مفتوح + حصص غير محدودة",
+  "trainMembershipPlan": "شهري · بدون التزام سنوي",
+  "trainMembershipPrice": "149 \\$ / شهر",
+  "trainMembershipNext": "ابدأ أي يوم · مفتوح 5 صباحاً–11 مساءً",
+
+  "classDetailsTitle": "تفاصيل الحصة",
+  "classRating": "4.9 (128)",
+  "classDescription": "ابنِ قوتك بمزيج لكامل الجسم من الأثقال واللياقة. احضر فحسب. نحن نجلب الطاقة.",
+  "classDuration": "45 دقيقة",
+  "classLevel": "جميع المستويات",
+  "classCoach": "المدربة مايا",
+  "classPickSession": "اختر جلستك",
+  "classSpotsLeft": "{spots} أماكن متبقية · نادي {club}، استوديو 01",
+  "@classSpotsLeft": {
+    "placeholders": {
+      "spots": { "type": "int" },
+      "club": { "type": "String" }
+    }
+  },
+  "classTicketLabel": "حصة واحدة · شخص واحد",
+  "classTicketNote": "الأعضاء غير المحدودين: مشمول",
+  "classReserveCta": "احجز وأضف للسلة · {price}",
+  "@classReserveCta": {
+    "placeholders": {
+      "price": { "type": "String" }
+    }
+  },
+  "classCancelNote": "ادفع عند الدفع. ألغِ مجاناً حتى 12 ساعة قبل الحصة.",
+
+  "reservationTitle": "الحجز",
+  "reservationHeadline": "مكانك.\nمحفوظ لك.",
+  "reservationBody": "{className} في سلتك. أكمل الدفع لتأكيد حجزك.",
+  "@reservationBody": {
+    "placeholders": {
+      "className": { "type": "String" }
+    }
+  },
+  "reservationTagPending": "حجز · الدفع معلق",
+  "reservationWhen": "متى",
+  "reservationWhere": "أين",
+  "reservationWith": "مع من",
+  "reservationSingleClass": "حصة واحدة",
+  "reservationNote": "احضر قبل 10 دقائق. أحضر الماء وحذاء التدريب.\nتظهر بطاقة الدخول بعد الدفع.",
+  "reservationUpsellTitle": "أحضر أفضل ما لديك.",
+  "reservationUpsellMeta": "ماء بارد. كل تكرار. · 32 \\$",
+  "reservationUpsellCta": "تسوق الأساسيات",
+  "reservationGoToCart": "إلى السلة · {count} عنصر",
+  "@reservationGoToCart": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "reservationKeepExploring": "تابع الاستكشاف",
+
+  "shopTitle": "أساسيات FORM",
+  "shopHeadline": "معدات للتمارين.",
+  "shopSubtitle": "صُنعت لجلستك. ولكل ما بعدها.",
+  "shopSearchHint": "ابحث عن معدات وملابس واستشفاء",
+  "shopFilterAll": "كل المعدات",
+  "shopFilterApparel": "الملابس",
+  "shopFilterEquipment": "المعدات",
+  "shopFilterRecovery": "الاستشفاء",
+  "shopMeta": "{count} أساسيات · متوفرة",
+  "@shopMeta": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "shopTagBestseller": "الأكثر مبيعاً",
+  "shopTagNew": "جديد",
+  "shopTagTraining": "تدريب",
+  "shopTagRecovery": "استشفاء",
+  "shopBottleMeta": "750 مل · فحمي",
+  "shopTeeMeta": "للجنسين · مقاسات XS–XXL",
+  "shopResistanceMeta": "3 أربطة · خفيف إلى ثقيل",
+  "shopRollerMeta": "دعم قوي · 33 سم",
+  "shopPickupNote": "استلام مجاني من النادي. احصل على معداتك قبل التدريب.",
+
+  "productDetailsTitle": "تفاصيل المنتج",
+  "productTagEssentials": "أساسيات FORM",
+  "productBottleName": "قارورة FORM",
+  "productBottleDescription": "ترطيبك اليومي، مطوّر. الفولاذ المزدوج يحافظ على برودة المشروبات 24 ساعة.",
+  "productColorLabel": "اللون: فحمي · 750 مل",
+  "productInStock": "متوفر · جاهز للاستلام من النادي",
+  "productFulfillmentNote": "استلم مجاناً من بروكلين أو اشحن مقابل 5 \\$. اختر طريقة الاستلام في سلتك.",
+  "productAddToCart": "أضف إلى السلة · {price}",
+  "@productAddToCart": {
+    "placeholders": {
+      "price": { "type": "String" }
+    }
+  },
+  "productFeatures": "مانع للتسرب · خالٍ من BPA · ملمس سهل الإمساك · إرجاع خلال 30 يوماً",
+
+  "cartTitle": "سلتك",
+  "cartHeadline": "سلة واحدة. كل شيء.",
+  "cartMeta": "{count} عناصر · جلستك + أساسياتك",
+  "@cartMeta": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "cartTagService": "خدمة · شخص واحد",
+  "cartTagProduct": "منتج مادي",
+  "cartEntryPassNote": "تُسلّم بطاقة الدخول في التطبيق بعد الدفع.",
+  "cartRemove": "إزالة",
+  "cartClubPickup": "استلام من النادي · مجاناً",
+  "cartShipToMe": "اشحن لي · 5 \\$",
+  "cartPickupNote": "جاهز غداً في استقبال بروكلين.",
+  "cartPromoCode": "لديك رمز ترويجي؟",
+  "cartSubtotal": "المجموع الفرعي",
+  "cartPickupFree": "استلام من النادي",
+  "cartFree": "مجاناً",
+  "cartEstimatedTax": "الضريبة التقديرية",
+  "cartTotal": "الإجمالي",
+  "cartPayWith": "ادفع بفيزا •••• 4242",
+  "cartBillingSaved": "{name} · تفاصيل الفوترة محفوظة",
+  "@cartBillingSaved": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "cartChange": "تغيير",
+  "cartPayCta": "ادفع وأكّد · {total}",
+  "@cartPayCta": {
+    "placeholders": {
+      "total": { "type": "String" }
+    }
+  },
+  "cartTerms": "دفع آمن. بإتمام طلبك، أنت توافق على شروط حجز FORM وسياسة إرجاع المنتجات خلال 30 يوماً.",
+
+  "orderCompleteTitle": "اكتمل الدفع",
+  "orderStepCart": "السلة",
+  "orderStepPayment": "الدفع",
+  "orderStepConfirmed": "مؤكد",
+  "orderHeadline": "كل شيء جاهز،\n{name}.",
+  "@orderHeadline": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "orderBody": "تم حجز حصتك. معداتك في الطريق إلى النادي.\nلنبدأ العمل.",
+  "orderNumber": "طلب #FRM-10482",
+  "orderPaid": "مدفوع",
+  "orderTotalPaid": "الإجمالي المدفوع",
+  "orderPaymentMeta": "فيزا •••• 4242 · يشمل ضريبة 4.80 \\$\nأُرسل الإيصال إلى alex.morgan@email.com",
+  "orderClassConfirmed": "حصة القوة · مؤكدة",
+  "orderClassMeta": "الأربعاء 7 أكتوبر · 7:00–7:45 صباحاً\nالمدربة مايا · بروكلين، استوديو 01",
+  "orderViewEntryPass": "عرض بطاقة الدخول",
+  "orderPickupTitle": "قارورة FORM · استلام من النادي",
+  "orderPickupMeta": "جاهزة الأربعاء 7 أكتوبر من 6:30 صباحاً\nFORM بروكلين · 68 شارع ويث\nأظهر رقم طلبك في الاستقبال.",
+  "orderViewBookingCta": "عرض حجزي وطلبي",
+  "orderNeedHelp": "تحتاج مساعدة؟ تواصل مع النادي"
 }

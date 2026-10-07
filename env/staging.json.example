@@ -2,5 +2,7 @@
   "ENV": "staging",
   "BASE_URL": "https://staging-api.example.com/api/",
   "API_VERSION": "v1",
-  "ENABLE_FIREBASE": true
+  "ENABLE_FIREBASE": true,
+  "FIREBASE_API_KEY_ANDROID": "",
+  "FIREBASE_API_KEY_IOS": ""
 }
